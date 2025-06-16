@@ -26,13 +26,12 @@ public class Learner {
 	private String password;
 	private Long mobile;
 
-	@OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	List<EnrolledCourse> enrolledCourses = new ArrayList<EnrolledCourse>();
 
-	
 	public boolean checkCourse(Long id) {
-		for(EnrolledCourse enrolledCourse:this.enrolledCourses) {
-			if(enrolledCourse.getCourse().getId()==id) {
+		for (EnrolledCourse enrolledCourse : this.enrolledCourses) {
+			if (enrolledCourse.getCourse().getId() == id) {
 				return true;
 			}
 		}
