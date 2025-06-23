@@ -1,775 +1,908 @@
 <!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Tutor Dashboard - Jnana</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
-        rel="stylesheet">
-    <link rel="shortcut icon" href="https://yogastudies.org/wp-content/uploads/jnana.jpg" type="image/x-icon">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Font Awesome for icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
     <style>
-        :root {
-            --primary: #6366f1;
-            --primary-dark: #4f46e5;
-            --secondary: #06b6d4;
-            --accent: #f59e0b;
-            --success: #10b981;
-            --error: #ef4444;
-            --text-primary: #0f172a;
-            --text-secondary: #64748b;
-            --text-muted: #94a3b8;
-            --bg-primary: #ffffff;
-            --bg-secondary: #f8fafc;
-            --bg-tertiary: #f1f5f9;
-            --border: #e2e8f0;
-            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-            --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
-            --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            --gradient-hero: linear-gradient(135deg, #1e3a8a 0%, #3730a3 50%, #581c87 100%);
+      :root {
+        --primary: #2c3e50;
+        --secondary: #34495e;
+        --accent: #1abc9c;
+        --text-light: #ecf0f1;
+        --text-dark: #2c3e50;
+        --bg-light: #f8f9fa;
+        --success: #27ae60;
+        --error: #e74c3c;
+        --border: #ddd;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background-color: var(--bg-light);
+        color: var(--text-dark);
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+      }
+
+      header {
+        background-color: var(--primary);
+        color: var(--text-light);
+        padding: 1rem 2rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      header .logo {
+        font-size: 1.8rem;
+        font-weight: bold;
+        text-decoration: none;
+        color: var(--text-light);
+      }
+
+      header .logo:hover {
+        color: var(--accent);
+      }
+
+      nav a {
+        color: var(--text-light);
+        text-decoration: none;
+        margin-left: 1rem;
+        font-weight: 500;
+        padding: 0.5rem 1rem;
+        border-radius: 0.25rem;
+        transition: all 0.3s ease;
+      }
+
+      nav a:hover {
+        color: var(--accent);
+        background-color: rgba(255, 255, 255, 0.1);
+      }
+
+      .hero {
+        padding: 3rem 2rem;
+        text-align: center;
+        background-color: var(--secondary);
+        color: var(--text-light);
+      }
+
+      .hero h1 {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+      }
+
+      .hero p {
+        font-size: 1.2rem;
+        max-width: 600px;
+        margin: 0 auto;
+      }
+
+      .welcome-text {
+        font-size: 1.1rem;
+        margin-bottom: 0.5rem;
+        opacity: 0.9;
+      }
+
+      .main-content {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        padding: 2rem;
+        margin-bottom: 60px; /* Space for fixed footer */
+      }
+
+      .dashboard-container {
+        background-color: white;
+        border: 1px solid var(--border);
+        border-radius: 0.5rem;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+        padding: 2rem;
+        width: 100%;
+        max-width: 800px;
+      }
+
+      .dashboard-container h2 {
+        text-align: center;
+        margin-bottom: 2rem;
+        color: var(--primary);
+        font-size: 1.8rem;
+      }
+
+      .dashboard-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1.5rem;
+        margin-bottom: 2rem;
+      }
+
+      .dashboard-card {
+        background-color: white;
+        border: 1px solid var(--border);
+        padding: 1.5rem;
+        border-radius: 0.5rem;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+        transition: all 0.3s ease;
+        text-decoration: none;
+        color: var(--text-dark);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+
+      .dashboard-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        text-decoration: none;
+        color: var(--text-dark);
+      }
+
+      .card-icon {
+        font-size: 2.5rem;
+        color: var(--accent);
+        margin-bottom: 1rem;
+      }
+
+      .card-title {
+        font-size: 1.2rem;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+        color: var(--primary);
+      }
+
+      .card-description {
+        font-size: 0.9rem;
+        color: #666;
+        line-height: 1.4;
+      }
+
+      .logout-section {
+        text-align: center;
+        padding-top: 2rem;
+        border-top: 1px solid var(--border);
+      }
+
+      .logout-btn {
+        background-color: var(--error);
+        color: white;
+        padding: 0.75rem 2rem;
+        border: none;
+        border-radius: 0.25rem;
+        font-size: 1rem;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .logout-btn:hover {
+        background-color: #c0392b;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        text-decoration: none;
+        color: white;
+      }
+
+      footer {
+        background-color: var(--primary);
+        color: white;
+        text-align: center;
+        padding: 1rem;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+      }
+
+      /* Toast Styles */
+      .toast-container {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 1000;
+      }
+
+      .toast {
+        background-color: white;
+        border-radius: 0.5rem;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        padding: 1rem 1.5rem;
+        margin-bottom: 0.5rem;
+        min-width: 300px;
+        max-width: 400px;
+        transform: translateX(100%);
+        opacity: 0;
+        transition: all 0.3s ease-in-out;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .toast.show {
+        transform: translateX(0);
+        opacity: 1;
+      }
+
+      .toast.success {
+        border-left: 4px solid var(--success);
+      }
+
+      .toast.error {
+        border-left: 4px solid var(--error);
+      }
+
+      .toast-content {
+        display: flex;
+        align-items: center;
+        flex: 1;
+      }
+
+      .toast-icon {
+        margin-right: 0.75rem;
+        font-size: 1.2rem;
+      }
+
+      .toast.success .toast-icon {
+        color: var(--success);
+      }
+
+      .toast.error .toast-icon {
+        color: var(--error);
+      }
+
+      .toast-message {
+        color: var(--text-dark);
+        font-weight: 500;
+        flex: 1;
+      }
+
+      .toast-close {
+        background: none;
+        border: none;
+        font-size: 1.2rem;
+        cursor: pointer;
+        color: #999;
+        margin-left: 1rem;
+        padding: 0;
+        width: 20px;
+        height: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .toast-close:hover {
+        color: var(--text-dark);
+      }
+
+      /* Responsive Design */
+      @media (max-width: 768px) {
+        .main-content {
+          padding: 1rem;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        .dashboard-container {
+          padding: 1.5rem;
         }
 
-        body {
-            font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
-            line-height: 1.6;
-            color: var(--text-primary);
-            background: var(--bg-secondary);
-            min-height: 100vh;
-            padding-top: 100px;
-            display: flex;
-            flex-direction: column;
+        .dashboard-grid {
+          grid-template-columns: 1fr;
+          gap: 1rem;
         }
 
-        /* Navigation */
-        .navbar {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--border);
-            z-index: 1000;
-            transition: all 0.3s ease;
-            padding: 1.2rem 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 1.75rem;
-            font-weight: 800;
-            background: var(--gradient-primary);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            text-decoration: none;
-            letter-spacing: -0.025em;
-        }
-
-        .nav-links {
-            display: flex;
-            align-items: center;
-            gap: 2rem;
-        }
-
-        .nav-btn {
-            padding: 0.8rem 1.5rem;
-            border-radius: 25px;
-            font-weight: 500;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .nav-logout {
-            color: white;
-            background: var(--error);
-            box-shadow: var(--shadow-md);
-        }
-
-        .nav-logout:hover {
-            background: #dc2626;
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-lg);
-        }
-
-        /* Hero Section */
         .hero {
-            background: var(--gradient-hero);
-            padding: 4rem 5% 2rem;
-            text-align: center;
-            position: relative;
-            margin-bottom: 2rem;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="white" opacity="0.1"/><circle cx="80" cy="40" r="1" fill="white" opacity="0.1"/><circle cx="40" cy="80" r="1.5" fill="white" opacity="0.1"/></svg>') repeat;
-            background-size: 100px 100px;
+          padding: 2rem 1rem;
         }
 
         .hero h1 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            position: relative;
-            color: white;
-            font-weight: 800;
-            letter-spacing: -0.025em;
+          font-size: 2rem;
         }
 
         .hero p {
-            font-size: 1.2rem;
-            color: rgba(255, 255, 255, 0.9);
-            opacity: 0.9;
-            max-width: 600px;
-            margin: 0 auto;
+          font-size: 1rem;
         }
 
-        .welcome-text {
-            color: rgba(255, 255, 255, 0.9);
-            font-size: 1.1rem;
-            margin-bottom: 0.5rem;
+        header {
+          padding: 1rem;
         }
 
-        /* Container */
-        .container {
-            max-width: 1000px;
-            margin: 2rem auto;
-            padding: 2.5rem;
-            background: white;
-            border-radius: 20px;
-            box-shadow: var(--shadow-xl);
-            border: 1px solid var(--border);
-            animation: slideUp 0.5s ease-out;
+        header .logo {
+          font-size: 1.5rem;
         }
 
-        h1 {
-            font-size: 2.2rem;
-            margin-bottom: 2.5rem;
-            text-align: center;
-            background: var(--gradient-primary);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+        nav a {
+          margin-left: 0.5rem;
+          padding: 0.4rem 0.8rem;
+          font-size: 0.9rem;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .dashboard-container {
+          padding: 1rem;
         }
 
-        .btn-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 2.5rem;
+        .dashboard-container h2 {
+          font-size: 1.5rem;
         }
 
-        .btn {
-            padding: 1.2rem;
-            border: none;
-            border-radius: 15px;
-            font-size: 1.1rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-weight: 500;
-            color: white;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.8rem;
-            background: var(--gradient-primary);
-            box-shadow: var(--shadow-md);
+        .card-icon {
+          font-size: 2rem;
         }
 
-        .btn i {
-            font-size: 1.2rem;
+        .card-title {
+          font-size: 1.1rem;
         }
 
-        .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: var(--shadow-lg);
-            text-decoration: none;
-            color: white;
+        .card-description {
+          font-size: 0.85rem;
         }
 
         .logout-btn {
-            background: var(--error);
-            width: 200px;
-            margin: 0 auto;
+          padding: 0.6rem 1.5rem;
+          font-size: 0.9rem;
         }
-
-        /* Toast Notifications */
-        .toast-container {
-            position: fixed;
-            top: 100px;
-            right: 2rem;
-            z-index: 1001;
-            max-width: 400px;
-        }
-
-        .toast {
-            background: white;
-            padding: 1rem 1.5rem;
-            border-radius: 0.75rem;
-            box-shadow: var(--shadow-xl);
-            border: 1px solid var(--border);
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 1rem;
-            animation: slideIn 0.3s ease-out forwards;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .toast::before {
-            content: "";
-            position: absolute;
-            left: 0;
-            top: 0;
-            bottom: 0;
-            width: 4px;
-        }
-
-        .toast.success::before {
-            background: var(--success);
-        }
-
-        .toast.error::before {
-            background: var(--error);
-        }
-
-        .toast-content {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            flex: 1;
-        }
-
-        .toast-icon {
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.75rem;
-            color: white;
-        }
-
-        .toast.success .toast-icon {
-            background: var(--success);
-        }
-
-        .toast.error .toast-icon {
-            background: var(--error);
-        }
-
-        .toast-message {
-            color: var(--text-primary);
-            font-weight: 500;
-            font-size: 0.875rem;
-        }
-
-        .toast-close {
-            background: none;
-            border: none;
-            color: var(--text-muted);
-            font-size: 1.25rem;
-            cursor: pointer;
-            padding: 0.25rem;
-            border-radius: 0.25rem;
-            transition: all 0.2s ease;
-            line-height: 1;
-        }
-
-        .toast-close:hover {
-            color: var(--text-secondary);
-            background: var(--bg-tertiary);
-        }
-
-        /* Footer */
-        .footer {
-            background: var(--text-primary);
-            color: white;
-            text-align: center;
-            padding: 2.5rem;
-            margin-top: auto;
-        }
-
-        .footer p {
-            opacity: 0.9;
-            font-size: 0.875rem;
-            letter-spacing: 0.5px;
-        }
-
-        /* Animations */
-        @keyframes slideIn {
-            from {
-                transform: translateX(100%);
-                opacity: 0;
-            }
-
-            to {
-                transform: translateX(0);
-                opacity: 1;
-            }
-        }
-
-        @keyframes slideOut {
-            from {
-                transform: translateX(0);
-                opacity: 1;
-            }
-
-            to {
-                transform: translateX(100%);
-                opacity: 0;
-            }
-        }
-
-        @keyframes slideUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .navbar {
-                padding: 1rem;
-            }
-
-            .hero {
-                padding: 3rem 2rem 2rem;
-            }
-
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-
-            .container {
-                margin: 1rem;
-                padding: 1.5rem;
-            }
-
-            h1 {
-                font-size: 1.8rem;
-            }
-
-            .btn {
-                padding: 1rem;
-            }
-
-            .btn-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .toast-container {
-                right: 1rem;
-                left: 1rem;
-                max-width: none;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .hero h1 {
-                font-size: 2rem;
-            }
-
-            .hero p {
-                font-size: 1rem;
-            }
-        }
-
-        /* Custom scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: var(--bg-tertiary);
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: var(--primary);
-            border-radius: 4px;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: var(--primary-dark);
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
+      }
     </style>
-</head>
+  </head>
 
-<body>
-    <nav class="navbar">
-        <a href="/tutor/home" class="logo">Jnana</a>
-        <div class="nav-links">
-            <a href="/logout" class="nav-btn nav-logout">
-                <i class="fas fa-sign-out-alt"></i>
-                Logout
-            </a>
-        </div>
-    </nav>
-
-    <section class="hero">
-        <p class="welcome-text">Welcome back, <span th:if="${session.tutor.name}"
-                th:text="${session.tutor.name}">Tutor</span></p>
-        <h1>Tutor Dashboard</h1>
-        <p>Manage your courses, sections, and view your learners all in one place</p>
-    </section>
-
-    <div class="container">
-        <div class="btn-grid">
-            <a href="/tutor/courses" class="btn">
-                <i class="fas fa-book"></i>
-                Manage Courses
-            </a>
-            <a href="/tutor/sections" class="btn">
-                <i class="fas fa-layer-group"></i>
-                Manage Sections
-            </a>
-            <a href="/tutor/learners" class="btn">
-                <i class="fas fa-users"></i>
-                View Learners
-            </a>
-        </div>
-    </div>
-
+  <body>
+    <!-- Toast Container -->
     <div class="toast-container">
-        <div id="successToast" class="toast success" th:if="${session.pass}" style="display: none">
-            <div class="toast-content">
-                <div class="toast-icon">
-                    <i class="fas fa-check"></i>
-                </div>
-                <span class="toast-message" th:text="${session.pass}">Success message</span>
-            </div>
-            <button class="toast-close">&times;</button>
+      <div
+        id="successToast"
+        class="toast success"
+        th:if="${session.pass}"
+        style="display: none"
+      >
+        <div class="toast-content">
+          <div class="toast-icon">
+            <i class="fas fa-check"></i>
+          </div>
+          <span class="toast-message" th:text="${session.pass}"
+            >Success message</span
+          >
         </div>
-        <div id="errorToast" class="toast error" th:if="${session.fail}" style="display: none">
-            <div class="toast-content">
-                <div class="toast-icon">
-                    <i class="fas fa-exclamation"></i>
-                </div>
-                <span class="toast-message" th:text="${session.fail}">Error message</span>
-            </div>
-            <button class="toast-close">&times;</button>
+        <button class="toast-close">&times;</button>
+      </div>
+      <div
+        id="errorToast"
+        class="toast error"
+        th:if="${session.fail}"
+        style="display: none"
+      >
+        <div class="toast-content">
+          <div class="toast-icon">
+            <i class="fas fa-exclamation"></i>
+          </div>
+          <span class="toast-message" th:text="${session.fail}"
+            >Error message</span
+          >
         </div>
-        <th:block th:text="${@generalService.removeMessage()}"></th:block>
+        <button class="toast-close">&times;</button>
+      </div>
+      <th:block th:text="${@generalService.removeMessage()}"></th:block>
     </div>
 
-    <footer class="footer">
-        <p>&copy; 2025 Jnana. All rights reserved.</p>
-    </footer>
+    <!-- Header -->
+    <header>
+      <a href="/tutor/home" class="logo">Jnana</a>
+      <nav>
+        <a href="/logout">
+          <i class="fas fa-sign-out-alt"></i>
+          Logout
+        </a>
+      </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <div class="hero">
+      <p class="welcome-text">
+        Welcome back,
+        <span th:if="${session.tutor.name}" th:text="${session.tutor.name}"
+          >Tutor</span
+        >
+      </p>
+      <h1>Tutor Dashboard</h1>
+      <p>
+        Manage your courses, sections, and view your learners all in one place
+      </p>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+      <div class="dashboard-container">
+        <h2>Dashboard</h2>
+
+        <div class="dashboard-grid">
+          <a href="/tutor/courses" class="dashboard-card">
+            <div class="card-icon">
+              <i class="fas fa-book"></i>
+            </div>
+            <div class="card-title">Manage Courses</div>
+            <div class="card-description">
+              Create, edit, and organize your courses. Add course materials and
+              track progress.
+            </div>
+          </a>
+
+          <a href="/tutor/sections" class="dashboard-card">
+            <div class="card-icon">
+              <i class="fas fa-layer-group"></i>
+            </div>
+            <div class="card-title">Manage Sections</div>
+            <div class="card-description">
+              Organize course content into sections. Structure your curriculum
+              effectively.
+            </div>
+          </a>
+
+          <a href="/tutor/learners" class="dashboard-card">
+            <div class="card-icon">
+              <i class="fas fa-users"></i>
+            </div>
+            <div class="card-title">View Learners</div>
+            <div class="card-description">
+              Monitor student progress and engagement. Connect with your
+              learners.
+            </div>
+          </a>
+        </div>
+
+        <div class="logout-section">
+          <a href="/logout" class="logout-btn">
+            <i class="fas fa-sign-out-alt"></i>
+            <span>Logout</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>&copy; 2025 Jnana. All rights reserved.</footer>
 
     <script>
-        // Toast notification functionality - keeping original logic
-        function showToast() {
-            const toasts = document.querySelectorAll('.toast');
-
-            toasts.forEach(toast => {
-                if (toast && toast.querySelector('.toast-message').textContent.trim() !== '') {
-                    toast.style.display = 'flex';
-
-                    const closeBtn = toast.querySelector('.toast-close');
-                    closeBtn.addEventListener('click', () => {
-                        toast.style.animation = 'slideOut 0.3s ease-out forwards';
-                        setTimeout(() => {
-                            toast.remove();
-                        }, 300);
-                    });
-
-                    setTimeout(() => {
-                        if (toast.isConnected) {
-                            toast.style.animation = 'slideOut 0.3s ease-out forwards';
-                            setTimeout(() => {
-                                if (toast.isConnected) {
-                                    toast.remove();
-                                }
-                            }, 300);
-                        }
-                    }, 3000);
-                }
-            });
-        }
-
-        // Initialize toasts when DOM is loaded - keeping original logic
-        document.addEventListener('DOMContentLoaded', showToast);
-
-        // Navbar scroll effect - matching other pages
-        const navbar = document.querySelector(".navbar");
-        window.addEventListener("scroll", function () {
-            let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-
-            if (scrollTop > 50) {
-                navbar.style.background = "rgba(255, 255, 255, 0.98)";
-                navbar.style.boxShadow = "0 2px 20px rgba(0, 0, 0, 0.1)";
-            } else {
-                navbar.style.background = "rgba(255, 255, 255, 0.95)";
-                navbar.style.boxShadow = "none";
-            }
-        });
-
-        // Add hover effects to buttons
-        document.querySelectorAll(".btn").forEach((btn) => {
-            btn.addEventListener("mouseenter", function () {
-                this.style.transform = "translateY(-3px) scale(1.02)";
-            });
-
-            btn.addEventListener("mouseleave", function () {
-                this.style.transform = "translateY(0) scale(1)";
-            });
-        });
-
-        // Add ripple effect to buttons
-        function createRipple(event) {
-            const button = event.currentTarget;
-            const circle = document.createElement("span");
-            const diameter = Math.max(button.clientWidth, button.clientHeight);
-            const radius = diameter / 2;
-
-            circle.style.width = circle.style.height = `${diameter}px`;
-            circle.style.left = `${event.clientX - button.offsetLeft - radius}px`;
-            circle.style.top = `${event.clientY - button.offsetTop - radius}px`;
-            circle.classList.add("ripple");
-
-            const ripple = button.getElementsByClassName("ripple")[0];
-            if (ripple) {
-                ripple.remove();
-            }
-
-            button.appendChild(circle);
-        }
-
-        document.querySelectorAll(".btn").forEach((btn) => {
-            btn.addEventListener("click", createRipple);
-        });
-
-        // Add CSS for ripple effect
-        const style = document.createElement("style");
-        style.textContent = `
-            .btn {
-                position: relative;
-                overflow: hidden;
-            }
-            
-            .ripple {
-                position: absolute;
-                border-radius: 50%;
-                background-color: rgba(255, 255, 255, 0.6);
-                transform: scale(0);
-                animation: ripple-animation 0.6s linear;
-                pointer-events: none;
-            }
-            
-            @keyframes ripple-animation {
-                to {
-                    transform: scale(4);
-                    opacity: 0;
-                }
-            }
-
-            /* Enhanced focus states for accessibility */
-            .btn:focus-visible,
-            .nav-btn:focus-visible,
-            .toast-close:focus-visible {
-                outline: 2px solid var(--primary);
-                outline-offset: 2px;
-            }
-
-            /* Loading spinner animation */
-            @keyframes spin {
-                from { transform: rotate(0deg); }
-                to { transform: rotate(360deg); }
-            }
-            
-            .fa-spinner {
-                animation: spin 1s linear infinite;
-            }
-
-            /* Enhanced mobile responsiveness */
-            @media (max-width: 320px) {
-                .hero h1 {
-                    font-size: 1.75rem;
-                }
-                
-                .btn {
-                    padding: 1rem;
-                    font-size: 1rem;
-                }
-                
-                .container {
-                    padding: 1.25rem;
-                }
-            }
-            
-            /* High contrast mode support */
-            @media (prefers-contrast: high) {
-                .btn, .toast {
-                    border: 2px solid currentColor;
-                }
-            }
-            
-            /* Reduced motion support */
-            @media (prefers-reduced-motion: reduce) {
-                * {
-                    animation-duration: 0.01ms !important;
-                    animation-iteration-count: 1 !important;
-                    transition-duration: 0.01ms !important;
-                }
-            }
-            
-            /* Print styles */
-            @media print {
-                .navbar,
-                .toast-container {
-                    display: none !important;
-                }
-                
-                .hero {
-                    background: white !important;
-                    color: black !important;
-                }
-                
-                .btn, .container {
-                    box-shadow: none;
-                    border: 2px solid #000;
-                }
-            }
+      // Toast functionality
+      function showToast(type, message) {
+        const toastContainer = document.querySelector(".toast-container");
+        const toast = document.createElement("div");
+        toast.className = `toast ${type}`;
+        toast.innerHTML = `
+          <div class="toast-content">
+            <div class="toast-icon">
+              <i class="fas fa-${
+                type === "success" ? "check" : "exclamation"
+              }"></i>
+            </div>
+            <span class="toast-message">${message}</span>
+          </div>
+          <button class="toast-close">&times;</button>
         `;
-        document.head.appendChild(style);
 
-        // Loading states for navigation links
-        document.querySelectorAll("a[href]").forEach((link) => {
-            link.addEventListener("click", function (e) {
-                // Don't add loading state to logout link
-                if (this.href && !this.href.includes("logout")) {
-                    const icon = this.querySelector("i");
-                    if (icon && !icon.classList.contains("fa-spinner")) {
-                        const originalClass = icon.className;
-                        icon.className = "fas fa-spinner fa-spin";
+        toastContainer.appendChild(toast);
 
-                        // Reset after 3 seconds as fallback
-                        setTimeout(() => {
-                            icon.className = originalClass;
-                        }, 3000);
-                    }
-                }
-            });
+        // Show toast
+        setTimeout(() => {
+          toast.classList.add("show");
+        }, 100);
+
+        // Auto remove after 5 seconds
+        setTimeout(() => {
+          hideToast(toast);
+        }, 5000);
+
+        // Close button functionality
+        toast.querySelector(".toast-close").addEventListener("click", () => {
+          hideToast(toast);
         });
+      }
 
-        // Error handling for network issues
-        window.addEventListener("online", function () {
-            const toastContainer = document.querySelector(".toast-container");
-            const toast = document.createElement("div");
-            toast.className = "toast success";
-            toast.innerHTML = `
-                <div class="toast-content">
-                    <div class="toast-icon">
-                        <i class="fas fa-check"></i>
-                    </div>
-                    <span class="toast-message">Connection restored</span>
-                </div>
-                <button class="toast-close">&times;</button>
-            `;
+      function hideToast(toast) {
+        toast.classList.remove("show");
+        setTimeout(() => {
+          if (toast.parentNode) {
+            toast.parentNode.removeChild(toast);
+          }
+        }, 300);
+      }
 
-            toastContainer.appendChild(toast);
+      // Initialize everything
+      document.addEventListener("DOMContentLoaded", function () {
+        // Handle existing toasts
+        const successToast = document.getElementById("successToast");
+        const errorToast = document.getElementById("errorToast");
 
-            setTimeout(() => {
-                toast.style.animation = "slideOut 0.3s ease-out forwards";
-                setTimeout(() => {
-                    if (toast.parentNode) {
-                        toast.parentNode.removeChild(toast);
-                    }
-                }, 300);
-            }, 3000);
+        if (successToast) {
+          successToast.style.display = "flex";
+          setTimeout(() => {
+            successToast.classList.add("show");
+          }, 100);
 
-            toast.querySelector(".toast-close").addEventListener("click", () => {
-                toast.style.animation = "slideOut 0.3s ease-out forwards";
-                setTimeout(() => {
-                    if (toast.parentNode) {
-                        toast.parentNode.removeChild(toast);
-                    }
-                }, 300);
-            });
-        });
-
-        window.addEventListener("offline", function () {
-            const toastContainer = document.querySelector(".toast-container");
-            const toast = document.createElement("div");
-            toast.className = "toast error";
-            toast.innerHTML = `
-                <div class="toast-content">
-                    <div class="toast-icon">
-                        <i class="fas fa-exclamation"></i>
-                    </div>
-                    <span class="toast-message">No internet connection</span>
-                </div>
-                <button class="toast-close">&times;</button>
-            `;
-
-            toastContainer.appendChild(toast);
-
-            setTimeout(() => {
-                toast.style.animation = "slideOut 0.3s ease-out forwards";
-                setTimeout(() => {
-                    if (toast.parentNode) {
-                        toast.parentNode.removeChild(toast);
-                    }
-                }, 300);
-            }, 5000);
-
-            toast.querySelector(".toast-close").addEventListener("click", () => {
-                toast.style.animation = "slideOut 0.3s ease-out forwards";
-                setTimeout(() => {
-                    if (toast.parentNode) {
-                        toast.parentNode.removeChild(toast);
-                    }
-                }, 300);
-            });
-        });
-
-        // Performance monitoring
-        if ("performance" in window) {
-            window.addEventListener("load", function () {
-                setTimeout(() => {
-                    const perfData = performance.getEntriesByType("navigation")[0];
-                    if (perfData) {
-                        console.log(`Dashboard loaded in ${Math.round(perfData.loadEventEnd - perfData.loadEventStart)}ms`);
-                    }
-                }, 0);
-            });
+          setTimeout(() => {
+            hideToast(successToast);
+          }, 5000);
         }
 
-        console.log("Tutor dashboard initialized successfully");
-    </script>
-</body>
+        if (errorToast) {
+          errorToast.style.display = "flex";
+          setTimeout(() => {
+            errorToast.classList.add("show");
+          }, 100);
 
+          setTimeout(() => {
+            hideToast(errorToast);
+          }, 5000);
+        }
+
+        // Close button functionality for existing toasts
+        document.querySelectorAll(".toast-close").forEach((closeBtn) => {
+          closeBtn.addEventListener("click", function () {
+            const toast = this.closest(".toast");
+            hideToast(toast);
+          });
+        });
+
+        // Add loading states to dashboard cards
+        document.querySelectorAll(".dashboard-card").forEach((card) => {
+          card.addEventListener("click", function (e) {
+            const originalContent = this.innerHTML;
+            const cardTitle = this.querySelector(".card-title").textContent;
+
+            this.innerHTML = `
+              <div class="card-icon">
+                <i class="fas fa-spinner fa-spin"></i>
+              </div>
+              <div class="card-title">Loading...</div>
+              <div class="card-description">Please wait while we load ${cardTitle.toLowerCase()}...</div>
+            `;
+
+            this.style.pointerEvents = "none";
+            this.style.opacity = "0.7";
+
+            // Reset after 3 seconds as fallback
+            setTimeout(() => {
+              this.innerHTML = originalContent;
+              this.style.pointerEvents = "auto";
+              this.style.opacity = "1";
+            }, 3000);
+          });
+        });
+
+        // Add loading state to logout button
+        document.querySelectorAll(".logout-btn").forEach((btn) => {
+          btn.addEventListener("click", function (e) {
+            this.innerHTML =
+              '<i class="fas fa-spinner fa-spin"></i><span>Logging out...</span>';
+            this.style.pointerEvents = "none";
+            this.style.opacity = "0.7";
+          });
+        });
+
+        // Add entrance animations to dashboard cards
+        const cards = document.querySelectorAll(".dashboard-card");
+        cards.forEach((card, index) => {
+          card.style.opacity = "0";
+          card.style.transform = "translateY(30px)";
+
+          setTimeout(() => {
+            card.style.transition = "all 0.6s ease";
+            card.style.opacity = "1";
+            card.style.transform = "translateY(0)";
+          }, index * 150 + 300);
+        });
+
+        // Add ripple effect to buttons and cards
+        document
+          .querySelectorAll(".dashboard-card, .logout-btn")
+          .forEach((element) => {
+            element.addEventListener("click", function (e) {
+              const ripple = document.createElement("span");
+              const rect = this.getBoundingClientRect();
+              const size = Math.max(rect.width, rect.height);
+              const x = e.clientX - rect.left - size / 2;
+              const y = e.clientY - rect.top - size / 2;
+
+              ripple.style.cssText = `
+              position: absolute;
+              width: ${size}px;
+              height: ${size}px;
+              left: ${x}px;
+              top: ${y}px;
+              background: rgba(26, 188, 156, 0.3);
+              border-radius: 50%;
+              transform: scale(0);
+              animation: ripple 0.6s linear;
+              pointer-events: none;
+            `;
+
+              this.style.position = "relative";
+              this.style.overflow = "hidden";
+              this.appendChild(ripple);
+
+              setTimeout(() => {
+                ripple.remove();
+              }, 600);
+            });
+          });
+        // Auto-focus on first dashboard card
+        const firstCard = document.querySelector(".dashboard-card");
+        if (firstCard) {
+          setTimeout(() => {
+            firstCard.focus();
+          }, 1000);
+        }
+
+
+      // Error handling for network issues
+      window.addEventListener("online", function () {
+        showToast("success", "Connection restored");
+      });
+
+      window.addEventListener("offline", function () {
+        showToast(
+          "error",
+          "No internet connection. Please check your network."
+        );
+      });
+
+      const style = document.createElement("style");
+      style.textContent = `
+        /* Enhanced focus states for accessibility */
+        .dashboard-card:focus-visible,
+        .logout-btn:focus-visible,
+        .toast-close:focus-visible,
+        nav a:focus-visible {
+          outline: 2px solid var(--accent);
+          outline-offset: 2px;
+        }
+
+        /* Loading spinner animation */
+        @keyframes spin {
+          from { transform: rotate(0deg); }
+          to { transform: rotate(360deg); }
+        }
+
+        .fa-spinner {
+          animation: spin 1s linear infinite;
+        }
+
+        /* Ripple effect */
+        @keyframes ripple {
+          to {
+            transform: scale(4);
+            opacity: 0;
+          }
+        }
+
+        /* Hero section animation */
+        .hero {
+          animation: fadeInDown 0.8s ease-out;
+        }
+
+        @keyframes fadeInDown {
+          from {
+            opacity: 0;
+            transform: translateY(-30px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        /* Dashboard container animation */
+        .dashboard-container {
+          animation: fadeInUp 0.8s ease-out 0.2s both;
+        }
+
+        @keyframes fadeInUp {
+          from {
+            opacity: 0;
+            transform: translateY(30px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        /* Card hover enhancements */
+        .dashboard-card:hover .card-icon {
+          transform: scale(1.1);
+          color: var(--primary);
+        }
+
+        .dashboard-card:hover .card-title {
+          color: var(--accent);
+        }
+
+        /* Loading state for cards */
+        .dashboard-card.loading {
+          opacity: 0.7;
+          pointer-events: none;
+        }
+
+        /* Enhanced button states */
+        .logout-btn:active {
+          transform: translateY(0);
+        }
+
+        /* Mobile optimizations */
+        @media (max-width: 480px) {
+          .hero h1 {
+            font-size: 1.8rem;
+          }
+
+          .welcome-text {
+            font-size: 1rem;
+          }
+
+          .dashboard-card {
+            padding: 1.25rem;
+          }
+
+          .card-icon {
+            font-size: 1.8rem;
+          }
+        }
+
+        /* High contrast mode support */
+        @media (prefers-contrast: high) {
+          .dashboard-card {
+            border-width: 3px;
+          }
+
+          .logout-btn {
+            border: 2px solid currentColor;
+          }
+        }
+
+        /* Reduced motion support */
+        @media (prefers-reduced-motion: reduce) {
+          * {
+            animation-duration: 0.01ms !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: 0.01ms !important;
+          }
+        }
+
+        /* Print styles */
+        @media print {
+          .toast-container,
+          .logout-section,
+          footer {
+            display: none !important;
+          }
+
+          .dashboard-container {
+            box-shadow: none;
+            border: 2px solid #000;
+          }
+
+          .dashboard-card {
+            box-shadow: none;
+            border: 1px solid #000;
+            page-break-inside: avoid;
+          }
+        }
+
+        /* Enhanced navigation */
+        nav a {
+          position: relative;
+        }
+
+        nav a::after {
+          content: '';
+          position: absolute;
+          bottom: -2px;
+          left: 50%;
+          width: 0;
+          height: 2px;
+          background: var(--accent);
+          transition: all 0.3s ease;
+          transform: translateX(-50%);
+        }
+
+        nav a:hover::after {
+          width: 100%;
+        }
+
+        /* Smooth transitions for all interactive elements */
+        .dashboard-card, .logout-btn, nav a, .card-icon {
+          transition: all 0.3s ease;
+        }
+
+        /* Welcome text animation */
+        .welcome-text {
+          animation: fadeIn 1s ease-out 0.5s both;
+        }
+
+        @keyframes fadeIn {
+          from { opacity: 0; }
+          to { opacity: 0.9; }
+        }
+      `;
+      document.head.appendChild(style);
+
+      let resizeTimeout;
+      window.addEventListener("resize", function () {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(function () {
+          const isMobile = window.innerWidth <= 768;
+          document.body.classList.toggle("mobile", isMobile);
+        }, 250);
+      });
+
+      document.body.classList.toggle("mobile", window.innerWidth <= 768);
+
+
+      // Track dashboard interactions
+      document.querySelectorAll(".dashboard-card").forEach((card) => {
+        card.addEventListener("click", function () {
+          const cardTitle = this.querySelector(".card-title").textContent;
+          trackEvent("dashboard_card_click", {
+            card_name: cardTitle,
+            timestamp: new Date().toISOString(),
+          });
+        });
+      });
+
+      // Track logout attempts
+      document.querySelectorAll(".logout-btn").forEach((btn) => {
+        btn.addEventListener("click", function () {
+          trackEvent("logout_attempt", {
+            page: "tutor_dashboard",
+            timestamp: new Date().toISOString(),
+          });
+        });
+      });
+
+      // Add visual feedback for card interactions
+      document.querySelectorAll(".dashboard-card").forEach((card) => {
+        card.addEventListener("mouseenter", function () {
+          this.style.borderColor = "var(--accent)";
+        });
+
+        card.addEventListener("mouseleave", function () {
+          this.style.borderColor = "var(--border)";
+        });
+      });
+
+      // Prevent double clicks on navigation elements
+      let isNavigating = false;
+      document
+        .querySelectorAll(".dashboard-card, .logout-btn")
+        .forEach((element) => {
+          element.addEventListener("click", function (e) {
+            if (isNavigating) {
+              e.preventDefault();
+              return false;
+            }
+            isNavigating = true;
+
+            setTimeout(() => {
+              isNavigating = false;
+            }, 2000);
+          });
+        });
+      });
+    </script>
+  </body>
 </html>

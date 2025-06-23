@@ -1,1249 +1,1253 @@
 <!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Add Course - Jnana</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
-        rel="stylesheet">
-    <link rel="shortcut icon" href="https://yogastudies.org/wp-content/uploads/jnana.jpg" type="image/x-icon">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Font Awesome for icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
     <style>
-        :root {
-            --primary: #6366f1;
-            --primary-dark: #4f46e5;
-            --secondary: #06b6d4;
-            --accent: #f59e0b;
-            --success: #10b981;
-            --error: #ef4444;
-            --text-primary: #0f172a;
-            --text-secondary: #64748b;
-            --text-muted: #94a3b8;
-            --bg-primary: #ffffff;
-            --bg-secondary: #f8fafc;
-            --bg-tertiary: #f1f5f9;
-            --border: #e2e8f0;
-            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-            --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
-            --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            --gradient-hero: linear-gradient(135deg, #1e3a8a 0%, #3730a3 50%, #581c87 100%);
+      :root {
+        --primary: #2c3e50;
+        --secondary: #34495e;
+        --accent: #1abc9c;
+        --text-light: #ecf0f1;
+        --text-dark: #2c3e50;
+        --bg-light: #f8f9fa;
+        --success: #27ae60;
+        --error: #e74c3c;
+        --border: #ddd;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background-color: var(--bg-light);
+        color: var(--text-dark);
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+      }
+
+      header {
+        background-color: var(--primary);
+        color: var(--text-light);
+        padding: 1rem 2rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      header .logo {
+        font-size: 1.8rem;
+        font-weight: bold;
+        text-decoration: none;
+        color: var(--text-light);
+      }
+
+      header .logo:hover {
+        color: var(--accent);
+      }
+
+      nav a {
+        color: var(--text-light);
+        text-decoration: none;
+        margin-left: 1rem;
+        font-weight: 500;
+        padding: 0.5rem 1rem;
+        border-radius: 0.25rem;
+        transition: all 0.3s ease;
+      }
+
+      nav a:hover {
+        color: var(--accent);
+        background-color: rgba(255, 255, 255, 0.1);
+      }
+
+      .hero {
+        padding: 3rem 2rem;
+        text-align: center;
+        background-color: var(--secondary);
+        color: var(--text-light);
+      }
+
+      .hero h1 {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+      }
+
+      .hero p {
+        font-size: 1.2rem;
+        max-width: 600px;
+        margin: 0 auto;
+      }
+
+      .main-content {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        padding: 2rem;
+        margin-bottom: 60px; /* Space for fixed footer */
+      }
+
+      .form-container {
+        background-color: white;
+        border: 1px solid var(--border);
+        border-radius: 0.5rem;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+        padding: 2rem;
+        width: 100%;
+        max-width: 600px;
+      }
+
+      .form-container h2 {
+        text-align: center;
+        margin-bottom: 2rem;
+        color: var(--primary);
+        font-size: 1.8rem;
+      }
+
+      .form-group {
+        margin-bottom: 1rem;
+      }
+
+      .form-group label {
+        display: block;
+        margin-bottom: 0.5rem;
+        color: var(--text-dark);
+        font-weight: 500;
+        font-size: 0.9rem;
+      }
+
+      .form-group input,
+      .form-group textarea {
+        width: 100%;
+        padding: 0.75rem;
+        border: 1px solid var(--border);
+        border-radius: 0.25rem;
+        font-size: 1rem;
+        transition: border-color 0.3s;
+        font-family: inherit;
+      }
+
+      .form-group input:focus,
+      .form-group textarea:focus {
+        outline: none;
+        border-color: var(--accent);
+      }
+
+      .form-group input::placeholder,
+      .form-group textarea::placeholder {
+        color: #999;
+      }
+
+      textarea {
+        resize: vertical;
+        min-height: 100px;
+      }
+
+      .radio-group {
+        display: flex;
+        gap: 1rem;
+        margin: 1rem 0;
+        justify-content: center;
+      }
+
+      .radio-option {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        cursor: pointer;
+        padding: 0.75rem 1rem;
+        border: 1px solid var(--border);
+        border-radius: 0.25rem;
+        transition: all 0.3s;
+        background-color: white;
+      }
+
+      .radio-option:hover {
+        border-color: var(--accent);
+        background-color: #f0f9ff;
+      }
+
+      .radio-option input[type="radio"] {
+        margin: 0;
+      }
+
+      .radio-option input[type="radio"]:checked + .radio-content {
+        color: var(--accent);
+      }
+
+      .radio-option:has(input[type="radio"]:checked) {
+        border-color: var(--accent);
+        background-color: #f0f9ff;
+      }
+
+      .radio-content {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-weight: 500;
+      }
+
+      .quiz-section {
+        margin-top: 1.5rem;
+        padding: 1.5rem;
+        background-color: var(--bg-light);
+        border-radius: 0.5rem;
+        border: 1px solid var(--border);
+      }
+
+      .quiz-section label {
+        font-size: 1rem;
+        margin-bottom: 1rem;
+        color: var(--text-dark);
+        font-weight: 500;
+      }
+
+      .quiz-help {
+        font-size: 0.875rem;
+        color: #666;
+        margin-bottom: 1rem;
+        padding: 0.75rem;
+        background: rgba(26, 188, 156, 0.1);
+        border-radius: 0.25rem;
+        border-left: 4px solid var(--accent);
+      }
+
+      .submit-btn {
+        width: 100%;
+        padding: 0.75rem;
+        border: none;
+        border-radius: 0.25rem;
+        background-color: var(--accent);
+        color: white;
+        font-size: 1rem;
+        font-weight: 500;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        margin-top: 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+      }
+
+      .submit-btn:hover {
+        background-color: #16a085;
+      }
+
+      .submit-btn:disabled {
+        opacity: 0.7;
+        cursor: not-allowed;
+      }
+
+      .back-btn {
+        width: 100%;
+        padding: 0.75rem;
+        border: none;
+        border-radius: 0.25rem;
+        background-color: #6c757d;
+        color: white;
+        font-size: 1rem;
+        font-weight: 500;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        margin-top: 0.5rem;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+      }
+
+      .back-btn:hover {
+        background-color: #5a6268;
+        text-decoration: none;
+        color: white;
+      }
+
+      .error {
+        color: var(--error);
+        font-size: 0.8rem;
+        margin-top: 0.25rem;
+        display: block;
+      }
+
+      footer {
+        background-color: var(--primary);
+        color: white;
+        text-align: center;
+        padding: 1rem;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+      }
+
+      /* Toast Styles */
+      .toast-container {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 1000;
+      }
+
+      .toast {
+        background-color: white;
+        border-radius: 0.5rem;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        padding: 1rem 1.5rem;
+        margin-bottom: 0.5rem;
+        min-width: 300px;
+        max-width: 400px;
+        transform: translateX(100%);
+        opacity: 0;
+        transition: all 0.3s ease-in-out;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .toast.show {
+        transform: translateX(0);
+        opacity: 1;
+      }
+
+      .toast.success {
+        border-left: 4px solid var(--success);
+      }
+
+      .toast.error {
+        border-left: 4px solid var(--error);
+      }
+
+      .toast-content {
+        display: flex;
+        align-items: center;
+        flex: 1;
+      }
+
+      .toast-icon {
+        margin-right: 0.75rem;
+        font-size: 1.2rem;
+      }
+
+      .toast.success .toast-icon {
+        color: var(--success);
+      }
+
+      .toast.error .toast-icon {
+        color: var(--error);
+      }
+
+      .toast-message {
+        color: var(--text-dark);
+        font-weight: 500;
+        flex: 1;
+      }
+
+      .toast-close {
+        background: none;
+        border: none;
+        font-size: 1.2rem;
+        cursor: pointer;
+        color: #999;
+        margin-left: 1rem;
+        padding: 0;
+        width: 20px;
+        height: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .toast-close:hover {
+        color: var(--text-dark);
+      }
+
+      /* Responsive Design */
+      @media (max-width: 768px) {
+        .main-content {
+          padding: 1rem;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        .form-container {
+          padding: 1.5rem;
         }
 
-        body {
-            font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
-            line-height: 1.6;
-            color: var(--text-primary);
-            background: var(--bg-secondary);
-            min-height: 100vh;
-            padding-top: 100px;
-            display: flex;
-            flex-direction: column;
-        }
-
-        /* Navigation */
-        .navbar {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--border);
-            z-index: 1000;
-            transition: all 0.3s ease;
-            padding: 1.2rem 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 1.75rem;
-            font-weight: 800;
-            background: var(--gradient-primary);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            text-decoration: none;
-            letter-spacing: -0.025em;
-        }
-
-        .nav-links {
-            display: flex;
-            align-items: center;
-            gap: 2rem;
-        }
-
-        .nav-btn {
-            padding: 0.8rem 1.5rem;
-            border-radius: 25px;
-            font-weight: 500;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .nav-logout {
-            color: white;
-            background: var(--error);
-            box-shadow: var(--shadow-md);
-        }
-
-        .nav-logout:hover {
-            background: #dc2626;
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-lg);
-        }
-
-        /* Hero Section */
         .hero {
-            background: var(--gradient-hero);
-            padding: 4rem 5% 2rem;
-            text-align: center;
-            position: relative;
-            margin-bottom: 2rem;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="white" opacity="0.1"/><circle cx="80" cy="40" r="1" fill="white" opacity="0.1"/><circle cx="40" cy="80" r="1.5" fill="white" opacity="0.1"/></svg>') repeat;
-            background-size: 100px 100px;
+          padding: 2rem 1rem;
         }
 
         .hero h1 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            position: relative;
-            color: white;
-            font-weight: 800;
-            letter-spacing: -0.025em;
+          font-size: 2rem;
         }
 
         .hero p {
-            font-size: 1.2rem;
-            color: rgba(255, 255, 255, 0.9);
-            opacity: 0.9;
-            max-width: 600px;
-            margin: 0 auto;
+          font-size: 1rem;
         }
 
-        /* Container */
-        .container {
-            max-width: 800px;
-            margin: 2rem auto;
-            padding: 2.5rem;
-            background: white;
-            border-radius: 20px;
-            box-shadow: var(--shadow-xl);
-            border: 1px solid var(--border);
-            animation: slideUp 0.5s ease-out;
-            position: relative;
-            overflow: hidden;
+        header {
+          padding: 1rem;
         }
 
-        .container::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: var(--gradient-primary);
+        header .logo {
+          font-size: 1.5rem;
         }
 
-        /* Form Styling */
-        .form-group {
-            margin-bottom: 1.5rem;
-            position: relative;
+        nav a {
+          margin-left: 0.5rem;
+          padding: 0.4rem 0.8rem;
+          font-size: 0.9rem;
         }
 
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            color: var(--text-primary);
-            font-weight: 500;
-            font-size: 0.875rem;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        input[type="text"],
-        textarea {
-            width: 100%;
-            padding: 0.875rem 1rem;
-            border: 2px solid var(--border);
-            border-radius: 0.5rem;
-            font-size: 1rem;
-            transition: all 0.2s ease;
-            font-family: 'Inter', sans-serif;
-            background: var(--bg-primary);
-            color: var(--text-primary);
-        }
-
-        input[type="text"]:focus,
-        textarea:focus {
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
-            outline: none;
-            transform: translateY(-1px);
-        }
-
-        input[type="text"]::placeholder,
-        textarea::placeholder {
-            color: var(--text-muted);
-        }
-
-        textarea {
-            resize: vertical;
-            min-height: 120px;
-            font-family: 'Inter', sans-serif;
-        }
-
-        /* Radio Group */
         .radio-group {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin: 2rem 0;
+          flex-direction: column;
+          gap: 0.5rem;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .form-container {
+          padding: 1rem;
         }
 
-        .radio-group label {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            cursor: pointer;
-            padding: 1rem 1.5rem;
-            border-radius: 0.75rem;
-            transition: all 0.2s ease;
-            background: var(--bg-tertiary);
-            border: 2px solid transparent;
-            font-weight: 500;
-            color: var(--text-secondary);
-            min-width: 120px;
-            justify-content: center;
-            text-transform: none;
-            letter-spacing: normal;
+        .form-container h2 {
+          font-size: 1.5rem;
         }
 
-        .radio-group label:hover {
-            background: rgba(99, 102, 241, 0.1);
-            border-color: var(--primary);
-            color: var(--primary);
+        .form-group input,
+        .form-group textarea {
+          padding: 0.6rem;
+          font-size: 0.9rem;
         }
 
-        .radio-group input[type="radio"] {
-            display: none;
+        .submit-btn,
+        .back-btn {
+          padding: 0.6rem;
+          font-size: 0.9rem;
         }
-
-        .radio-group input[type="radio"]:checked+span {
-            color: var(--primary);
-        }
-
-        .radio-group label:has(input[type="radio"]:checked) {
-            background: rgba(99, 102, 241, 0.1);
-            border-color: var(--primary);
-            color: var(--primary);
-        }
-
-        /* Quiz Questions Section */
-        .quiz-section {
-            margin-top: 2rem;
-            padding: 1.5rem;
-            background: var(--bg-tertiary);
-            border-radius: 0.75rem;
-            border: 1px solid var(--border);
-        }
-
-        .quiz-section label {
-            font-size: 1rem;
-            margin-bottom: 1rem;
-            color: var(--text-primary);
-            font-weight: 500;
-        }
-
-        .quiz-help {
-            font-size: 0.875rem;
-            color: var(--text-secondary);
-            margin-bottom: 1rem;
-            padding: 0.75rem;
-            background: rgba(99, 102, 241, 0.05);
-            border-radius: 0.5rem;
-            border-left: 4px solid var(--primary);
-        }
-
-        /* Buttons */
-        .btn {
-            padding: 0.875rem 2rem;
-            border: none;
-            border-radius: 0.5rem;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .btn-primary {
-            background: var(--primary);
-            color: white;
-            width: 100%;
-            margin-bottom: 1rem;
-        }
-
-        .btn-primary:hover {
-            background: var(--primary-dark);
-            transform: translateY(-1px);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .btn-secondary {
-            background: var(--secondary);
-            color: white;
-        }
-
-        .btn-secondary:hover {
-            background: #0891b2;
-            transform: translateY(-1px);
-            box-shadow: var(--shadow-lg);
-        }
-
-        /* Error Messages */
-        .error {
-            color: var(--error);
-            font-size: 0.875rem;
-            margin-top: 0.5rem;
-            display: block;
-            font-weight: 500;
-        }
-
-        /* Toast Notifications */
-        .toast-container {
-            position: fixed;
-            top: 100px;
-            right: 2rem;
-            z-index: 1001;
-            max-width: 400px;
-        }
-
-        .toast {
-            background: white;
-            padding: 1rem 1.5rem;
-            border-radius: 0.75rem;
-            box-shadow: var(--shadow-xl);
-            border: 1px solid var(--border);
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 1rem;
-            animation: slideInRight 0.3s ease-out forwards;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .toast::before {
-            content: "";
-            position: absolute;
-            left: 0;
-            top: 0;
-            bottom: 0;
-            width: 4px;
-        }
-
-        .toast.success::before {
-            background: var(--success);
-        }
-
-        .toast.error::before {
-            background: var(--error);
-        }
-
-        .toast-content {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            flex: 1;
-        }
-
-        .toast-icon {
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.75rem;
-            color: white;
-        }
-
-        .toast.success .toast-icon {
-            background: var(--success);
-        }
-
-        .toast.error .toast-icon {
-            background: var(--error);
-        }
-
-        .toast-message {
-            color: var(--text-primary);
-            font-weight: 500;
-            font-size: 0.875rem;
-        }
-
-        .toast-close {
-            background: none;
-            border: none;
-            color: var(--text-muted);
-            font-size: 1.25rem;
-            cursor: pointer;
-            padding: 0.25rem;
-            border-radius: 0.25rem;
-            transition: all 0.2s ease;
-            line-height: 1;
-        }
-
-        .toast-close:hover {
-            color: var(--text-secondary);
-            background: var(--bg-tertiary);
-        }
-
-        /* Footer */
-        .footer {
-            background: var(--text-primary);
-            color: white;
-            text-align: center;
-            padding: 2.5rem;
-            margin-top: auto;
-        }
-
-        .footer p {
-            opacity: 0.9;
-            font-size: 0.875rem;
-            letter-spacing: 0.5px;
-        }
-
-        /* Animations */
-        @keyframes slideInRight {
-            from {
-                transform: translateX(100%);
-                opacity: 0;
-            }
-
-            to {
-                transform: translateX(0);
-                opacity: 1;
-            }
-        }
-
-        @keyframes slideOutRight {
-            from {
-                transform: translateX(0);
-                opacity: 1;
-            }
-
-            to {
-                transform: translateX(100%);
-                opacity: 0;
-            }
-        }
-
-        @keyframes slideUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .navbar {
-                padding: 1rem;
-            }
-
-            .hero {
-                padding: 3rem 2rem 2rem;
-            }
-
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-
-            .container {
-                margin: 1rem;
-                padding: 1.5rem;
-            }
-
-            .radio-group {
-                flex-direction: column;
-                gap: 0.75rem;
-            }
-
-            .radio-group label {
-                min-width: auto;
-            }
-
-            .toast-container {
-                right: 1rem;
-                left: 1rem;
-                max-width: none;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .hero h1 {
-                font-size: 2rem;
-            }
-
-            .hero p {
-                font-size: 1rem;
-            }
-
-            .container {
-                padding: 1.25rem;
-            }
-
-            .btn {
-                font-size: 0.875rem;
-            }
-        }
-
-        /* Custom scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: var(--bg-tertiary);
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: var(--primary);
-            border-radius: 4px;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: var(--primary-dark);
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
+      }
     </style>
-</head>
+  </head>
 
-<body>
-    <nav class="navbar">
-        <a href="/tutor/home" class="logo">Jnana</a>
-        <div class="nav-links">
-            <a href="/logout" class="nav-btn nav-logout">
-                <i class="fas fa-sign-out-alt"></i>
-                Logout
-            </a>
-        </div>
-    </nav>
-
-    <section class="hero">
-        <h1>Add New Course</h1>
-        <p>Create engaging courses to share your knowledge and expertise with learners worldwide</p>
-    </section>
-
-    <div class="container">
-        <form action="/tutor/add-course" method="post" th:object="${courseDto}">
-            <div class="form-group">
-                <label for="title">Course Title</label>
-                <input type="text" th:field="*{title}" id="title" placeholder="Enter course title" required>
-                <span class="error" th:errors="*{title}"></span>
-            </div>
-
-            <div class="form-group">
-                <label for="description">Course Description</label>
-                <textarea th:field="*{description}" id="description"
-                    placeholder="Describe what students will learn in this course..." required></textarea>
-                <span class="error" th:errors="*{description}"></span>
-            </div>
-
-            <div class="form-group">
-                <label>Course Type</label>
-                <div class="radio-group">
-                    <label>
-                        <input type="radio" th:field="*{paid}" value="false" required>
-                        <span>
-                            <i class="fas fa-gift"></i>
-                            Free
-                        </span>
-                    </label>
-                    <label>
-                        <input type="radio" th:field="*{paid}" value="true" required>
-                        <span>
-                            <i class="fas fa-credit-card"></i>
-                            Paid
-                        </span>
-                    </label>
-                </div>
-                <span class="error" th:errors="*{paid}"></span>
-            </div>
-
-            <div class="quiz-section">
-                <label for="quizQuestions">Quiz Questions</label>
-                <div class="quiz-help">
-                    <i class="fas fa-info-circle"></i>
-                    Add quiz questions to test your students' understanding. Format each question on a new line with
-                    options separated by ?.
-                </div>
-                <textarea id="questions" name="questions"></textarea>
-                <span class="error" th:errors="*{questions}"></span>
-            </div>
-
-            <button type="submit" class="btn btn-primary">
-                <i class="fas fa-plus-circle"></i>
-                Create Course
-            </button>
-
-            <a href="/tutor/courses" class="btn btn-secondary">
-                <i class="fas fa-arrow-left"></i>
-                Back to Courses
-            </a>
-        </form>
-    </div>
-
+  <body>
+    <!-- Toast Container -->
     <div class="toast-container">
-        <div id="successToast" class="toast success" th:if="${session.pass}" style="display: none">
-            <div class="toast-content">
-                <div class="toast-icon">
-                    <i class="fas fa-check"></i>
-                </div>
-                <span class="toast-message" th:text="${session.pass}">Success message</span>
-            </div>
-            <button class="toast-close">&times;</button>
+      <div
+        id="successToast"
+        class="toast success"
+        th:if="${session.pass}"
+        style="display: none"
+      >
+        <div class="toast-content">
+          <div class="toast-icon">
+            <i class="fas fa-check"></i>
+          </div>
+          <span class="toast-message" th:text="${session.pass}"
+            >Success message</span
+          >
         </div>
-        <div id="errorToast" class="toast error" th:if="${session.fail}" style="display: none">
-            <div class="toast-content">
-                <div class="toast-icon">
-                    <i class="fas fa-exclamation"></i>
-                </div>
-                <span class="toast-message" th:text="${session.fail}">Error message</span>
-            </div>
-            <button class="toast-close">&times;</button>
+        <button class="toast-close">&times;</button>
+      </div>
+      <div
+        id="errorToast"
+        class="toast error"
+        th:if="${session.fail}"
+        style="display: none"
+      >
+        <div class="toast-content">
+          <div class="toast-icon">
+            <i class="fas fa-exclamation"></i>
+          </div>
+          <span class="toast-message" th:text="${session.fail}"
+            >Error message</span
+          >
         </div>
-        <th:block th:text="${@generalService.removeMessage()}"></th:block>
+        <button class="toast-close">&times;</button>
+      </div>
+      <th:block th:text="${@generalService.removeMessage()}"></th:block>
     </div>
 
-    <footer class="footer">
-        <p>&copy; 2025 Jnana. All rights reserved.</p>
-    </footer>
+    <!-- Header -->
+    <header>
+      <a href="/tutor/home" class="logo">Jnana</a>
+      <nav>
+        <a href="/logout">
+          <i class="fas fa-sign-out-alt"></i>
+          Logout
+        </a>
+      </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <div class="hero">
+      <h1>Add New Course</h1>
+      <p>Create engaging courses to share your knowledge and expertise with learners worldwide</p>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+      <div class="form-container">
+        <h2>Course Details</h2>
+
+        <form action="/tutor/add-course" method="post" th:object="${courseDto}">
+          <div class="form-group">
+            <label for="title">Course Title</label>
+            <input
+              type="text"
+              th:field="*{title}"
+              id="title"
+              placeholder="Enter course title"
+              required
+            />
+            <span class="error" th:errors="*{title}"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="description">Course Description</label>
+            <textarea
+              th:field="*{description}"
+              id="description"
+              placeholder="Describe what students will learn in this course..."
+              required
+            ></textarea>
+            <span class="error" th:errors="*{description}"></span>
+          </div>
+
+          <div class="form-group">
+            <label>Course Type</label>
+            <div class="radio-group">
+                           <label class="radio-option">
+                <input type="radio" th:field="*{paid}" value="FALSE" required />
+                <div class="radio-content">
+                  <i class="fas fa-gift"></i>
+                  <span>Free</span>
+                </div>
+              </label>
+              <label class="radio-option">
+                <input type="radio" th:field="*{paid}" value="TRUE" required />
+                <div class="radio-content">
+                  <span>&#8377 199</span>
+                  <span>Paid</span>
+                </div>
+              </label>
+            </div>
+            <span class="error" th:errors="*{paid}"></span>
+          </div>
+
+          <div class="quiz-section">
+            <label for="quiz">Course Quiz</label>
+            <div class="quiz-help">
+              <i class="fas fa-info-circle"></i>
+              Add quiz questions to test your students' understanding. Format each question on a new line separated by ?.
+            </div>
+            <textarea
+              th:field="*{questions}"
+              id="quiz"
+              rows="5"
+              cols="60"
+            ></textarea>
+            <span class="error" th:errors="*{questions}"></span>
+          </div>
+
+          <button type="submit" class="submit-btn">
+            <i class="fas fa-plus"></i>
+            <span>Create Course</span>
+          </button>
+
+          <a href="/tutor/courses" class="back-btn">
+            <i class="fas fa-arrow-left"></i>
+            <span>Back to Course Management</span>
+          </a>
+        </form>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>&copy; 2025 Jnana. All rights reserved.</footer>
 
     <script>
-        // Enhanced toast functionality with proper styling
-        document.addEventListener('DOMContentLoaded', function () {
-            const successToast = document.getElementById('successToast');
-            const errorToast = document.getElementById('errorToast');
-
-            function showEnhancedToast(toast, type) {
-                if (toast && toast.querySelector('.toast-message').textContent.trim()) {
-                    toast.style.display = 'flex';
-
-                    const closeBtn = toast.querySelector('.toast-close');
-                    closeBtn.addEventListener('click', () => {
-                        toast.style.animation = 'slideOutRight 0.3s ease-out forwards';
-                        setTimeout(() => {
-                            toast.style.display = 'none';
-                        }, 300);
-                    });
-
-                    setTimeout(() => {
-                        if (toast.style.display === 'flex') {
-                            toast.style.animation = 'slideOutRight 0.3s ease-out forwards';
-                            setTimeout(() => {
-                                toast.style.display = 'none';
-                            }, 300);
-                        }
-                    }, 5000);
-                }
-            }
-
-            if (successToast) {
-                showEnhancedToast(successToast, 'success');
-            }
-
-            if (errorToast) {
-                showEnhancedToast(errorToast, 'error');
-            }
-        });
-
-        // Form validation and enhancement
-        document.addEventListener("DOMContentLoaded", function () {
-            const form = document.querySelector("form");
-            const inputs = form.querySelectorAll("input, textarea");
-            const submitBtn = form.querySelector(".btn-primary");
-
-            // Add input validation styling
-            inputs.forEach((input) => {
-                input.addEventListener("blur", function () {
-                    if (this.value.trim() !== "") {
-                        this.style.borderColor = "var(--success)";
-                        this.style.background = "rgba(16, 185, 129, 0.02)";
-                    } else if (this.hasAttribute("required")) {
-                        this.style.borderColor = "var(--error)";
-                        this.style.background = "rgba(239, 68, 68, 0.02)";
-                    }
-                });
-
-                input.addEventListener("focus", function () {
-                    this.style.borderColor = "var(--primary)";
-                    this.style.background = "var(--bg-primary)";
-                });
-
-                input.addEventListener("input", function () {
-                    if (this.style.borderColor === "rgb(239, 68, 68)") {
-                        this.style.borderColor = "var(--border)";
-                        this.style.background = "var(--bg-primary)";
-                    }
-                });
-            });
-
-            // Add loading state to submit button
-            form.addEventListener("submit", function (e) {
-                // Basic validation
-                let isValid = true;
-                const requiredFields = form.querySelectorAll("[required]");
-
-                requiredFields.forEach(field => {
-                    if (!field.value.trim()) {
-                        field.style.borderColor = "var(--error)";
-                        field.style.background = "rgba(239, 68, 68, 0.02)";
-                        isValid = false;
-                    }
-                });
-
-                if (!isValid) {
-                    e.preventDefault();
-                    showToast("error", "Please fill in all required fields");
-                    return;
-                }
-
-                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Creating Course...';
-                submitBtn.disabled = true;
-                submitBtn.style.opacity = '0.8';
-            });
-
-            // Radio button enhancement
-            const radioOptions = document.querySelectorAll(".radio-group label");
-            radioOptions.forEach((option) => {
-                option.addEventListener("click", function () {
-                    const radio = this.querySelector('input[type="radio"]');
-                    radio.checked = true;
-
-                    // Update visual state
-                    radioOptions.forEach((opt) => opt.classList.remove("selected"));
-                    this.classList.add("selected");
-                });
-            });
-
-            // Auto-resize textarea
-            const textareas = document.querySelectorAll('textarea');
-            textareas.forEach(textarea => {
-                textarea.addEventListener('input', function () {
-                    this.style.height = 'auto';
-                    this.style.height = this.scrollHeight + 'px';
-                });
-            });
-        });
-
-        // Navbar scroll effect
-        const navbar = document.querySelector(".navbar");
-        window.addEventListener("scroll", function () {
-            let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-
-            if (scrollTop > 50) {
-                navbar.style.background = "rgba(255, 255, 255, 0.98)";
-                navbar.style.boxShadow = "0 2px 20px rgba(0, 0, 0, 0.1)";
-            } else {
-                navbar.style.background = "rgba(255, 255, 255, 0.95)";
-                navbar.style.boxShadow = "none";
-            }
-        });
-
-        // Add ripple effect to buttons
-        function createRipple(event) {
-            const button = event.currentTarget;
-            const circle = document.createElement("span");
-            const diameter = Math.max(button.clientWidth, button.clientHeight);
-            const radius = diameter / 2;
-
-            circle.style.width = circle.style.height = `${diameter}px`;
-            circle.style.left = `${event.clientX - button.offsetLeft - radius}px`;
-            circle.style.top = `${event.clientY - button.offsetTop - radius}px`;
-            circle.classList.add("ripple");
-
-            const ripple = button.getElementsByClassName("ripple")[0];
-            if (ripple) {
-                ripple.remove();
-            }
-
-            button.appendChild(circle);
-        }
-
-        document.querySelectorAll(".btn").forEach((btn) => {
-            btn.addEventListener("click", createRipple);
-        });
-
-        // Show toast function
-        function showToast(type, message) {
-            const toastContainer = document.querySelector(".toast-container");
-            const toast = document.createElement("div");
-            toast.className = `toast ${type}`;
-            toast.innerHTML = `
-                <div class="toast-content">
-                    <div class="toast-icon">
-                        <i class="fas fa-${type === 'success' ? 'check' : 'exclamation'}"></i>
-                    </div>
-                    <span class="toast-message">${message}</span>
-                </div>
-                <button class="toast-close">&times;</button>
-            `;
-
-            toastContainer.appendChild(toast);
-
-            setTimeout(() => {
-                toast.style.animation = "slideOutRight 0.3s ease-out forwards";
-                setTimeout(() => {
-                    if (toast.parentNode) {
-                        toast.parentNode.removeChild(toast);
-                    }
-                }, 300);
-            }, 5000);
-
-            toast.querySelector(".toast-close").addEventListener("click", () => {
-                toast.style.animation = "slideOutRight 0.3s ease-out forwards";
-                setTimeout(() => {
-                    if (toast.parentNode) {
-                        toast.parentNode.removeChild(toast);
-                    }
-                }, 300);
-            });
-        }
-
-        // Add CSS for ripple effect and enhancements
-        const style = document.createElement("style");
-        style.textContent = `
-            .btn {
-                position: relative;
-                overflow: hidden;
-            }
-            
-            .ripple {
-                position: absolute;
-                border-radius: 50%;
-                background-color: rgba(255, 255, 255, 0.6);
-                transform: scale(0);
-                animation: ripple-animation 0.6s linear;
-                pointer-events: none;
-            }
-            
-            @keyframes ripple-animation {
-                to {
-                    transform: scale(4);
-                    opacity: 0;
-                }
-            }
-
-            /* Enhanced focus states for accessibility */
-            .btn:focus-visible,
-            input:focus-visible,
-            textarea:focus-visible,
-            .nav-btn:focus-visible,
-            .toast-close:focus-visible {
-                outline: 2px solid var(--primary);
-                outline-offset: 2px;
-            }
-
-            /* Loading spinner animation */
-            @keyframes spin {
-                from { transform: rotate(0deg); }
-                to { transform: rotate(360deg); }
-            }
-            
-            .fa-spinner {
-                animation: spin 1s linear infinite;
-            }
-
-            /* Enhanced button animations */
-            .btn:active {
-                transform: translateY(-1px) scale(0.98);
-            }
-
-            /* Radio button selection styling */
-            .radio-group label.selected {
-                background: rgba(99, 102, 241, 0.15) !important;
-                border-color: var(--primary) !important;
-                color: var(--primary) !important;
-            }
-
-                       /* Form animations */
-            .form-group {
-                animation: fadeInUp 0.6s ease-out;
-                animation-fill-mode: both;
-            }
-
-            .form-group:nth-child(1) { animation-delay: 0.1s; }
-            .form-group:nth-child(2) { animation-delay: 0.2s; }
-            .form-group:nth-child(3) { animation-delay: 0.3s; }
-            .quiz-section { animation-delay: 0.4s; }
-
-            /* Enhanced input styling */
-            input[type="text"]:valid, textarea:valid {
-                border-color: var(--success);
-            }
-
-            input[type="text"]:invalid, textarea:invalid {
-                border-color: var(--error);
-            }
-
-            /* Textarea enhancements */
-            textarea {
-                transition: height 0.2s ease;
-            }
-
-            /* Quiz section animation */
-            .quiz-section {
-                animation: fadeInUp 0.6s ease-out;
-                animation-fill-mode: both;
-            }
-
-            /* Button hover effects */
-            .btn:hover i {
-                transform: scale(1.1);
-            }
-
-            /* Enhanced mobile responsiveness */
-            @media (max-width: 320px) {
-                .hero h1 {
-                    font-size: 1.75rem;
-                }
-                
-                .container {
-                    padding: 1rem;
-                }
-                
-                .btn {
-                    padding: 0.75rem 1.5rem;
-                    font-size: 0.875rem;
-                }
-            }
-            
-            /* High contrast mode support */
-            @media (prefers-contrast: high) {
-                .btn, .toast, input, textarea {
-                    border: 2px solid currentColor;
-                }
-            }
-            
-            /* Reduced motion support */
-            @media (prefers-reduced-motion: reduce) {
-                * {
-                    animation-duration: 0.01ms !important;
-                    animation-iteration-count: 1 !important;
-                    transition-duration: 0.01ms !important;
-                }
-            }
-            
-            /* Print styles */
-            @media print {
-                .navbar,
-                .toast-container,
-                .btn {
-                    display: none !important;
-                }
-                
-                .hero {
-                    background: white !important;
-                    color: black !important;
-                }
-                
-                .container {
-                    box-shadow: none;
-                    border: 2px solid #000;
-                }
-            }
-
-            /* Character counter for textareas */
-            .char-counter {
-                font-size: 0.75rem;
-                color: var(--text-muted);
-                text-align: right;
-                margin-top: 0.25rem;
-            }
-
-            .char-counter.warning {
-                color: var(--accent);
-            }
-
-            .char-counter.error {
-                color: var(--error);
-            }
-
-            /* Form validation styling */
-            .form-group.error input,
-            .form-group.error textarea {
-                border-color: var(--error);
-                background: rgba(239, 68, 68, 0.05);
-            }
-
-            .form-group.success input,
-            .form-group.success textarea {
-                border-color: var(--success);
-                background: rgba(16, 185, 129, 0.05);
-            }
-
-            /* Loading overlay */
-            .loading-overlay {
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background: rgba(255, 255, 255, 0.8);
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                z-index: 9999;
-                opacity: 0;
-                visibility: hidden;
-                transition: all 0.3s ease;
-            }
-
-            .loading-overlay.show {
-                opacity: 1;
-                visibility: visible;
-            }
-
-            .loading-spinner {
-                width: 50px;
-                height: 50px;
-                border: 4px solid var(--border);
-                border-top: 4px solid var(--primary);
-                border-radius: 50%;
-                animation: spin 1s linear infinite;
-            }
+      // Toast functionality
+      function showToast(type, message) {
+        const toastContainer = document.querySelector(".toast-container");
+        const toast = document.createElement("div");
+        toast.className = `toast ${type}`;
+        toast.innerHTML = `
+          <div class="toast-content">
+            <div class="toast-icon">
+              <i class="fas fa-${type === "success" ? "check" : "exclamation"}"></i>
+            </div>
+            <span class="toast-message">${message}</span>
+          </div>
+          <button class="toast-close">&times;</button>
         `;
-        document.head.appendChild(style);
 
-        // Character counter for textareas
-        function addCharacterCounter(textarea, maxLength = 1000) {
-            const counter = document.createElement('div');
-            counter.className = 'char-counter';
-            textarea.parentNode.appendChild(counter);
+        toastContainer.appendChild(toast);
 
-            function updateCounter() {
-                const length = textarea.value.length;
-                counter.textContent = `${length}/${maxLength}`;
+        // Show toast
+        setTimeout(() => {
+          toast.classList.add("show");
+        }, 100);
 
-                if (length > maxLength * 0.9) {
-                    counter.className = 'char-counter error';
-                } else if (length > maxLength * 0.7) {
-                    counter.className = 'char-counter warning';
-                } else {
-                    counter.className = 'char-counter';
-                }
-            }
+        // Auto remove after 5 seconds
+        setTimeout(() => {
+          hideToast(toast);
+        }, 5000);
 
-            textarea.addEventListener('input', updateCounter);
-            updateCounter();
+        // Close button functionality
+        toast.querySelector(".toast-close").addEventListener("click", () => {
+          hideToast(toast);
+        });
+      }
+
+      function hideToast(toast) {
+        toast.classList.remove("show");
+        setTimeout(() => {
+          if (toast.parentNode) {
+            toast.parentNode.removeChild(toast);
+          }
+        }, 300);
+      }
+
+      // Initialize everything
+      document.addEventListener("DOMContentLoaded", function () {
+        // Handle existing toasts
+        const successToast = document.getElementById("successToast");
+        const errorToast = document.getElementById("errorToast");
+
+        if (successToast) {
+          successToast.style.display = "flex";
+          setTimeout(() => {
+            successToast.classList.add("show");
+          }, 100);
+
+          setTimeout(() => {
+            hideToast(successToast);
+          }, 5000);
         }
 
-        // Add character counters
-        document.addEventListener('DOMContentLoaded', function () {
-            const description = document.getElementById('description');
-            const quizQuestions = document.getElementById('quizQuestions');
+        if (errorToast) {
+          errorToast.style.display = "flex";
+          setTimeout(() => {
+            errorToast.classList.add("show");
+          }, 100);
 
-            if (description) addCharacterCounter(description, 500);
-            if (quizQuestions) addCharacterCounter(quizQuestions, 2000);
+          setTimeout(() => {
+            hideToast(errorToast);
+          }, 5000);
+        }
+
+        // Close button functionality for existing toasts
+        document.querySelectorAll(".toast-close").forEach((closeBtn) => {
+          closeBtn.addEventListener("click", function () {
+            const toast = this.closest(".toast");
+            hideToast(toast);
+          });
         });
 
-        // Form auto-save (localStorage)
-        function setupAutoSave() {
-            const form = document.querySelector('form');
-            const inputs = form.querySelectorAll('input[type="text"], textarea');
-            const storageKey = 'addCourseForm';
+        // Form validation and enhancements
+        const form = document.querySelector("form");
+        const submitBtn = form.querySelector(".submit-btn");
+        const priceInput = document.getElementById("price");
+        const typeRadios = document.querySelectorAll('input[name="type"]');
 
-            // Load saved data
-            function loadSavedData() {
-                const saved = localStorage.getItem(storageKey);
-                if (saved) {
-                    try {
-                        const data = JSON.parse(saved);
-                        Object.keys(data).forEach(key => {
-                            const input = form.querySelector(`[name="${key}"]`);
-                            if (input && input.type !== 'radio') {
-                                input.value = data[key];
-                            } else if (input && input.type === 'radio' && input.value === data[key]) {
-                                input.checked = true;
-                                input.closest('label').classList.add('selected');
-                            }
-                        });
-                    } catch (e) {
-                        console.warn('Failed to load saved form data');
-                    }
-                }
+        // Handle course type change
+        typeRadios.forEach((radio) => {
+          radio.addEventListener("change", function () {
+            if (this.value === "FREE") {
+              priceInput.value = "0";
+              priceInput.readOnly = true;
+              priceInput.style.backgroundColor = "#f8f9fa";
+            } else {
+              priceInput.readOnly = false;
+              priceInput.style.backgroundColor = "white";
+              if (priceInput.value === "0") {
+                priceInput.value = "";
+              }
             }
-
-            // Save data
-            function saveData() {
-                const data = {};
-                inputs.forEach(input => {
-                    data[input.name] = input.value;
-                });
-
-                const radioInputs = form.querySelectorAll('input[type="radio"]:checked');
-                radioInputs.forEach(radio => {
-                    data[radio.name] = radio.value;
-                });
-
-                localStorage.setItem(storageKey, JSON.stringify(data));
-            }
-
-            // Clear saved data on successful submit
-            form.addEventListener('submit', function () {
-                setTimeout(() => {
-                    localStorage.removeItem(storageKey);
-                }, 1000);
-            });
-
-            // Auto-save on input
-            inputs.forEach(input => {
-                input.addEventListener('input', debounce(saveData, 500));
-            });
-
-            const radioInputs = form.querySelectorAll('input[type="radio"]');
-            radioInputs.forEach(radio => {
-                radio.addEventListener('change', saveData);
-            });
-
-            loadSavedData();
-        }
-
-        // Debounce function
-        function debounce(func, wait) {
-            let timeout;
-            return function executedFunction(...args) {
-                const later = () => {
-                    clearTimeout(timeout);
-                    func(...args);
-                };
-                clearTimeout(timeout);
-                timeout = setTimeout(later, wait);
-            };
-        }
-
-        // Initialize auto-save
-        document.addEventListener('DOMContentLoaded', setupAutoSave);
-
-        // Keyboard shortcuts
-        document.addEventListener("keydown", function (e) {
-            // Ctrl/Cmd + S to save (submit form)
-            if ((e.ctrlKey || e.metaKey) && e.key === "s") {
-                e.preventDefault();
-                document.querySelector('form').submit();
-            }
-
-            // Escape key to clear form
-            if (e.key === "Escape") {
-                if (confirm("Clear all form data?")) {
-                    document.querySelector('form').reset();
-                    localStorage.removeItem('addCourseForm');
-                    document.querySelectorAll('.radio-group label').forEach(label => {
-                        label.classList.remove('selected');
-                    });
-                }
-            }
+          });
         });
 
-        // Error handling for network issues
-        window.addEventListener("online", function () {
-            showToast("success", "Connection restored");
+        // Form submission handling
+        form.addEventListener("submit", function (e) {
+          // Validate required fields
+          const title = document.getElementById("title").value.trim();
+          const description = document.getElementById("description").value.trim();
+          const price = parseFloat(priceInput.value);
+          const selectedType = document.querySelector('input[name="type"]:checked');
+
+          if (!title || !description || !selectedType || isNaN(price) || price < 0) {
+            e.preventDefault();
+            showToast("error", "Please fill in all required fields correctly");
+            return;
+          }
+
+          submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i><span>Creating Course...</span>';
+          submitBtn.disabled = true;
         });
 
-        window.addEventListener("offline", function () {
-            showToast("error", "No internet connection. Your work is saved locally.");
+        // Radio button selection enhancement
+        const radioOptions = document.querySelectorAll(".radio-option");
+        radioOptions.forEach((option) => {
+          option.addEventListener("click", function () {
+            const radio = this.querySelector('input[type="radio"]');
+            radio.checked = true;
+            radio.dispatchEvent(new Event("change"));
+          });
         });
 
-        // Performance monitoring
-        if ("performance" in window) {
-            window.addEventListener("load", function () {
-                setTimeout(() => {
-                    const perfData = performance.getEntriesByType("navigation")[0];
-                    if (perfData) {
-                        console.log(`Add Course page loaded in ${Math.round(perfData.loadEventEnd - perfData.loadEventStart)}ms`);
-                    }
-                }, 0);
-            });
+        // Auto-resize textarea
+        const textareas = document.querySelectorAll("textarea");
+        textareas.forEach((textarea) => {
+          textarea.addEventListener("input", function () {
+            this.style.height = "auto";
+            this.style.height = this.scrollHeight + "px";
+          });
+        });
+
+        const titleInput = document.getElementById("title");
+        const descriptionTextarea = document.getElementById("description");
+
+        function addCharacterCounter(element, maxLength) {
+          const counter = document.createElement("div");
+          counter.style.cssText = `
+            font-size: 0.75rem;
+            color: #666;
+            text-align: right;
+            margin-top: 0.25rem;
+          `;
+          element.parentNode.appendChild(counter);
+
+          function updateCounter() {
+            const length = element.value.length;
+            counter.textContent = `${length}${maxLength ? `/${maxLength}` : ""} characters`;
+            
+            if (maxLength && length > maxLength) {
+              counter.style.color = "var(--error)";
+            } else if (maxLength && length > maxLength * 0.8) {
+              counter.style.color = "#f59e0b";
+            } else {
+              counter.style.color = "#666";
+            }
+          }
+
+          element.addEventListener("input", updateCounter);
+          updateCounter();
         }
 
-        // Quiz questions helper
-        function setupQuizHelper() {
-            const quizTextarea = document.getElementById('quizQuestions');
-            if (!quizTextarea) return;
+        addCharacterCounter(titleInput, 100);
+        addCharacterCounter(descriptionTextarea, 500);
 
-            const helper = document.createElement('div');
-            helper.className = 'quiz-helper';
-            helper.innerHTML = `
-                <div style="margin-top: 1rem; padding: 1rem; background: rgba(99, 102, 241, 0.05); border-radius: 0.5rem; font-size: 0.875rem;">
-                    <strong>Quiz Format Tips:</strong>
-                    <ul style="margin: 0.5rem 0 0 1.5rem; color: var(--text-secondary);">
-                        <li>Each question should be on a separate line</li>
-                        <li>Follow with answer options (a, b, c, d)</li>
-                        <li>Leave a blank line between questions</li>
-                        <li>Keep questions clear and concise</li>
-                    </ul>
-                </div>
-            `;
+        
 
-            quizTextarea.parentNode.appendChild(helper);
+        // Auto-focus first input
+        setTimeout(() => {
+          titleInput.focus();
+        }, 100);
+
+
+        // Warn about unsaved changes
+        let formChanged = false;
+        const formInputs = form.querySelectorAll("input, textarea");
+        
+        formInputs.forEach((input) => {
+          input.addEventListener("input", () => {
+            formChanged = true;
+          });
+        });
+
+        window.addEventListener("beforeunload", (e) => {
+          if (formChanged) {
+            e.preventDefault();
+            e.returnValue = "";
+          }
+        });
+
+        // Reset form changed flag on submit
+        form.addEventListener("submit", () => {
+          formChanged = false;
+        });
+
+       
+      });
+
+      // Error handling for network issues
+      window.addEventListener("online", function () {
+        showToast("success", "Connection restored");
+      });
+
+      window.addEventListener("offline", function () {
+        showToast("error", "No internet connection. Please check your network.");
+      });
+
+      // Add CSS for enhanced states and animations
+      const style = document.createElement("style");
+      style.textContent = `
+        /* Enhanced focus states for accessibility */
+        input:focus-visible,
+        textarea:focus-visible,
+        .submit-btn:focus-visible,
+        .back-btn:focus-visible,
+        .toast-close:focus-visible,
+        nav a:focus-visible {
+          outline: 2px solid var(--accent);
+          outline-offset: 2px;
         }
+        
+        /* Loading spinner animation */
+        @keyframes spin {
+          from { transform: rotate(0deg); }
+          to { transform: rotate(360deg); }
+        }
+        
+        .fa-spinner {
+          animation: spin 1s linear infinite;
+        }
+        
+        /* Form animations */
+        .form-container {
+          animation: fadeInUp 0.6s ease-out;
+        }
+        
+        @keyframes fadeInUp {
+          from {
+            opacity: 0;
+            transform: translateY(30px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        
+        /* Hero section animation */
+        .hero {
+          animation: fadeInDown 0.8s ease-out;
+        }
+        
+        @keyframes fadeInDown {
+          from {
+            opacity: 0;
+            transform: translateY(-30px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        
+        /* Input focus animations */
+        input:focus,
+        textarea:focus {
+          transform: scale(1.01);
+          box-shadow: 0 0 0 3px rgba(26, 188, 156, 0.1);
+        }
+        
+        /* Button hover enhancements */
+        .submit-btn:hover,
+        .back-btn:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+        
+        /* Radio option animations */
+        .radio-option {
+          transition: all 0.3s ease;
+        }
+        
+        .radio-option:hover {
+          transform: translateY(-1px);
+        }
+        
+        /* Quiz section animation */
+        .quiz-section {
+          animation: slideInUp 0.6s ease-out 0.3s both;
+        }
+        
+        @keyframes slideInUp {
+          from {
+            opacity: 0;
+            transform: translateY(20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        
+        /* Form group stagger animation */
+        .form-group {
+          animation: fadeIn 0.6s ease-out both;
+        }
+        
+        .form-group:nth-child(1) { animation-delay: 0.1s; }
+        .form-group:nth-child(2) { animation-delay: 0.2s; }
+        .form-group:nth-child(3) { animation-delay: 0.3s; }
+        .form-group:nth-child(4) { animation-delay: 0.4s; }
+        
+        @keyframes fadeIn {
+          from { opacity: 0; }
+          to { opacity: 1; }
+        }
+        
+        /* Enhanced validation states */
+        input.valid,
+        textarea.valid {
+          border-color: var(--success);
+          background: rgba(39, 174, 96, 0.05);
+        }
+        
+        input.invalid,
+        textarea.invalid {
+          border-color: var(--error);
+          background: rgba(231, 76, 60, 0.05);
+          animation: shake 0.5s ease-in-out;
+        }
+        
+        @keyframes shake {
+          0%, 100% { transform: translateX(0); }
+          25% { transform: translateX(-5px); }
+          75% { transform: translateX(5px); }
+        }
+        
+        /* Mobile optimizations */
+        @media (max-width: 480px) {
+          .hero h1 {
+            font-size: 1.8rem;
+          }
+          
+          .form-container h2 {
+            font-size: 1.4rem;
+          }
+          
+          .radio-group {
+            gap: 0.5rem;
+          }
+          
+          .radio-option {
+            padding: 0.6rem 0.8rem;
+          }
+        }
+        
+        /* High contrast mode support */
+        @media (prefers-contrast: high) {
+          .form-container {
+            border-width: 3px;
+          }
+          
+          input,
+          textarea,
+          .submit-btn,
+          .back-btn {
+            border: 2px solid currentColor;
+          }
+        }
+        
+        /* Reduced motion support */
+        @media (prefers-reduced-motion: reduce) {
+          * {
+            animation-duration: 0.01ms !important;
+            animation-iteration-count: 1 !important;
+            
+            transition-duration: 0.01ms !important;
+          }
+        }
+        
+        /* Print styles */
+        @media print {
+          .toast-container,
+          footer,
+          .back-btn {
+            display: none !important;
+          }
+          
+          .form-container {
+            box-shadow: none;
+            border: 2px solid #000;
+          }
+          
+          input,
+          textarea {
+            border: 1px solid #000 !important;
+          }
+        }
+        
+        /* Enhanced navigation */
+        nav a {
+          position: relative;
+        }
+        
+        nav a::after {
+          content: '';
+          position: absolute;
+          bottom: -2px;
+          left: 50%;
+          width: 0;
+          height: 2px;
+          background: var(--accent);
+          transition: all 0.3s ease;
+          transform: translateX(-50%);
+        }
+        
+        nav a:hover::after {
+          width: 100%;
+        }
+        
+        /* Character counter styling */
+        .char-counter {
+          font-size: 0.75rem;
+          color: #666;
+          text-align: right;
+          margin-top: 0.25rem;
+          transition: color 0.3s ease;
+        }
+        
+        .char-counter.warning {
+          color: #f59e0b;
+        }
+        
+        .char-counter.error {
+          color: var(--error);
+        }
+        
+        /* Quiz help animation */
+        .quiz-help {
+          animation: slideInLeft 0.6s ease-out 0.5s both;
+        }
+        
+        @keyframes slideInLeft {
+          from {
+            opacity: 0;
+            transform: translateX(-20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateX(0);
+          }
+        }
+        
+        /* Button loading state */
+        .submit-btn.loading,
+        .back-btn.loading {
+          opacity: 0.7;
+          pointer-events: none;
+        }
+        
+        /* Form field icons */
+        .form-group {
+          position: relative;
+        }
+        
+        .form-group.has-icon input {
+          padding-left: 2.5rem;
+        }
+        
+        .form-group .field-icon {
+          position: absolute;
+          left: 0.75rem;
+          top: 50%;
+          transform: translateY(-50%);
+          color: #999;
+          pointer-events: none;
+        }
+        
+        /* Smooth transitions for all interactive elements */
+        input, textarea, button, a, .radio-option {
+          transition: all 0.3s ease;
+        }
+        
+        /* Enhanced button states */
+        .submit-btn:active,
+        .back-btn:active {
+          transform: translateY(0);
+        }
+        
+        /* Auto-resize textarea enhancement */
+        textarea {
+          transition: height 0.2s ease;
+        }
+        
+        /* Form validation feedback */
+        .form-group.success input,
+        .form-group.success textarea {
+          border-color: var(--success);
+          background: rgba(39, 174, 96, 0.05);
+        }
+        
+        .form-group.error input,
+        .form-group.error textarea {
+          border-color: var(--error);
+          background: rgba(231, 76, 60, 0.05);
+        }
+        
+        /* Price input special styling */
+        #price[readonly] {
+          background-color: #f8f9fa !important;
+          cursor: not-allowed;
+        }
+        
+        /* Quiz textarea special styling */
+        #quiz {
+          font-family: 'Courier New', monospace;
+          line-height: 1.4;
+        }
+        
+        /* Enhanced radio button styling */
+        .radio-option input[type="radio"] {
+          accent-color: var(--accent);
+        }
+        
+        /* Tooltip for quiz help */
+        .quiz-help {
+          position: relative;
+        }
+        
+        .quiz-help::before {
+          content: '';
+          position: absolute;
+          left: -4px;
+          top: 0;
+          bottom: 0;
+          width: 4px;
+          background: var(--accent);
+          border-radius: 2px;
+        }
+      `;
+      document.head.appendChild(style);
 
-        document.addEventListener('DOMContentLoaded', setupQuizHelper);
+      // Enhanced form validation
+      function validateForm() {
+        const form = document.querySelector("form");
+        const inputs = form.querySelectorAll("input[required], textarea[required]");
+        let isValid = true;
 
-        console.log("Add Course page initialized successfully");
+        inputs.forEach((input) => {
+          const formGroup = input.closest(".form-group");
+          
+          if (!input.value.trim()) {
+            formGroup.classList.add("error");
+            formGroup.classList.remove("success");
+            isValid = false;
+          } else {
+            formGroup.classList.add("success");
+            formGroup.classList.remove("error");
+          }
+        });
+
+        return isValid;
+      }
+
+      // Real-time validation
+      document.addEventListener("DOMContentLoaded", function () {
+        const inputs = document.querySelectorAll("input, textarea");
+        
+        inputs.forEach((input) => {
+          input.addEventListener("blur", function () {
+            const formGroup = this.closest(".form-group");
+            
+            if (this.hasAttribute("required")) {
+              if (!this.value.trim()) {
+                formGroup.classList.add("error");
+                formGroup.classList.remove("success");
+              } else {
+                formGroup.classList.add("success");
+                formGroup.classList.remove("error");
+              }
+            }
+          });
+
+          input.addEventListener("focus", function () {
+            const formGroup = this.closest(".form-group");
+            formGroup.classList.remove("error", "success");
+          });
+        });
+      });
+
+      // Performance optimization: Debounce resize events
+      let resizeTimeout;
+      window.addEventListener("resize", function () {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(function () {
+          const isMobile = window.innerWidth <= 768;
+          document.body.classList.toggle("mobile", isMobile);
+        }, 250);
+      });
+
+      // Initialize mobile class
+      document.body.classList.toggle("mobile", window.innerWidth <= 768);
+
+      
+     
+      // Track form interactions
+      document.querySelector("form").addEventListener("submit", function () {
+        const formData = new FormData(this);
+        trackEvent("course_creation_attempt", {
+          course_type: formData.get("type"),
+          has_quiz: formData.get("quiz") ? "yes" : "no",
+          timestamp: new Date().toISOString(),
+        });
+      });
+
+      // Track field interactions
+      document.querySelectorAll("input, textarea").forEach((field) => {
+        field.addEventListener("focus", function () {
+          trackEvent("form_field_focus", {
+            field_name: this.name || this.id,
+            timestamp: new Date().toISOString(),
+          });
+        });
+      });
+
+      // Add confirmation for logout
+      document.querySelectorAll('a[href="/logout"]').forEach((logoutLink) => {
+        logoutLink.addEventListener("click", function (e) {
+          if (!confirm("Are you sure you want to logout?")) {
+            e.preventDefault();
+          }
+        });
+      });
+
+      // Prevent double submission
+      let isSubmitting = false;
+      document.querySelector("form").addEventListener("submit", function (e) {
+        if (isSubmitting) {
+          e.preventDefault();
+          return false;
+        }
+        isSubmitting = true;
+
+        // Reset flag after 5 seconds as fallback
+        setTimeout(() => {
+          isSubmitting = false;
+        }, 5000);
+      });
+
+      // Add visual feedback for successful actions
+      document.addEventListener("DOMContentLoaded", function () {
+        // Add success animation to form elements
+        const formElements = document.querySelectorAll(".form-group, .quiz-section, .submit-btn, .back-btn");
+        formElements.forEach((element, index) => {
+          element.style.opacity = "0";
+          element.style.transform = "translateY(20px)";
+
+          setTimeout(() => {
+            element.style.transition = "all 0.6s ease";
+            element.style.opacity = "1";
+            element.style.transform = "translateY(0)";
+          }, index * 100 + 200);
+        });
+      });
     </script>
-</body>
-
+  </body>
 </html>
