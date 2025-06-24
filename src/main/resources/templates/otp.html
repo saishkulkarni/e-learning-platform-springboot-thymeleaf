@@ -4,24 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>OTP Verification - Jnana</title>
-
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-      :root {
-        --primary: #2c3e50;
-        --secondary: #34495e;
-        --accent: #1abc9c;
-        --text-light: #ecf0f1;
-        --text-dark: #2c3e50;
-        --bg-light: #f8f9fa;
-        --success: #27ae60;
-        --error: #e74c3c;
-        --border: #ddd;
-      }
-
       * {
         margin: 0;
         padding: 0;
@@ -29,45 +13,54 @@
       }
 
       body {
-        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-        background-color: var(--bg-light);
-        color: var(--text-dark);
+        font-family: 'Quicksand', sans-serif;
+        background-color: #1a1a1a;
+        color: #e0e0e0;
         height: 100vh;
-        overflow: hidden;
         display: flex;
         flex-direction: column;
       }
 
       header {
-        background-color: var(--primary);
-        color: var(--text-light);
-        padding: 1rem 2rem;
+        background-color: #2d2d2d;
+        color: #ffffff;
+        padding: 15px 20px;
         display: flex;
         justify-content: space-between;
         align-items: center;
-        flex-shrink: 0;
+        border-radius: 0 0 15px 15px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
       }
 
-      header .logo {
-        font-size: 1.8rem;
-        font-weight: bold;
+      .logo {
+        font-size: 24px;
+        font-weight: 700;
         text-decoration: none;
-        color: var(--text-light);
+        color: #64ffda;
+        letter-spacing: 1px;
       }
 
-      header .logo:hover {
-        color: var(--accent);
+      .logo:hover {
+        color: #4fd3b8;
       }
 
       nav a {
-        color: var(--text-light);
+        background-color: #3d3d3d;
+        color: #ffffff;
         text-decoration: none;
-        margin-left: 1rem;
+        margin-left: 12px;
+        padding: 8px 18px;
+        border-radius: 20px;
         font-weight: 500;
+        font-size: 14px;
+        border: 2px solid #555555;
+        transition: all 0.3s ease;
       }
 
       nav a:hover {
-        color: var(--accent);
+        background-color: #64ffda;
+        color: #1a1a1a;
+        border-color: #64ffda;
       }
 
       .main-content {
@@ -75,343 +68,219 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        padding: 1rem;
-        min-height: 0;
+        padding: 20px;
       }
 
       .otp-container {
-        background-color: white;
-        border: 1px solid var(--border);
-        border-radius: 0.5rem;
-        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-        padding: 1.5rem;
+        background: linear-gradient(135deg, #2d2d2d 0%, #3a3a3a 100%);
+        border: 1px solid #444444;
+        border-radius: 20px;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+        padding: 35px 30px;
         width: 100%;
-        max-width: 400px;
-        max-height: 100%;
-        overflow-y: auto;
+        max-width: 450px;
         text-align: center;
       }
 
       .otp-container h1 {
-        margin-bottom: 0.3rem;
-        color: var(--primary);
-        font-size: 1.6rem;
+        margin-bottom: 8px;
+        color: #64ffda;
+        font-size: 28px;
+        font-weight: 700;
       }
 
       .otp-subtitle {
-        color: #666;
-        margin-bottom: 1.5rem;
-        font-size: 0.85rem;
-        line-height: 1.4;
+        color: #b0b0b0;
+        margin-bottom: 25px;
+        font-size: 14px;
+        line-height: 1.5;
       }
 
       .otp-input-container {
-        display: flex;
-        justify-content: center;
-        gap: 0.5rem;
-        margin-bottom: 1rem;
+        margin-bottom: 25px;
       }
 
       .otp-input {
-        width: 45px;
-        height: 45px;
-        border: 1px solid var(--border);
-        border-radius: 0.25rem;
-        font-size: 1.1rem;
+        width: 100%;
+        max-width: 200px;
+        height: 50px;
+        border: 2px solid #555555;
+        border-radius: 15px;
+        font-size: 18px;
         font-weight: 600;
         text-align: center;
-        transition: all 0.2s ease;
-        background: white;
-        color: var(--text-dark);
+        background-color: #3d3d3d;
+        color: #ffffff;
+        font-family: 'Quicksand', sans-serif;
+        transition: all 0.3s ease;
+        letter-spacing: 8px;
       }
 
       .otp-input:focus {
-        border-color: var(--accent);
+        border-color: #64ffda;
         outline: none;
+        background-color: #444444;
       }
 
-      .otp-input.filled {
-        border-color: var(--success);
-        background: rgba(39, 174, 96, 0.05);
-      }
-
-      .otp-input.error {
-        border-color: var(--error);
-        background: rgba(231, 76, 60, 0.05);
-      }
-
-      /* Hidden input to store complete OTP */
-      input[type="hidden"] {
-        display: none;
+      .otp-input::placeholder {
+        color: #888888;
+        letter-spacing: 2px;
+        font-weight: 400;
       }
 
       .btn-group {
         display: flex;
-        gap: 0.75rem;
+        gap: 12px;
         justify-content: center;
-        margin-bottom: 1rem;
+        margin-bottom: 20px;
       }
 
       .btn {
-        padding: 0.65rem 1.2rem;
+        padding: 12px 24px;
         border: none;
-        border-radius: 0.25rem;
-        font-size: 0.9rem;
-        font-weight: 500;
+        border-radius: 15px;
+        font-size: 14px;
+        font-weight: 600;
         cursor: pointer;
         transition: all 0.3s ease;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 0.4rem;
+        font-family: 'Quicksand', sans-serif;
+        text-decoration: none;
+        display: inline-block;
       }
 
       .btn-primary {
-        background-color: var(--accent);
-        color: white;
+        background-color: #64ffda;
+        color: #1a1a1a;
       }
 
       .btn-primary:hover {
-        background-color: #16a085;
+        background-color: #4fd3b8;
+        transform: translateY(-2px);
+      }
+
+      .btn-primary:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+        transform: none;
       }
 
       .btn-secondary {
-        background-color: white;
-        color: var(--text-dark);
-        border: 1px solid var(--border);
+        background-color: #3d3d3d;
+        color: #ffffff;
+        border: 2px solid #555555;
       }
 
       .btn-secondary:hover {
-        background-color: var(--bg-light);
-      }
-
-      .btn:disabled {
-        opacity: 0.6;
-        cursor: not-allowed;
+        background-color: #555555;
+        border-color: #666666;
+        transform: translateY(-2px);
       }
 
       .resend-info {
-        margin-top: 1rem;
-        padding-top: 1rem;
-        border-top: 1px solid var(--border);
-        color: #666;
-        font-size: 0.8rem;
+        margin-top: 20px;
+        padding-top: 20px;
+        border-top: 1px solid #444444;
+        color: #b0b0b0;
+        font-size: 13px;
       }
 
       .timer {
         font-weight: 600;
-        color: var(--accent);
+        color: #64ffda;
       }
 
       .back-link {
         text-align: center;
-        margin-top: 1rem;
+        margin-top: 15px;
       }
 
       .back-link a {
-        color: var(--accent);
+        color: #64ffda;
         text-decoration: none;
-        font-size: 0.85rem;
+        font-size: 14px;
         font-weight: 500;
       }
 
       .back-link a:hover {
+        color: #4fd3b8;
         text-decoration: underline;
       }
 
       footer {
-        background-color: var(--primary);
-        color: white;
+        background-color: #2d2d2d;
+        color: #ffffff;
         text-align: center;
-        padding: 1rem;
-        flex-shrink: 0;
-      }
-
-      /* Toast Styles */
-      .toast-container {
-        position: fixed;
-        top: 20px;
-        right: 20px;
-        z-index: 1000;
-      }
-
-      .toast {
-        background-color: white;
-        border-radius: 0.5rem;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-        padding: 1rem 1.5rem;
-        margin-bottom: 0.5rem;
-        min-width: 300px;
-        max-width: 400px;
-        transform: translateX(100%);
-        opacity: 0;
-        transition: all 0.3s ease-in-out;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-      }
-
-      .toast.show {
-        transform: translateX(0);
-        opacity: 1;
-      }
-
-      .toast.success {
-        border-left: 4px solid var(--success);
-      }
-
-      .toast.error {
-        border-left: 4px solid var(--error);
-      }
-
-      .toast-content {
-        display: flex;
-        align-items: center;
-        flex: 1;
-      }
-
-      .toast-icon {
-        margin-right: 0.75rem;
-        font-size: 1.2rem;
-      }
-
-      .toast.success .toast-icon {
-        color: var(--success);
-      }
-
-      .toast.error .toast-icon {
-        color: var(--error);
-      }
-
-      .toast-message {
-        color: var(--text-dark);
+        padding: 12px;
+        border-radius: 15px 15px 0 0;
         font-weight: 500;
-        flex: 1;
+        border-top: 1px solid #444444;
+        font-size: 14px;
+        margin-top: auto;
       }
 
-      .toast-close {
-        background: none;
-        border: none;
-        font-size: 1.2rem;
+      .alert {
+        position: fixed;
+        top: 15px;
+        right: 15px;
+        padding: 12px 16px;
+        border-radius: 12px;
+        color: white;
+        min-width: 280px;
+        z-index: 1000;
+        font-family: 'Quicksand', sans-serif;
+        font-weight: 500;
+        font-size: 14px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+      }
+
+      .alert-success {
+        background: linear-gradient(135deg, #4caf50 0%, #45a049 100%);
+        border: 2px solid #4caf50;
+      }
+
+      .alert-error {
+        background: linear-gradient(135deg, #f44336 0%, #d32f2f 100%);
+        border: 2px solid #f44336;
+      }
+
+      .alert-close {
+        float: right;
+        background: rgba(255, 255, 255, 0.2);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        color: white;
+        font-size: 16px;
         cursor: pointer;
-        color: #999;
-        margin-left: 1rem;
-        padding: 0;
-        width: 20px;
-        height: 20px;
+        margin-left: 12px;
+        padding: 4px 8px;
+        border-radius: 50%;
+        width: 24px;
+        height: 24px;
         display: flex;
         align-items: center;
         justify-content: center;
+        font-weight: 600;
       }
 
-      .toast-close:hover {
-        color: var(--text-dark);
-      }
-
-      /* Responsive Design */
-      @media (max-width: 768px) {
-        .main-content {
-          padding: 0.75rem;
-        }
-
-        .otp-container {
-          padding: 1.25rem;
-          max-width: 350px;
-        }
-
-        .btn-group {
-          flex-direction: column;
-          gap: 0.5rem;
-        }
-
-        .btn {
-          width: 100%;
-        }
-
-        header {
-          padding: 1rem;
-        }
-
-        header .logo {
-          font-size: 1.5rem;
-        }
-      }
-
-      @media (max-height: 700px) {
-        .otp-container {
-          padding: 1.2rem;
-        }
-
-        .otp-container h1 {
-          font-size: 1.4rem;
-          margin-bottom: 0.2rem;
-        }
-
-        .otp-subtitle {
-          margin-bottom: 1.2rem;
-          font-size: 0.8rem;
-        }
-
-        .otp-input-container {
-          margin-bottom: 0.8rem;
-        }
-
-        .otp-input {
-          width: 40px;
-          height: 40px;
-          font-size: 1rem;
-        }
-
-        .btn {
-          padding: 0.55rem 1rem;
-          font-size: 0.85rem;
-        }
-
-        .resend-info {
-          margin-top: 0.8rem;
-          padding-top: 0.8rem;
-        }
+      .alert-close:hover {
+        background: rgba(255, 255, 255, 0.3);
+        transform: scale(1.1);
       }
     </style>
   </head>
 
   <body>
     <!-- Toast Container -->
-    <div class="toast-container">
-      <div
-        id="successToast"
-        class="toast success"
-        th:if="${session.pass}"
-        style="display: none"
-      >
-        <div class="toast-content">
-          <div class="toast-icon">
-            <i class="fas fa-check"></i>
-          </div>
-          <span class="toast-message" th:text="${session.pass}"
-            >Success message</span
-          >
-        </div>
-        <button class="toast-close">&times;</button>
-      </div>
-      <div
-        id="errorToast"
-        class="toast error"
-        th:if="${session.fail}"
-        style="display: none"
-      >
-        <div class="toast-content">
-          <div class="toast-icon">
-            <i class="fas fa-exclamation"></i>
-          </div>
-          <span class="toast-message" th:text="${session.fail}"
-            >Error message</span
-          >
-        </div>
-        <button class="toast-close">&times;</button>
-      </div>
-      <th:block th:text="${@generalService.removeMessage()}"></th:block>
+    <div th:if="${session.pass}" class="alert alert-success" id="successAlert">
+      <span th:text="${session.pass}">Success message</span>
+      <button class="alert-close" onclick="closeAlert('successAlert')">&times;</button>
     </div>
+    
+    <div th:if="${session.fail}" class="alert alert-error" id="errorAlert">
+      <span th:text="${session.fail}">Error message</span>
+      <button class="alert-close" onclick="closeAlert('errorAlert')">&times;</button>
+    </div>
+    
+    <th:block th:text="${@generalService.removeMessage()}"></th:block>
 
     <!-- Header -->
     <header>
@@ -435,62 +304,21 @@
             <input
               type="text"
               class="otp-input"
-              maxlength="1"
-              pattern="[0-9]"
+              name="otp"
+              maxlength="6"
+              pattern="[0-9]{6}"
               inputmode="numeric"
-            />
-            <input
-              type="text"
-              class="otp-input"
-              maxlength="1"
-              pattern="[0-9]"
-              inputmode="numeric"
-            />
-            <input
-              type="text"
-              class="otp-input"
-              maxlength="1"
-              pattern="[0-9]"
-              inputmode="numeric"
-            />
-            <input
-              type="text"
-              class="otp-input"
-              maxlength="1"
-              pattern="[0-9]"
-              inputmode="numeric"
-            />
-            <input
-              type="text"
-              class="otp-input"
-              maxlength="1"
-              pattern="[0-9]"
-              inputmode="numeric"
-            />
-            <input
-              type="text"
-              class="otp-input"
-              maxlength="1"
-              pattern="[0-9]"
-              inputmode="numeric"
+              placeholder="000000"
+              required
             />
           </div>
 
-          <input type="hidden" name="otp" id="completeOtp" />
-
           <div class="btn-group">
-            <button
-              type="submit"
-              class="btn btn-primary"
-              id="verifyBtn"
-              disabled
-            >
-              <i class="fas fa-check-circle"></i>
-              <span>Verify OTP</span>
+            <button type="submit" class="btn btn-primary" id="verifyBtn">
+              Verify OTP
             </button>
             <a href="/resend-otp" class="btn btn-secondary" id="resendBtn">
-              <i class="fas fa-redo-alt"></i>
-              <span>Resend Code</span>
+              Resend Code
             </a>
           </div>
         </form>
@@ -512,363 +340,41 @@
     <footer>&copy; 2025 Jnana. All rights reserved.</footer>
 
     <script>
-      class OTPManager {
-        constructor() {
-          this.inputs = document.querySelectorAll(".otp-input");
-          this.completeOtpInput = document.getElementById("completeOtp");
-          this.verifyBtn = document.getElementById("verifyBtn");
-          this.resendBtn = document.getElementById("resendBtn");
-          this.timerElement = document.getElementById("timer");
-          this.form = document.querySelector("form");
-
-          this.timer = 30;
-          this.timerInterval = null;
-
-          this.init();
-        }
-
-        init() {
-          this.setupInputHandlers();
-          this.setupFormHandler();
-          this.setupResendHandler();
-          this.startTimer();
-          this.focusFirstInput();
-        }
-
-        setupInputHandlers() {
-          this.inputs.forEach((input, index) => {
-            // Input event - handle typing
-            input.addEventListener("input", (e) => {
-              const value = e.target.value;
-
-              // Only allow numbers
-              if (!/^\d*$/.test(value)) {
-                e.target.value = "";
-                return;
-              }
-
-              if (value) {
-                e.target.classList.add("filled");
-                e.target.classList.remove("error");
-
-                // Move to next input
-                if (index < this.inputs.length - 1) {
-                  this.inputs[index + 1].focus();
-                }
-              } else {
-                e.target.classList.remove("filled");
-              }
-
-              this.updateCompleteOtp();
-              this.updateVerifyButton();
-            });
-
-            // Keydown event - handle backspace and navigation
-            input.addEventListener("keydown", (e) => {
-              if (e.key === "Backspace" && !e.target.value && index > 0) {
-                this.inputs[index - 1].focus();
-                this.inputs[index - 1].value = "";
-                this.inputs[index - 1].classList.remove("filled");
-              }
-
-              if (e.key === "ArrowLeft" && index > 0) {
-                this.inputs[index - 1].focus();
-              }
-
-              if (e.key === "ArrowRight" && index < this.inputs.length - 1) {
-                this.inputs[index + 1].focus();
-              }
-
-              if (e.key === "Enter") {
-                e.preventDefault();
-                if (this.isComplete()) {
-                  this.form.submit();
-                }
-              }
-            });
-
-            // Focus event
-            input.addEventListener("focus", (e) => {
-              e.target.select();
-            });
-
-            // Paste event - handle pasting complete OTP
-            input.addEventListener("paste", (e) => {
-              e.preventDefault();
-              const pastedData = e.clipboardData.getData("text");
-              const digits = pastedData.replace(/\D/g, "").slice(0, 6);
-
-              if (digits.length === 6) {
-                this.fillOtp(digits);
-              }
-            });
-          });
-        }
-
-        setupFormHandler() {
-          this.form.addEventListener("submit", (e) => {
-            if (!this.isComplete()) {
-              e.preventDefault();
-              this.showError("Please enter the complete 6-digit code");
-              this.highlightEmptyInputs();
-              return;
-            }
-
-            // Show loading state
-            this.verifyBtn.innerHTML =
-              '<i class="fas fa-spinner fa-spin"></i><span>Verifying...</span>';
-            this.verifyBtn.disabled = true;
-          });
-        }
-
-        setupResendHandler() {
-          this.resendBtn.addEventListener("click", () => {
-            if (this.timer > 0) return;
-
-            // Show loading state
-            this.resendBtn.innerHTML =
-              '<i class="fas fa-spinner fa-spin"></i><span>Sending...</span>';
-            this.resendBtn.disabled = true;
-
-            // Simulate API call
-            fetch("/resend-otp", {
-              method: "GET",
-              headers: {
-                "Content-Type": "application/json",
-              },
-            })
-              .then((response) => response.json())
-              .then((data) => {
-                if (data.success) {
-                  this.showSuccess("Verification code sent successfully!");
-                  this.resetTimer();
-                  this.clearInputs();
-                } else {
-                  this.showError(
-                    data.message || "Failed to send code. Please try again."
-                  );
-                }
-              })
-              .catch((error) => {
-                this.showSuccess("Verification code sent successfully!");
-              })
-              .finally(() => {
-                this.resendBtn.innerHTML =
-                  '<i class="fas fa-redo-alt"></i><span>Resend Code</span>';
-                this.resendBtn.disabled = false;
-              });
-          });
-        }
-
-        fillOtp(digits) {
-          for (
-            let i = 0;
-            i < Math.min(digits.length, this.inputs.length);
-            i++
-          ) {
-            this.inputs[i].value = digits[i];
-            this.inputs[i].classList.add("filled");
-            this.inputs[i].classList.remove("error");
-          }
-
-          this.updateCompleteOtp();
-          this.updateVerifyButton();
-
-          if (digits.length === 6) {
-            this.inputs[5].focus();
-          }
-        }
-
-        updateCompleteOtp() {
-          const otp = Array.from(this.inputs)
-            .map((input) => input.value)
-            .join("");
-          this.completeOtpInput.value = otp;
-        }
-
-        updateVerifyButton() {
-          const isComplete = this.isComplete();
-          this.verifyBtn.disabled = !isComplete;
-        }
-
-        isComplete() {
-          return Array.from(this.inputs).every(
-            (input) => input.value.length === 1
-          );
-        }
-
-        clearInputs() {
-          this.inputs.forEach((input) => {
-            input.value = "";
-            input.classList.remove("filled", "error");
-          });
-          this.updateCompleteOtp();
-          this.updateVerifyButton();
-          this.focusFirstInput();
-        }
-
-        highlightEmptyInputs() {
-          this.inputs.forEach((input) => {
-            if (!input.value) {
-              input.classList.add("error");
-              setTimeout(() => {
-                input.classList.remove("error");
-              }, 2000);
-            }
-          });
-        }
-
-        focusFirstInput() {
-          this.inputs[0].focus();
-        }
-
-        startTimer() {
-          this.updateTimerDisplay();
-          this.timerInterval = setInterval(() => {
-            this.timer--;
-            this.updateTimerDisplay();
-
-            if (this.timer <= 0) {
-              clearInterval(this.timerInterval);
-              this.resendBtn.disabled = false;
-            }
-          }, 1000);
-        }
-
-        resetTimer() {
-          this.timer = 60;
-          this.resendBtn.disabled = true;
-          clearInterval(this.timerInterval);
-          this.startTimer();
-        }
-
-        updateTimerDisplay() {
-          this.timerElement.textContent = this.timer;
-          this.timerElement.style.color =
-            this.timer <= 10 ? "var(--error)" : "var(--accent)";
-        }
-
-        showSuccess(message) {
-          this.showToast("success", message);
-        }
-
-        showError(message) {
-          this.showToast("error", message);
-        }
-
-        showToast(type, message) {
-          const toastContainer = document.querySelector(".toast-container");
-          const toast = document.createElement("div");
-          toast.className = `toast ${type}`;
-          toast.innerHTML = `
-            <div class="toast-content">
-              <div class="toast-icon">
-                <i class="fas fa-${
-                  type === "success" ? "check" : "exclamation"
-                }"></i>
-              </div>
-              <span class="toast-message">${message}</span>
-            </div>
-            <button class="toast-close">&times;</button>
-          `;
-
-          toastContainer.appendChild(toast);
-
-          // Show toast
-          setTimeout(() => {
-            toast.classList.add("show");
-          }, 100);
-
-          // Auto remove after 5 seconds
-          setTimeout(() => {
-            this.hideToast(toast);
-          }, 5000);
-
-          // Close button functionality
-          toast.querySelector(".toast-close").addEventListener("click", () => {
-            this.hideToast(toast);
-          });
-        }
-
-        hideToast(toast) {
-          toast.classList.remove("show");
-          setTimeout(() => {
-            if (toast.parentNode) {
-              toast.parentNode.removeChild(toast);
-            }
-          }, 300);
-        }
+      function closeAlert(alertId) {
+        document.getElementById(alertId).style.display = 'none';
       }
 
-      // Initialize everything
-      document.addEventListener("DOMContentLoaded", function () {
-        // Initialize OTP Manager
-        new OTPManager();
-
-        // Handle existing toasts
-        const successToast = document.getElementById("successToast");
-        const errorToast = document.getElementById("errorToast");
-
-        if (successToast) {
-          successToast.style.display = "flex";
-          setTimeout(() => {
-            successToast.classList.add("show");
-          }, 100);
-
-          setTimeout(() => {
-            hideToast(successToast);
-          }, 5000);
+      setTimeout(function() {
+        var successAlert = document.getElementById('successAlert');
+        var errorAlert = document.getElementById('errorAlert');
+        
+        if (successAlert) {
+          successAlert.style.display = 'none';
         }
-
-        if (errorToast) {
-          errorToast.style.display = "flex";
-          setTimeout(() => {
-            errorToast.classList.add("show");
-          }, 100);
-
-          setTimeout(() => {
-            hideToast(errorToast);
-          }, 5000);
+        if (errorAlert) {
+          errorAlert.style.display = 'none';
         }
+      }, 5000);
 
-        // Close button functionality for existing toasts
-        document.querySelectorAll(".toast-close").forEach((closeBtn) => {
-          closeBtn.addEventListener("click", function () {
-            const toast = this.closest(".toast");
-            hideToast(toast);
-          });
-        });
-      });
-
-      function hideToast(toast) {
-        toast.classList.remove("show");
-        setTimeout(() => {
-          toast.style.display = "none";
-        }, 300);
-      }
-
-      // Keyboard shortcuts
-      document.addEventListener("keydown", function (e) {
-        // Escape key to clear inputs
-        if (e.key === "Escape") {
-          const inputs = document.querySelectorAll(".otp-input");
-          inputs.forEach((input) => {
-            input.value = "";
-            input.classList.remove("filled", "error");
-          });
-          document.getElementById("completeOtp").value = "";
-          document.getElementById("verifyBtn").disabled = true;
-          inputs[0].focus();
-
-          // Also close any visible toasts
-          const visibleToasts = document.querySelectorAll(
-            '.toast[style*="flex"]'
-          );
-          visibleToasts.forEach((toast) => {
-            hideToast(toast);
-          });
+      // Simple timer countdown
+      let timeLeft = 30;
+      const timerElement = document.getElementById('timer');
+      const resendBtn = document.getElementById('resendBtn');
+      
+      const countdown = setInterval(function() {
+        timeLeft--;
+        timerElement.textContent = timeLeft;
+        
+        if (timeLeft <= 0) {
+          clearInterval(countdown);
+          resendBtn.style.opacity = '1';
+          resendBtn.style.pointerEvents = 'auto';
         }
-      });
+      }, 1000);
+
+      // Initially disable resend button
+      resendBtn.style.opacity = '0.6';
+      resendBtn.style.pointerEvents = 'none';
     </script>
   </body>
 </html>

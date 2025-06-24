@@ -4,24 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>404 - Page Not Found | Jnana</title>
-    <!-- Font Awesome for icons -->
     <link
+      href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
     />
     <style>
-      :root {
-        --primary: #2c3e50;
-        --secondary: #34495e;
-        --accent: #1abc9c;
-        --text-light: #ecf0f1;
-        --text-dark: #2c3e50;
-        --bg-light: #f8f9fa;
-        --success: #27ae60;
-        --error: #e74c3c;
-        --border: #ddd;
-      }
-
       * {
         margin: 0;
         padding: 0;
@@ -29,45 +16,54 @@
       }
 
       body {
-        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-        background-color: var(--bg-light);
-        color: var(--text-dark);
+        font-family: "Quicksand", sans-serif;
+        background-color: #1a1a1a;
+        color: #e0e0e0;
         height: 100vh;
-        overflow: hidden;
         display: flex;
         flex-direction: column;
       }
 
       header {
-        background-color: var(--primary);
-        color: var(--text-light);
-        padding: 1rem 2rem;
+        background-color: #2d2d2d;
+        color: #ffffff;
+        padding: 15px 20px;
         display: flex;
         justify-content: space-between;
         align-items: center;
-        flex-shrink: 0;
+        border-radius: 0 0 15px 15px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
       }
 
-      header .logo {
-        font-size: 1.8rem;
-        font-weight: bold;
+      .logo {
+        font-size: 24px;
+        font-weight: 700;
         text-decoration: none;
-        color: var(--text-light);
+        color: #64ffda;
+        letter-spacing: 1px;
       }
 
-      header .logo:hover {
-        color: var(--accent);
+      .logo:hover {
+        color: #4fd3b8;
       }
 
       nav a {
-        color: var(--text-light);
+        background-color: #3d3d3d;
+        color: #ffffff;
         text-decoration: none;
-        margin-left: 1rem;
+        margin-left: 12px;
+        padding: 8px 18px;
+        border-radius: 20px;
         font-weight: 500;
+        font-size: 14px;
+        border: 2px solid #555555;
+        transition: all 0.3s ease;
       }
 
       nav a:hover {
-        color: var(--accent);
+        background-color: #64ffda;
+        color: #1a1a1a;
+        border-color: #64ffda;
       }
 
       .main-content {
@@ -75,314 +71,193 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        padding: 1rem;
-        min-height: 0;
+        padding: 20px;
       }
 
       .error-container {
-        background-color: white;
-        border: 1px solid var(--border);
-        border-radius: 0.5rem;
-        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-        padding: 2rem;
-        width: 100%;
-        max-width: 450px;
-        max-height: 100%;
-        overflow-y: auto;
+        background: linear-gradient(135deg, #2d2d2d 0%, #3a3a3a 100%);
+        border: 1px solid #444444;
+        border-radius: 20px;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+        padding: 40px 30px;
         text-align: center;
-      }
-
-      .error-icon {
-        font-size: 4rem;
-        color: var(--accent);
-        margin-bottom: 1rem;
+        max-width: 500px;
+        width: 100%;
       }
 
       .error-code {
-        font-size: 3rem;
-        font-weight: bold;
-        color: var(--primary);
-        margin-bottom: 0.5rem;
+        font-size: 72px;
+        font-weight: 700;
+        color: #64ffda;
+        margin-bottom: 15px;
       }
 
       .error-container h1 {
-        margin-bottom: 0.5rem;
-        color: var(--primary);
-        font-size: 1.8rem;
+        margin-bottom: 10px;
+        color: #ffffff;
+        font-size: 28px;
+        font-weight: 600;
       }
 
       .error-subtitle {
-        color: #666;
-        margin-bottom: 2rem;
-        font-size: 0.9rem;
-        line-height: 1.4;
+        color: #b0b0b0;
+        margin-bottom: 30px;
+        font-size: 16px;
+        line-height: 1.5;
       }
 
       .error-actions {
         display: flex;
-        gap: 0.75rem;
+        gap: 15px;
         justify-content: center;
-        margin-bottom: 1.5rem;
+        margin-bottom: 25px;
       }
 
       .btn {
-        padding: 0.65rem 1.2rem;
+        padding: 12px 24px;
         border: none;
-        border-radius: 0.25rem;
-        font-size: 0.9rem;
+        border-radius: 20px;
+        font-size: 14px;
         font-weight: 500;
         cursor: pointer;
         transition: all 0.3s ease;
         text-decoration: none;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 0.4rem;
+        display: inline-block;
+        font-family: "Quicksand", sans-serif;
       }
 
       .btn-primary {
-        background-color: var(--accent);
-        color: white;
+        background-color: #64ffda;
+        color: #1a1a1a;
+        border: 2px solid #64ffda;
       }
 
       .btn-primary:hover {
-        background-color: #16a085;
+        background-color: #4fd3b8;
+        border-color: #4fd3b8;
+        transform: translateY(-2px);
       }
 
       .btn-secondary {
-        background-color: white;
-        color: var(--text-dark);
-        border: 1px solid var(--border);
+        background-color: #3d3d3d;
+        color: #ffffff;
+        border: 2px solid #555555;
       }
 
       .btn-secondary:hover {
-        background-color: var(--bg-light);
+        background-color: #555555;
+        border-color: #666666;
+        transform: translateY(-2px);
       }
 
       .helpful-links {
-        border-top: 1px solid var(--border);
-        padding-top: 1.5rem;
+        border-top: 1px solid #444444;
+        padding-top: 20px;
       }
 
       .helpful-links h3 {
-        font-size: 1rem;
+        font-size: 18px;
         font-weight: 600;
-        color: var(--text-dark);
-        margin-bottom: 1rem;
+        color: #ffffff;
+        margin-bottom: 15px;
       }
 
       .links-grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 0.75rem;
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+        flex-wrap: wrap;
       }
 
       .link-item {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        padding: 0.75rem;
-        background: var(--bg-light);
-        border-radius: 0.25rem;
+        display: inline-block;
+        padding: 8px 16px;
+        background-color: #3d3d3d;
+        border-radius: 15px;
         text-decoration: none;
-        color: var(--text-dark);
-        transition: all 0.2s ease;
-        border: 1px solid var(--border);
-        font-size: 0.85rem;
+        color: #b0b0b0;
+        transition: all 0.3s ease;
+        border: 1px solid #555555;
+        font-size: 13px;
+        font-weight: 500;
       }
 
       .link-item:hover {
-        background: white;
-        color: var(--accent);
-        border-color: var(--accent);
-      }
-
-      .link-icon {
-        color: var(--accent);
-        font-size: 0.9rem;
+        background-color: #555555;
+        color: #64ffda;
+        border-color: #64ffda;
+        transform: translateY(-1px);
       }
 
       footer {
-        background-color: var(--primary);
-        color: white;
+        background-color: #2d2d2d;
+        color: #ffffff;
         text-align: center;
-        padding: 1rem;
-        flex-shrink: 0;
-      }
-
-      footer a {
-        color: var(--accent);
-        text-decoration: none;
-      }
-
-      footer a:hover {
-        text-decoration: underline;
-      }
-
-      /* Toast Styles */
-      .toast-container {
-        position: fixed;
-        top: 20px;
-        right: 20px;
-        z-index: 1000;
-      }
-
-      .toast {
-        background-color: white;
-        border-radius: 0.5rem;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-        padding: 1rem 1.5rem;
-        margin-bottom: 0.5rem;
-        min-width: 300px;
-        max-width: 400px;
-        transform: translateX(100%);
-        opacity: 0;
-        transition: all 0.3s ease-in-out;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-      }
-
-      .toast.show {
-        transform: translateX(0);
-        opacity: 1;
-      }
-
-      .toast.success {
-        border-left: 4px solid var(--success);
-      }
-
-      .toast.error {
-        border-left: 4px solid var(--error);
-      }
-
-      .toast-content {
-        display: flex;
-        align-items: center;
-        flex: 1;
-      }
-
-      .toast-icon {
-        margin-right: 0.75rem;
-        font-size: 1.2rem;
-      }
-
-      .toast.success .toast-icon {
-        color: var(--success);
-      }
-
-      .toast.error .toast-icon {
-        color: var(--error);
-      }
-
-      .toast-message {
-        color: var(--text-dark);
+        padding: 12px;
+        border-radius: 15px 15px 0 0;
         font-weight: 500;
-        flex: 1;
+        border-top: 1px solid #444444;
+        font-size: 14px;
+        margin-top: auto;
       }
 
-      .toast-close {
-        background: none;
-        border: none;
-        font-size: 1.2rem;
+      .alert {
+        position: fixed;
+        top: 15px;
+        right: 15px;
+        padding: 12px 16px;
+        border-radius: 12px;
+        color: white;
+        min-width: 280px;
+        z-index: 1000;
+        font-family: "Quicksand", sans-serif;
+        font-weight: 500;
+        font-size: 14px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+      }
+
+      .alert-success {
+        background: linear-gradient(135deg, #4caf50 0%, #45a049 100%);
+        border: 2px solid #4caf50;
+      }
+
+      .alert-error {
+        background: linear-gradient(135deg, #f44336 0%, #d32f2f 100%);
+        border: 2px solid #f44336;
+      }
+
+      .alert-close {
+        float: right;
+        background: rgba(255, 255, 255, 0.2);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        color: white;
+        font-size: 16px;
         cursor: pointer;
-        color: #999;
-        margin-left: 1rem;
-        padding: 0;
-        width: 20px;
-        height: 20px;
+        margin-left: 12px;
+        padding: 4px 8px;
+        border-radius: 50%;
+        width: 24px;
+        height: 24px;
         display: flex;
         align-items: center;
         justify-content: center;
+        font-weight: 600;
       }
 
-      .toast-close:hover {
-        color: var(--text-dark);
-      }
-
-      /* Responsive Design */
-      @media (max-width: 768px) {
-        .main-content {
-          padding: 0.75rem;
-        }
-
-        .error-container {
-          padding: 1.5rem;
-          max-width: 350px;
-        }
-
-        .error-actions {
-          flex-direction: column;
-          gap: 0.5rem;
-        }
-
-        .btn {
-          width: 100%;
-        }
-
-        .links-grid {
-          grid-template-columns: 1fr;
-        }
-
-        header {
-          padding: 1rem;
-        }
-
-        header .logo {
-          font-size: 1.5rem;
-        }
-      }
-
-      @media (max-height: 700px) {
-        .error-container {
-          padding: 1.5rem;
-        }
-
-        .error-icon {
-          font-size: 3rem;
-          margin-bottom: 0.75rem;
-        }
-
-        .error-code {
-          font-size: 2.5rem;
-          margin-bottom: 0.25rem;
-        }
-
-        .error-container h1 {
-          font-size: 1.5rem;
-          margin-bottom: 0.25rem;
-        }
-
-        .error-subtitle {
-          margin-bottom: 1.5rem;
-          font-size: 0.85rem;
-        }
-
-        .error-actions {
-          margin-bottom: 1rem;
-        }
-
-        .btn {
-          padding: 0.55rem 1rem;
-          font-size: 0.85rem;
-        }
-
-        .helpful-links {
-          padding-top: 1rem;
-        }
-
-        .link-item {
-          padding: 0.6rem;
-          font-size: 0.8rem;
-        }
+      .alert-close:hover {
+        background: rgba(255, 255, 255, 0.3);
+        transform: scale(1.1);
       }
     </style>
   </head>
 
   <body>
-    <!-- Toast Container -->
-    <div class="toast-container">
-      <!-- Toasts will be dynamically added here -->
+    <!-- Alert Container -->
+    <div class="alert alert-error" id="errorAlert" style="display: none">
+      <span>Page not found.</span>
+      <button class="alert-close" onclick="closeAlert('errorAlert')">
+        &times;
+      </button>
     </div>
 
     <!-- Header -->
@@ -394,15 +269,9 @@
       </nav>
     </header>
 
-    <!-- Main Content -->
     <div class="main-content">
       <div class="error-container">
-        <div class="error-icon">
-          <i class="fas fa-exclamation-triangle"></i>
-        </div>
-
         <div class="error-code">404</div>
-
         <h1>Page Not Found</h1>
         <p class="error-subtitle">
           The page you're looking for doesn't exist or has been moved. Don't
@@ -410,377 +279,36 @@
         </p>
 
         <div class="error-actions">
-          <a href="/" class="btn btn-primary">
-            <i class="fas fa-home"></i>
-            <span>Go Home</span>
-          </a>
+          <a href="/" class="btn btn-primary">Go Home</a>
           <button onclick="history.back()" class="btn btn-secondary">
-            <i class="fas fa-arrow-left"></i>
-            <span>Go Back</span>
+            Go Back
           </button>
         </div>
 
-    
+        
       </div>
     </div>
 
     <!-- Footer -->
-    <footer>
-      &copy; 2025 Jnana. All rights reserved.
-    </footer>
+    <footer>&copy; 2025 Jnana. All rights reserved.</footer>
 
     <script>
-      // Toast functionality
-      function showToast(type, message) {
-        const toastContainer = document.querySelector(".toast-container");
-        const toast = document.createElement("div");
-        toast.className = `toast ${type}`;
-        toast.innerHTML = `
-          <div class="toast-content">
-            <div class="toast-icon">
-              <i class="fas fa-${
-                type === "success" ? "check" : "exclamation"
-              }"></i>
-            </div>
-            <span class="toast-message">${message}</span>
-          </div>
-          <button class="toast-close">&times;</button>
-        `;
-
-        toastContainer.appendChild(toast);
-
-        // Show toast
-        setTimeout(() => {
-          toast.classList.add("show");
-        }, 100);
-
-        // Auto remove after 5 seconds
-        setTimeout(() => {
-          hideToast(toast);
-        }, 5000);
-
-        // Close button functionality
-        toast.querySelector(".toast-close").addEventListener("click", () => {
-          hideToast(toast);
-        });
+      function closeAlert(alertId) {
+        document.getElementById(alertId).style.display = "none";
       }
 
-      function hideToast(toast) {
-        toast.classList.remove("show");
-        setTimeout(() => {
-          if (toast.parentNode) {
-            toast.parentNode.removeChild(toast);
-          }
-        }, 300);
-      }
+      // Show error alert after page loads
+      setTimeout(function () {
+        document.getElementById("errorAlert").style.display = "flex";
+      }, 1000);
 
-      // Initialize everything
-      document.addEventListener("DOMContentLoaded", function () {
-        // Add hover effects to buttons and links
-        document.querySelectorAll(".btn, .link-item").forEach((element) => {
-          element.addEventListener("mouseenter", function () {
-            this.style.transform = "translateY(-1px)";
-          });
-
-          element.addEventListener("mouseleave", function () {
-            this.style.transform = "translateY(0)";
-          });
-        });
-
-        document.querySelectorAll(".btn, .link-item").forEach((link) => {
-          link.addEventListener("click", function (e) {
-            if (
-              this.onclick ||
-              this.href.includes("#") ||
-              this.href.startsWith("javascript:")
-            ) {
-              return;
-            }
-
-            const originalContent = this.innerHTML;
-            this.innerHTML =
-              '<i class="fas fa-spinner fa-spin"></i> Loading...';
-            this.style.pointerEvents = "none";
-
-            setTimeout(() => {
-              this.innerHTML = originalContent;
-              this.style.pointerEvents = "auto";
-            }, 3000);
-          });
-        });
-
-  
-        // Add ripple effect to buttons
-        document.querySelectorAll(".btn").forEach((btn) => {
-          btn.addEventListener("click", function (e) {
-            const ripple = document.createElement("span");
-            const rect = this.getBoundingClientRect();
-            const size = Math.max(rect.width, rect.height);
-            const x = e.clientX - rect.left - size / 2;
-            const y = e.clientY - rect.top - size / 2;
-
-            ripple.style.cssText = `
-              position: absolute;
-              width: ${size}px;
-              height: ${size}px;
-              left: ${x}px;
-              top: ${y}px;
-              background: rgba(255, 255, 255, 0.6);
-              border-radius: 50%;
-              transform: scale(0);
-              animation: ripple 0.6s linear;
-              pointer-events: none;
-            `;
-
-            this.style.position = "relative";
-            this.style.overflow = "hidden";
-            this.appendChild(ripple);
-
-            setTimeout(() => {
-              ripple.remove();
-            }, 600);
-          });
-        });
-
-        const primaryBtn = document.querySelector(".btn-primary");
-        if (primaryBtn) {
-          setTimeout(() => {
-            primaryBtn.focus();
-          }, 500);
+      // Auto hide alert after 5 seconds
+      setTimeout(function () {
+        var errorAlert = document.getElementById("errorAlert");
+        if (errorAlert) {
+          errorAlert.style.display = "none";
         }
-
-        if (typeof gtag !== "undefined") {
-          gtag("event", "page_not_found", {
-            page_location: window.location.href,
-            page_referrer: document.referrer,
-          });
-        }
-
-        setTimeout(() => {
-          showToast(
-            "error",
-            "Page not found."
-          );
-        }, 1000);
-      });
-
-      window.addEventListener("online", function () {
-        showToast("success", "Connection restored");
-      });
-
-      window.addEventListener("offline", function () {
-        showToast(
-          "error",
-          "No internet connection. Please check your network."
-        );
-      });
-      const style = document.createElement("style");
-      style.textContent = `
-        /* Enhanced focus states for accessibility */
-        .btn:focus-visible,
-        .link-item:focus-visible,
-        .toast-close:focus-visible {
-          outline: 2px solid var(--accent);
-          outline-offset: 2px;
-        }
-        
-        /* Loading spinner animation */
-        @keyframes spin {
-          from { transform: rotate(0deg); }
-          to { transform: rotate(360deg); }
-        }
-        
-        .fa-spinner {
-          animation: spin 1s linear infinite;
-        }
-        
-        /* Ripple effect */
-        @keyframes ripple {
-          to {
-            transform: scale(4);
-            opacity: 0;
-          }
-        }
-        
-        /* Error icon animation */
-        .error-icon {
-          animation: bounceIn 0.6s ease-out;
-        }
-        
-        @keyframes bounceIn {
-          0% {
-            transform: scale(0.3);
-            opacity: 0;
-          }
-          50% {
-            transform: scale(1.05);
-          }
-          70% {
-            transform: scale(0.9);
-          }
-          100% {
-            transform: scale(1);
-            opacity: 1;
-          }
-        }
-        
-        /* Error code animation */
-        .error-code {
-          animation: fadeInUp 0.8s ease-out 0.2s both;
-        }
-        
-        @keyframes fadeInUp {
-          from {
-            opacity: 0;
-            transform: translateY(30px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-        
-        /* Container animation */
-        .error-container {
-          animation: slideInUp 0.6s ease-out;
-        }
-        
-        @keyframes slideInUp {
-          from {
-            opacity: 0;
-            transform: translateY(50px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-        
-        /* Mobile optimizations */
-        @media (max-width: 480px) {
-          .error-icon {
-            font-size: 2.5rem;
-          }
-          
-          .error-code {
-            font-size: 2rem;
-          }
-          
-          .error-container h1 {
-            font-size: 1.3rem;
-          }
-          
-          .btn {
-            padding: 0.5rem 1rem;
-            font-size: 0.8rem;
-          }
-          
-          .link-item {
-            padding: 0.5rem;
-            font-size: 0.75rem;
-          }
-        }
-        
-        /* High contrast mode support */
-        @media (prefers-contrast: high) {
-          .error-container {
-            border-width: 3px;
-          }
-          
-          .btn {
-            border: 2px solid currentColor;
-          }
-        }
-        
-        /* Reduced motion support */
-        @media (prefers-reduced-motion: reduce) {
-          * {
-            animation-duration: 0.01ms !important;
-            animation-iteration-count: 1 !important;
-            transition-duration: 0.01ms !important;
-          }
-        }
-        
-        /* Print styles */
-        @media print {
-          .toast-container,
-          .error-actions {
-            display: none !important;
-          }
-          
-          .error-container {
-            box-shadow: none;
-            border: 2px solid #000;
-          }
-          
-          .helpful-links {
-            page-break-inside: avoid;
-          }
-        }
-        
-        /* Enhanced hover states */
-        .btn:hover {
-          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-        }
-        
-        .link-item:hover {
-          box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
-        }
-        
-        /* Loading state for buttons */
-        .btn.loading {
-          opacity: 0.7;
-          pointer-events: none;
-        }
-        
-        /* Smooth transitions for all interactive elements */
-        .btn, .link-item, .error-icon {
-          transition: all 0.3s ease;
-        }
-      `;
-      document.head.appendChild(style);
-
-      let resizeTimeout;
-      window.addEventListener("resize", function () {
-        clearTimeout(resizeTimeout);
-        resizeTimeout = setTimeout(function () {
-          const isMobile = window.innerWidth <= 768;
-          document.body.classList.toggle("mobile", isMobile);
-        }, 250);
-      });
-
-      // Initialize mobile class
-      document.body.classList.toggle("mobile", window.innerWidth <= 768);
-
-      document.addEventListener("DOMContentLoaded", function () {
-        const animatedElements = document.querySelectorAll(
-          ".error-actions .btn, .link-item"
-        );
-        animatedElements.forEach((element, index) => {
-          element.style.opacity = "0";
-          element.style.transform = "translateY(20px)";
-
-          setTimeout(() => {
-            element.style.transition = "all 0.6s ease";
-            element.style.opacity = "1";
-            element.style.transform = "translateY(0)";
-          }, index * 100 + 600);
-        });
-      });
-
-      function handleNavigation(url) {
-        showToast("success", "Redirecting...");
-        setTimeout(() => {
-          window.location.href = url;
-        }, 500);
-      }
-
-      // Enhanced error logging
-      window.addEventListener("error", function (e) {
-        console.error("JavaScript error on 404 page:", e.error);
-      });
-
-     
+      }, 6000);
     </script>
   </body>
 </html>

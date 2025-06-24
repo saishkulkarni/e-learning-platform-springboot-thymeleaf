@@ -1,0 +1,39 @@
+
+
+launch.json
+-----------------
+{
+    "version": "0.2.0",
+    "configurations": [
+
+
+        {
+            "type": "java",
+            "name": "Current File",
+            "request": "launch",
+            "mainClass": "${file}"
+        },
+        {
+            "type": "java",
+            "name": "JnanaApplication",
+            "request": "launch",
+            "mainClass": "com.s13sh.Jnana.JnanaApplication",
+            "projectName": "Jnana",
+            
+                        "env": {
+                            "PORT": "80",
+                            "DB_UN": "root",
+                            "DB_PWD": "root",
+                            "EMAIL": "",
+                            "APP_PASSWORD:"",
+                            "CLOUD_NAME": "djkyoabl5",
+                            "CLOUD_KEY": "259733882512931", 
+                            "CLOUD_SECRET": "M4Ah0wF3CgO0gXvab6tUSpwjQ9g",
+                            "AI_KEY": "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",
+                            "RAZOR_KEY": "rzp_test_QjMcNe9bRYY3eQ",
+                            "RAZOR_SECRET": "YVdKEcVtOcvU7w89Xt5EQZ3C"
+                        }
+            
+        }
+    ]
+}

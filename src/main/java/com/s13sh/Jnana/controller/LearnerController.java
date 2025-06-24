@@ -68,4 +68,19 @@ public class LearnerController {
 		return learnerService.submitQuiz(id, session, quiz);
 	}
 
+	@GetMapping("/course/quiz/{id}")
+	public String takeQuiz(@PathVariable Long id, HttpSession session, Model model) {
+		return learnerService.loadCourseQuiz(id, session, model);
+	}
+
+	@PostMapping("/course/quiz/{id}")
+	public String submitCourseQuiz(@PathVariable Long id, HttpSession session,
+			@RequestParam Map<String, String> quiz) {
+		return learnerService.submitCourseQuiz(id, session, quiz);
+	}
+
+	@GetMapping("/certificate/{id}")
+	public String viewCertificate(@PathVariable Long id, HttpSession session, Model model) {
+		return learnerService.viewCertificate(id, session, model);
+	}
 }

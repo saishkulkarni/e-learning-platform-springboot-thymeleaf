@@ -4,24 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Add Section - Jnana</title>
-    <!-- Font Awesome for icons -->
     <link
+      href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
     />
     <style>
-      :root {
-        --primary: #2c3e50;
-        --secondary: #34495e;
-        --accent: #1abc9c;
-        --text-light: #ecf0f1;
-        --text-dark: #2c3e50;
-        --bg-light: #f8f9fa;
-        --success: #27ae60;
-        --error: #e74c3c;
-        --border: #ddd;
-      }
-
       * {
         margin: 0;
         padding: 0;
@@ -29,475 +16,411 @@
       }
 
       body {
-        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-        background-color: var(--bg-light);
-        color: var(--text-dark);
+        font-family: "Quicksand", sans-serif;
+        background-color: #1a1a1a;
+        color: #e0e0e0;
+        min-height: 100vh;
         display: flex;
         flex-direction: column;
-        min-height: 100vh;
       }
 
       header {
-        background-color: var(--primary);
-        color: var(--text-light);
-        padding: 1rem 2rem;
+        background-color: #2d2d2d;
+        color: #ffffff;
+        padding: 12px 20px;
         display: flex;
         justify-content: space-between;
         align-items: center;
+        border-radius: 0 0 15px 15px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
       }
 
-      header .logo {
-        font-size: 1.8rem;
-        font-weight: bold;
+      .logo {
+        font-size: 20px;
+        font-weight: 700;
         text-decoration: none;
-        color: var(--text-light);
+        color: #64ffda;
+        letter-spacing: 1px;
       }
 
-      header .logo:hover {
-        color: var(--accent);
+      .logo:hover {
+        color: #4fd3b8;
       }
 
       nav a {
-        color: var(--text-light);
+        background-color: #3d3d3d;
+        color: #ffffff;
         text-decoration: none;
-        margin-left: 1rem;
+        margin-left: 12px;
+        padding: 6px 16px;
+        border-radius: 20px;
         font-weight: 500;
-        padding: 0.5rem 1rem;
-        border-radius: 0.25rem;
+        font-size: 13px;
+        border: 2px solid #555555;
         transition: all 0.3s ease;
       }
 
       nav a:hover {
-        color: var(--accent);
-        background-color: rgba(255, 255, 255, 0.1);
+        background-color: #64ffda;
+        color: #1a1a1a;
+        border-color: #64ffda;
       }
 
       .hero {
-        padding: 3rem 2rem;
+        background: linear-gradient(135deg, #2d2d2d 0%, #3d3d3d 100%);
+        color: #ffffff;
+        padding: 15px 20px;
         text-align: center;
-        background-color: var(--secondary);
-        color: var(--text-light);
+        border-radius: 15px;
+        margin: 10px 20px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+        border: 1px solid #444444;
       }
 
       .hero h1 {
-        font-size: 2.5rem;
-        margin-bottom: 1rem;
+        font-size: 20px;
+        font-weight: 700;
+        margin-bottom: 5px;
+        color: #64ffda;
       }
 
       .hero p {
-        font-size: 1.2rem;
-        max-width: 600px;
+        font-size: 12px;
+        font-weight: 400;
+        max-width: 400px;
         margin: 0 auto;
+        line-height: 1.3;
+        color: #b0b0b0;
       }
 
       .main-content {
         flex: 1;
+        padding: 10px 20px;
+        overflow-y: auto;
+      }
+
+      .form-container {
+        background: linear-gradient(135deg, #2d2d2d 0%, #3a3a3a 100%);
+        border: 1px solid #444444;
+        border-radius: 20px;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+        padding: 20px;
+        max-width: 900px;
+        margin: 0 auto;
+      }
+
+      .form-container h2 {
+        text-align: center;
+        margin-bottom: 20px;
+        color: #64ffda;
+        font-size: 18px;
+        font-weight: 700;
+      }
+
+      .form-row {
         display: flex;
-        justify-content: center;
-        align-items: flex-start;
-        padding: 2rem;
-        margin-bottom: 60px; /* Space for fixed footer */
-      }
-
-      .section-container {
-        background-color: white;
-        border: 1px solid var(--border);
-        border-radius: 0.5rem;
-        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-        padding: 2rem;
-        width: 100%;
-        max-width: 600px;
-      }
-
-      .section-container h2 {
-        text-align: center;
-        margin-bottom: 0.5rem;
-        color: var(--primary);
-        font-size: 1.8rem;
-      }
-
-      .section-subtitle {
-        text-align: center;
-        color: #666;
-        margin-bottom: 2rem;
-        font-size: 0.9rem;
+        gap: 20px;
+        margin-bottom: 15px;
       }
 
       .form-group {
-        margin-bottom: 1.5rem;
+        flex: 1;
+        margin-bottom: 15px;
+      }
+
+      .form-group.full-width {
+        flex: 1 1 100%;
       }
 
       .form-group label {
         display: block;
-        margin-bottom: 0.5rem;
-        color: var(--text-dark);
-        font-weight: 600;
-        font-size: 0.9rem;
-      }
-
-      .form-group label i {
-        margin-right: 0.5rem;
-        color: var(--accent);
+        margin-bottom: 5px;
+        color: #e0e0e0;
+        font-weight: 500;
+        font-size: 13px;
       }
 
       .form-group input,
       .form-group select,
       .form-group textarea {
         width: 100%;
-        padding: 0.75rem;
-        border: 1px solid var(--border);
-        border-radius: 0.25rem;
-        font-size: 1rem;
-        transition: border-color 0.3s;
-        font-family: inherit;
+        padding: 10px 12px;
+        border: 2px solid #555555;
+        border-radius: 12px;
+        font-size: 13px;
+        background-color: #3d3d3d;
+        color: #ffffff;
+        font-family: "Quicksand", sans-serif;
+        font-weight: 500;
+        transition: border-color 0.3s ease;
       }
 
       .form-group input:focus,
       .form-group select:focus,
       .form-group textarea:focus {
         outline: none;
-        border-color: var(--accent);
+        border-color: #64ffda;
+        background-color: #444444;
       }
 
       .form-group input::placeholder,
       .form-group textarea::placeholder {
-        color: #999;
-      }
-
-      .form-group textarea {
-        resize: vertical;
-        min-height: 120px;
+        color: #888888;
+        font-weight: 400;
       }
 
       .form-group select {
         cursor: pointer;
       }
 
-      /* File Input Styling */
-      .file-input-wrapper {
-        position: relative;
-        display: inline-block;
-        width: 100%;
+      .form-group select option {
+        background-color: #3d3d3d;
+        color: #ffffff;
+      }
+
+      textarea {
+        resize: vertical;
+        min-height: 60px;
+      }
+
+      .file-upload-section {
+        background-color: #3d3d3d;
+        border-radius: 12px;
+        border: 1px solid #555555;
+        padding: 15px;
+        margin-bottom: 15px;
+      }
+
+      .file-upload-section h3 {
+        font-size: 14px;
+        margin-bottom: 10px;
+        color: #64ffda;
+        font-weight: 600;
+      }
+
+      .file-upload-row {
+        display: flex;
+        gap: 15px;
+      }
+
+      .file-group {
+        flex: 1;
+      }
+
+      .file-group label {
+        display: block;
+        margin-bottom: 5px;
+        color: #e0e0e0;
+        font-weight: 500;
+        font-size: 12px;
       }
 
       .file-input {
         width: 100%;
-        padding: 0.75rem;
-        border: 2px dashed var(--border);
-        border-radius: 0.25rem;
-        background-color: #fafafa;
+        padding: 8px;
+        border: 2px dashed #555555;
+        border-radius: 10px;
+        background-color: #444444;
+        color: #ffffff;
+        font-size: 12px;
         cursor: pointer;
-        transition: all 0.3s ease;
-        text-align: center;
-        color: #666;
+        transition: border-color 0.3s ease;
+        font-family: "Quicksand", sans-serif;
       }
 
       .file-input:hover {
-        border-color: var(--accent);
-        background-color: rgba(26, 188, 156, 0.05);
+        border-color: #64ffda;
+        background-color: #4a4a4a;
       }
 
-      .file-input input[type="file"] {
-        position: absolute;
-        opacity: 0;
-        width: 100%;
-        height: 100%;
-        cursor: pointer;
-      }
-
-      .file-info {
-        margin-top: 0.5rem;
-        padding: 0.5rem;
-        background: var(--bg-light);
-        border-radius: 0.25rem;
-        font-size: 0.85rem;
-        color: #666;
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
+      .file-input:focus {
+        outline: none;
+        border-color: #64ffda;
       }
 
       .file-help {
-        font-size: 0.8rem;
-        color: #666;
-        margin-top: 0.25rem;
+        font-size: 10px;
+        color: #b0b0b0;
+        margin-top: 3px;
+        line-height: 1.2;
+      }
+
+      .questions-section {
+        background-color: #3d3d3d;
+        border-radius: 12px;
+        border: 1px solid #555555;
+        padding: 15px;
+        margin-bottom: 15px;
+      }
+
+      .questions-section label {
+        font-size: 13px;
+        margin-bottom: 5px;
+        color: #e0e0e0;
+        font-weight: 500;
+        display: block;
+      }
+
+      .questions-help {
+        font-size: 11px;
+        color: #b0b0b0;
+        margin-bottom: 8px;
+        padding: 8px;
+        background: rgba(100, 255, 218, 0.1);
+        border-radius: 8px;
+        border-left: 3px solid #64ffda;
+        line-height: 1.3;
+      }
+
+      .button-row {
         display: flex;
-        align-items: center;
-        gap: 0.25rem;
+        gap: 15px;
+        margin-top: 15px;
       }
 
       .submit-btn {
-        width: 100%;
-        padding: 0.75rem;
+        flex: 2;
+        padding: 10px;
         border: none;
-        border-radius: 0.25rem;
-        background-color: var(--accent);
-        color: white;
-        font-size: 1rem;
-        font-weight: 500;
+        border-radius: 12px;
+        background-color: #64ffda;
+        color: #1a1a1a;
+        font-size: 14px;
+        font-weight: 600;
         cursor: pointer;
-        transition: background-color 0.3s;
-        margin-top: 1rem;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 0.5rem;
+        transition: all 0.3s ease;
+        font-family: "Quicksand", sans-serif;
       }
 
       .submit-btn:hover {
-        background-color: #16a085;
+        background-color: #4fd3b8;
+        transform: translateY(-1px);
       }
 
       .submit-btn:disabled {
         opacity: 0.7;
         cursor: not-allowed;
+        transform: none;
       }
 
-      .cancel-btn {
-        width: 100%;
-        padding: 0.75rem;
-        border: 1px solid var(--border);
-        border-radius: 0.25rem;
-        background-color: white;
-        color: var(--text-dark);
-        font-size: 1rem;
-        font-weight: 500;
+      .back-btn {
+        flex: 1;
+        padding: 10px;
+        border: none;
+        border-radius: 12px;
+        background-color: #6c757d;
+        color: white;
+        font-size: 13px;
+        font-weight: 600;
         cursor: pointer;
         transition: all 0.3s ease;
-        margin-top: 0.5rem;
+        text-decoration: none;
         display: flex;
         align-items: center;
         justify-content: center;
-        gap: 0.5rem;
-        text-decoration: none;
+        font-family: "Quicksand", sans-serif;
       }
 
-      .cancel-btn:hover {
-        background-color: #f8f9fa;
-        border-color: var(--accent);
+      .back-btn:hover {
+        background-color: #5a6268;
+        transform: translateY(-1px);
         text-decoration: none;
-        color: var(--text-dark);
+        color: white;
       }
 
       .error {
-        color: var(--error);
-        font-size: 0.8rem;
-        margin-top: 0.25rem;
+        color: #f56565;
+        font-size: 11px;
+        margin-top: 3px;
         display: block;
+        font-weight: 500;
       }
 
       footer {
-        background-color: var(--primary);
-        color: white;
+        background-color: #2d2d2d;
+        color: #ffffff;
         text-align: center;
-        padding: 1rem;
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-      }
-
-      /* Toast Styles */
-      .toast-container {
-        position: fixed;
-        top: 20px;
-        right: 20px;
-        z-index: 1000;
-      }
-
-      .toast {
-        background-color: white;
-        border-radius: 0.5rem;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-        padding: 1rem 1.5rem;
-        margin-bottom: 0.5rem;
-        min-width: 300px;
-        max-width: 400px;
-        transform: translateX(100%);
-        opacity: 0;
-        transition: all 0.3s ease-in-out;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-      }
-
-      .toast.show {
-        transform: translateX(0);
-        opacity: 1;
-      }
-
-      .toast.success {
-        border-left: 4px solid var(--success);
-      }
-
-      .toast.error {
-        border-left: 4px solid var(--error);
-      }
-
-      .toast-content {
-        display: flex;
-        align-items: center;
-        flex: 1;
-      }
-
-      .toast-icon {
-        margin-right: 0.75rem;
-        font-size: 1.2rem;
-      }
-
-      .toast.success .toast-icon {
-        color: var(--success);
-      }
-
-      .toast.error .toast-icon {
-        color: var(--error);
-      }
-
-      .toast-message {
-        color: var(--text-dark);
+        padding: 10px;
+        border-radius: 15px 15px 0 0;
         font-weight: 500;
-        flex: 1;
+        border-top: 1px solid #444444;
+        font-size: 12px;
+        margin-top: auto;
       }
 
-      .toast-close {
-        background: none;
-        border: none;
-        font-size: 1.2rem;
+      .alert {
+        position: fixed;
+        top: 15px;
+        right: 15px;
+        padding: 10px 14px;
+        border-radius: 10px;
+        color: white;
+        min-width: 250px;
+        z-index: 1000;
+        font-family: "Quicksand", sans-serif;
+        font-weight: 500;
+        font-size: 12px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+      }
+
+      .alert-success {
+        background: linear-gradient(135deg, #4caf50 0%, #45a049 100%);
+        border: 2px solid #4caf50;
+      }
+
+      .alert-error {
+        background: linear-gradient(135deg, #f44336 0%, #d32f2f 100%);
+        border: 2px solid #f44336;
+      }
+
+      .alert-close {
+        float: right;
+        background: rgba(255, 255, 255, 0.2);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        color: white;
+        font-size: 14px;
         cursor: pointer;
-        color: #999;
-        margin-left: 1rem;
-        padding: 0;
+        margin-left: 10px;
+        padding: 3px 6px;
+        border-radius: 50%;
         width: 20px;
         height: 20px;
         display: flex;
         align-items: center;
         justify-content: center;
+        font-weight: 600;
       }
 
-      .toast-close:hover {
-        color: var(--text-dark);
-      }
-
-      /* Progress Bar */
-      .progress-bar {
-        position: fixed;
-        top: 0;
-        left: 0;
-        height: 3px;
-        background: var(--accent);
-        transition: width 0.3s ease;
-        z-index: 1001;
-      }
-
-      /* Responsive Design */
-      @media (max-width: 768px) {
-        .main-content {
-          padding: 1rem;
-        }
-
-        .section-container {
-          padding: 1.5rem;
-        }
-
-        .hero {
-          padding: 2rem 1rem;
-        }
-
-        .hero h1 {
-          font-size: 2rem;
-        }
-
-        .hero p {
-          font-size: 1rem;
-        }
-
-        header {
-          padding: 1rem;
-        }
-
-        header .logo {
-          font-size: 1.5rem;
-        }
-
-        nav a {
-          margin-left: 0.5rem;
-          padding: 0.4rem 0.8rem;
-          font-size: 0.9rem;
-        }
-      }
-
-      @media (max-width: 480px) {
-        .section-container {
-          padding: 1rem;
-        }
-
-        .section-container h2 {
-          font-size: 1.5rem;
-        }
-
-        .form-group input,
-        .form-group select,
-        .form-group textarea {
-          padding: 0.6rem;
-          font-size: 0.9rem;
-        }
-
-        .submit-btn,
-        .cancel-btn {
-          padding: 0.6rem;
-          font-size: 0.9rem;
-        }
+      .alert-close:hover {
+        background: rgba(255, 255, 255, 0.3);
+        transform: scale(1.1);
       }
     </style>
   </head>
 
   <body>
-
     <!-- Toast Container -->
-    <div class="toast-container">
-      <div
-        id="successToast"
-        class="toast success"
-        th:if="${session.pass}"
-        style="display: none"
-      >
-        <div class="toast-content">
-          <div class="toast-icon">
-            <i class="fas fa-check"></i>
-          </div>
-          <span class="toast-message" th:text="${session.pass}"
-            >Success message</span
-          >
-        </div>
-        <button class="toast-close">&times;</button>
-      </div>
-      <div
-        id="errorToast"
-        class="toast error"
-        th:if="${session.fail}"
-        style="display: none"
-      >
-        <div class="toast-content">
-          <div class="toast-icon">
-            <i class="fas fa-exclamation"></i>
-          </div>
-          <span class="toast-message" th:text="${session.fail}"
-            >Error message</span
-          >
-        </div>
-        <button class="toast-close">&times;</button>
-      </div>
-      <th:block th:text="${@generalService.removeMessage()}"></th:block>
+    <div th:if="${session.pass}" class="alert alert-success" id="successAlert">
+      <span th:text="${session.pass}">Success message</span>
+      <button class="alert-close" onclick="closeAlert('successAlert')">
+        &times;
+      </button>
     </div>
+
+    <div th:if="${session.fail}" class="alert alert-error" id="errorAlert">
+      <span th:text="${session.fail}">Error message</span>
+      <button class="alert-close" onclick="closeAlert('errorAlert')">
+        &times;
+      </button>
+    </div>
+
+    <th:block th:text="${@generalService.removeMessage()}"></th:block>
 
     <!-- Header -->
     <header>
       <a href="/tutor/home" class="logo">Jnana</a>
       <nav>
-        <a href="/logout">
-          <i class="fas fa-sign-out-alt"></i>
-          Logout
-        </a>
+        <a href="/logout">Logout</a>
       </nav>
     </header>
 
@@ -509,11 +432,8 @@
 
     <!-- Main Content -->
     <div class="main-content">
-      <div class="section-container">
+      <div class="form-container">
         <h2>Section Details</h2>
-        <p class="section-subtitle">
-          Fill in the details below to create a new section for your course
-        </p>
 
         <form
           action="/tutor/add-section"
@@ -521,178 +441,97 @@
           enctype="multipart/form-data"
           th:object="${sectionDto}"
         >
-          <div class="form-group">
-            <label for="courseId">
-              <i class="fas fa-book"></i>
-              Select Course
-            </label>
-            <select th:field="*{courseId}" class="form-control" required>
-              <option value="">Choose a course...</option>
-              <option
-                th:each="course : ${courses}"
-                th:value="${course.id}"
-                th:text="${course.title}"
-              >
-                Course Title
-              </option>
-            </select>
-            <span class="error" th:errors="*{courseId}"></span>
+          <!-- First Row: Course Selection and Section Title -->
+          <div class="form-row">
+            <div class="form-group">
+              <label for="courseId">Select Course</label>
+              <select th:field="*{courseId}" id="courseId" required>
+                <option value="">Choose a course...</option>
+                <option
+                  th:each="course : ${courses}"
+                  th:value="${course.id}"
+                  th:text="${course.title}"
+                >
+                  Course Title
+                </option>
+              </select>
+              <span class="error" th:errors="*{courseId}"></span>
+            </div>
+
+            <div class="form-group">
+              <label for="title">Section Title</label>
+              <input
+                type="text"
+                th:field="*{title}"
+                id="title"
+                placeholder="Enter section title"
+                required
+              />
+              <span class="error" th:errors="*{title}"></span>
+            </div>
           </div>
 
-          <div class="form-group">
-            <label for="title">
-              <i class="fas fa-heading"></i>
-              Section Title
-            </label>
-            <input
-              type="text"
-              th:field="*{title}"
-              placeholder="Enter section title (e.g., Introduction to JavaScript)"
-              required
-              maxlength="100"
-            />
-            <span class="error" th:errors="*{title}"></span>
-          </div>
-
-          <!-- Video Upload -->
-          <div class="form-group">
-            <label for="video">
-              <i class="fas fa-video"></i>
-              Section Video (Optional)
-            </label>
-            <div class="file-input-wrapper">
-              <div class="file-input" id="videoInput">
+          <!-- File Upload Section -->
+          <div class="file-upload-section">
+            <h3>Section Resources</h3>
+            <div class="file-upload-row">
+              <div class="file-group">
+                <label for="video">Video Lecture (Optional)</label>
                 <input
                   type="file"
                   th:field="*{video}"
+                  id="video"
                   accept="video/*"
-                  id="videoFile"
+                  class="file-input"
                 />
-                <div class="file-input-content">
-                  <i
-                    class="fas fa-cloud-upload-alt"
-                    style="
-                      font-size: 2rem;
-                      color: var(--accent);
-                      margin-bottom: 0.5rem;
-                    "
-                  ></i>
-                  <p><strong>Click to upload video</strong> or drag and drop</p>
-                  <p style="font-size: 0.8rem; color: #999">
-                    MP4, AVI, MOV up to 200MB
-                  </p>
+                <div class="file-help">
+                  Upload MP4, AVI, MOV files (max 200MB)
                 </div>
+                <span class="error" th:errors="*{video}"></span>
               </div>
-              <div class="file-info" id="videoInfo" style="display: none">
-                <i class="fas fa-video"></i>
-                <span id="videoName">No file selected</span>
-                <button
-                  type="button"
-                  class="remove-file"
-                  onclick="removeFile('video')"
-                  style="
-                    margin-left: auto;
-                    background: none;
-                    border: none;
-                    color: var(--error);
-                    cursor: pointer;
-                  "
-                >
-                  <i class="fas fa-times"></i>
-                </button>
-              </div>
-            </div>
-            <div class="file-help">
-              <i class="fas fa-info-circle"></i>
-              Upload a video lecture for this section (optional)
-            </div>
-            <span class="error" th:errors="*{video}"></span>
-          </div>
 
-          <!-- PDF Upload -->
-          <div class="form-group">
-            <label for="pdf">
-              <i class="fas fa-file-pdf"></i>
-              Section Notes/PDF (Optional)
-            </label>
-            <div class="file-input-wrapper">
-              <div class="file-input" id="pdfInput">
+              <div class="file-group">
+                <label for="notes">Study Notes (Optional)</label>
                 <input
                   type="file"
                   th:field="*{notes}"
-                  accept=".pdf"
-                  id="pdfFile"
+                  id="notes"
+                  accept=".pdf,.doc,.docx,.txt"
+                  class="file-input"
                 />
-                <div class="file-input-content">
-                  <i
-                    class="fas fa-file-pdf"
-                    style="
-                      font-size: 2rem;
-                      color: var(--error);
-                      margin-bottom: 0.5rem;
-                    "
-                  ></i>
-                  <p><strong>Click to upload PDF</strong> or drag and drop</p>
-                  <p style="font-size: 0.8rem; color: #999">
-                    PDF files up to 50MB
-                  </p>
+                <div class="file-help">
+                  Upload PDF, DOC, DOCX, TXT files (max 50MB)
                 </div>
-              </div>
-              <div class="file-info" id="pdfInfo" style="display: none">
-                <i class="fas fa-file-pdf"></i>
-                <span id="pdfName">No file selected</span>
-                <button
-                  type="button"
-                  class="remove-file"
-                  onclick="removeFile('pdf')"
-                  style="
-                    margin-left: auto;
-                    background: none;
-                    border: none;
-                    color: var(--error);
-                    cursor: pointer;
-                  "
-                >
-                  <i class="fas fa-times"></i>
-                </button>
+                <span class="error" th:errors="*{notes}"></span>
               </div>
             </div>
-            <div class="file-help">
-              <i class="fas fa-info-circle"></i>
-              Upload lecture notes, slides, or reading material (optional)
-            </div>
-            <span class="error" th:errors="*{notes}"></span>
           </div>
 
-                    <div class="form-group">
-                      <label for="questions">
-                        <i class="fas fa-question-circle"></i>
-                        Questions
-                      </label>
-                      <textarea
-                        th:field="*{questions}"
-                        id="questions"
-                        rows="4"
-                        placeholder="Enter Quiz Question"
-                      ></textarea>
-                      <div class="file-help">
-                        <i class="fas fa-info-circle"></i>
-                        Enter practice questions or assignments (optional)
-                      </div>
-                      <span class="error" th:errors="*{questions}"></span>
-                    </div>
+          <!-- Questions Section -->
+          <div class="form-row">
+            <div class="form-group full-width">
+              <div class="questions-section">
+                <label for="questions">Section Quiz Questions (Optional)</label>
+                <div class="questions-help">
+                  Add quiz questions specific to this section. Format each
+                  question on a new line separated by ?. Example: What is HTML?
+                </div>
+                <textarea
+                  th:field="*{questions}"
+                  id="questions"
+                  rows="3"
+                  placeholder="Enter section-specific quiz questions here..."
+                ></textarea>
+                <span class="error" th:errors="*{questions}"></span>
+              </div>
+            </div>
+          </div>
 
-          <!-- Submit Button -->
-          <button type="submit" class="submit-btn" id="submitBtn">
-            <i class="fas fa-plus-circle"></i>
-            Create Section
-          </button>
-
-          <!-- Cancel Button -->
-          <a href="/tutor/sections" class="cancel-btn">
-            <i class="fas fa-times"></i>
-            Cancel
-          </a>
+          <!-- Button Row -->
+          <div class="button-row">
+            <button type="submit" class="submit-btn">Create Section</button>
+            <a href="/tutor/courses" class="back-btn"> ← Back to Courses </a>
+          </div>
         </form>
       </div>
     </div>
@@ -701,595 +540,21 @@
     <footer>&copy; 2025 Jnana. All rights reserved.</footer>
 
     <script>
-      // Toast functionality
-      function showToast(type, message) {
-        const toastContainer = document.querySelector(".toast-container");
-        const toast = document.createElement("div");
-        toast.className = `toast ${type}`;
-        toast.innerHTML = `
-          <div class="toast-content">
-            <div class="toast-icon">
-              <i class="fas fa-${
-                type === "success" ? "check" : "exclamation"
-              }"></i>
-            </div>
-            <span class="toast-message">${message}</span>
-          </div>
-          <button class="toast-close">&times;</button>
-        `;
-
-        toastContainer.appendChild(toast);
-
-        // Show toast
-        setTimeout(() => {
-          toast.classList.add("show");
-        }, 100);
-
-        // Auto remove after 5 seconds
-        setTimeout(() => {
-          hideToast(toast);
-        }, 5000);
-
-        // Close button functionality
-        toast.querySelector(".toast-close").addEventListener("click", () => {
-          hideToast(toast);
-        });
+      function closeAlert(alertId) {
+        document.getElementById(alertId).style.display = "none";
       }
 
-      function hideToast(toast) {
-        toast.classList.remove("show");
-        setTimeout(() => {
-          if (toast.parentNode) {
-            toast.parentNode.removeChild(toast);
-          }
-        }, 300);
-      }
+      setTimeout(function () {
+        var successAlert = document.getElementById("successAlert");
+        var errorAlert = document.getElementById("errorAlert");
 
-      // File upload handling
-      function setupFileInput(inputId, infoId, nameId) {
-        const input = document.getElementById(inputId);
-        const info = document.getElementById(infoId);
-        const nameSpan = document.getElementById(nameId);
-        const fileInputDiv = input.closest(".file-input");
-
-        input.addEventListener("change", function (e) {
-          const file = e.target.files[0];
-          if (file) {
-            nameSpan.textContent = file.name;
-            info.style.display = "flex";
-            fileInputDiv.style.borderColor = "var(--success)";
-            fileInputDiv.style.backgroundColor = "rgba(39, 174, 96, 0.05)";
-
-            const maxSize =
-              inputId === "videoFile" ? 200 * 1024 * 1024 : 50 * 1024 * 1024;
-            if (file.size > maxSize) {
-              const maxSizeText = inputId === "videoFile" ? "200MB" : "50MB";
-              showToast("error", `File size exceeds ${maxSizeText} limit`);
-              removeFile(inputId === "videoFile" ? "video" : "pdf");
-              return;
-            }
-
-            showToast("success", `${file.name} selected successfully`);
-          }
-        });
-
-        // Drag and drop functionality
-        fileInputDiv.addEventListener("dragover", function (e) {
-          e.preventDefault();
-          this.style.borderColor = "var(--accent)";
-          this.style.backgroundColor = "rgba(26, 188, 156, 0.1)";
-        });
-
-        fileInputDiv.addEventListener("dragleave", function (e) {
-          e.preventDefault();
-          this.style.borderColor = "var(--border)";
-          this.style.backgroundColor = "#fafafa";
-        });
-
-        fileInputDiv.addEventListener("drop", function (e) {
-          e.preventDefault();
-          this.style.borderColor = "var(--border)";
-          this.style.backgroundColor = "#fafafa";
-
-          const files = e.dataTransfer.files;
-          if (files.length > 0) {
-            input.files = files;
-            input.dispatchEvent(new Event("change"));
-          }
-        });
-      }
-
-      // Remove file function
-      function removeFile(type) {
-        const input = document.getElementById(type + "File");
-        const info = document.getElementById(type + "Info");
-        const fileInputDiv = input.closest(".file-input");
-
-        input.value = "";
-        info.style.display = "none";
-        fileInputDiv.style.borderColor = "var(--border)";
-        fileInputDiv.style.backgroundColor = "#fafafa";
-
-        showToast("success", "File removed successfully");
-        updateProgress(0);
-      }
-
-     
-
-      // Form validation and submission
-      function setupFormValidation() {
-        const form = document.querySelector("form");
-        const submitBtn = document.getElementById("submitBtn");
-        const inputs = form.querySelectorAll(
-          "input[required], select[required], textarea[required]"
-        );
-
-        // Real-time validation
-        inputs.forEach((input) => {
-          input.addEventListener("blur", function () {
-            validateField(this);
-          });
-
-          input.addEventListener("input", function () {
-            if (this.classList.contains("invalid")) {
-              validateField(this);
-            }
-          });
-        });
-
-        // Form submission
-        form.addEventListener("submit", function (e) {
-          let isValid = true;
-
-          // Validate all required fields
-          inputs.forEach((input) => {
-            if (!validateField(input)) {
-              isValid = false;
-            }
-          });
-
-          if (!isValid) {
-            e.preventDefault();
-            showToast("error", "Please fill in all required fields correctly");
-            return;
-          }
-
-          // Show loading state
-          submitBtn.innerHTML =
-            '<i class="fas fa-spinner fa-spin"></i> Creating Section...';
-          submitBtn.disabled = true;
-          updateProgress(50);
-
-          // Simulate progress
-          setTimeout(() => updateProgress(75), 1000);
-          setTimeout(() => updateProgress(100), 2000);
-        });
-      }
-
-      // Field validation
-      function validateField(field) {
-        const value = field.value.trim();
-        let isValid = true;
-
-        // Remove previous error styling
-        field.classList.remove("invalid", "valid");
-
-        if (field.hasAttribute("required") && !value) {
-          isValid = false;
-        } else if (field.type === "number") {
-          const num = parseInt(value);
-          const min = parseInt(field.getAttribute("min"));
-          const max = parseInt(field.getAttribute("max"));
-
-          if (isNaN(num) || (min && num < min) || (max && num > max)) {
-            isValid = false;
-          }
-        } else if (field.maxLength && value.length > field.maxLength) {
-          isValid = false;
+        if (successAlert) {
+          successAlert.style.display = "none";
         }
-
-        // Apply styling
-        if (value && isValid) {
-          field.classList.add("valid");
-        } else if (!isValid) {
-          field.classList.add("invalid");
+        if (errorAlert) {
+          errorAlert.style.display = "none";
         }
-
-        return isValid;
-      }
-
-      // Character counter for textarea
-      function setupCharacterCounter() {
-        const textarea = document.querySelector("textarea[maxlength]");
-        if (textarea) {
-          const maxLength = textarea.getAttribute("maxlength");
-          const counter = document.createElement("div");
-          counter.className = "char-counter";
-          counter.style.cssText = `
-            font-size: 0.8rem;
-            color: #666;
-            text-align: right;
-            margin-top: 0.25rem;
-          `;
-
-          textarea.parentNode.appendChild(counter);
-
-          function updateCounter() {
-            const remaining = maxLength - textarea.value.length;
-            counter.textContent = `${remaining} characters remaining`;
-            counter.style.color = remaining < 50 ? "var(--error)" : "#666";
-          }
-
-          textarea.addEventListener("input", updateCounter);
-          updateCounter();
-        }
-      }
-
-
-      // Initialize everything
-      document.addEventListener("DOMContentLoaded", function () {
-        // Setup file inputs
-        setupFileInput("videoFile", "videoInfo", "videoName");
-        setupFileInput("pdfFile", "pdfInfo", "pdfName");
-
-        // Setup form validation
-        setupFormValidation();
-
-        // Setup character counter
-        setupCharacterCounter();
-
-        // Setup auto-save (uncomment to enable)
-        // setupAutoSave();
-
-        // Handle existing toasts
-        const successToast = document.getElementById("successToast");
-        const errorToast = document.getElementById("errorToast");
-
-        if (successToast) {
-          successToast.style.display = "flex";
-          setTimeout(() => {
-            successToast.classList.add("show");
-          }, 100);
-
-          setTimeout(() => {
-            hideToast(successToast);
-          }, 5000);
-        }
-
-        if (errorToast) {
-          errorToast.style.display = "flex";
-          setTimeout(() => {
-            errorToast.classList.add("show");
-          }, 100);
-
-          setTimeout(() => {
-            hideToast(errorToast);
-          }, 5000);
-        }
-
-        // Close button functionality for existing toasts
-        document.querySelectorAll(".toast-close").forEach((closeBtn) => {
-          closeBtn.addEventListener("click", function () {
-            const toast = this.closest(".toast");
-            hideToast(toast);
-          });
-        });
-
-        // Add entrance animations
-        const container = document.querySelector(".section-container");
-        container.style.opacity = "0";
-        container.style.transform = "translateY(30px)";
-
-        setTimeout(() => {
-          container.style.transition = "all 0.6s ease";
-          container.style.opacity = "1";
-          container.style.transform = "translateY(0)";
-        }, 200);
-
-        // Focus first input
-        const firstInput = document.querySelector("select[required]");
-        if (firstInput) {
-          setTimeout(() => {
-            firstInput.focus();
-          }, 300);
-        }
-
-       
-
-        // Warn before leaving page with unsaved changes
-        let formChanged = false;
-        const formInputs = document.querySelectorAll("input, select, textarea");
-
-        formInputs.forEach((input) => {
-          input.addEventListener("change", function () {
-            formChanged = true;
-          });
-        });
-
-        window.addEventListener("beforeunload", function (e) {
-          if (formChanged) {
-            e.preventDefault();
-            e.returnValue =
-              "You have unsaved changes. Are you sure you want to leave?";
-            return e.returnValue;
-          }
-        });
-
-        // Clear warning on form submit
-        document.querySelector("form").addEventListener("submit", function () {
-          formChanged = false;
-        });
-
-        
-      });
-
-      // Error handling for network issues
-      window.addEventListener("online", function () {
-        showToast("success", "Connection restored");
-      });
-
-      window.addEventListener("offline", function () {
-        showToast(
-          "error",
-          "No internet connection. Your work will be saved locally."
-        );
-      });
-
-      // Add CSS for enhanced states and animations
-      const style = document.createElement("style");
-      style.textContent = `
-        /* Enhanced focus states for accessibility */
-        input:focus-visible,
-        select:focus-visible,
-        textarea:focus-visible,
-        .submit-btn:focus-visible,
-        .cancel-btn:focus-visible {
-          outline: 2px solid var(--accent);
-          outline-offset: 2px;
-        }
-        
-        /* Loading spinner animation */
-        @keyframes spin {
-          from { transform: rotate(0deg); }
-          to { transform: rotate(360deg); }
-        }
-        
-        .fa-spinner {
-          animation: spin 1s linear infinite;
-        }
-        
-        /* Field validation states */
-        input.valid,
-        select.valid,
-        textarea.valid {
-          border-color: var(--success);
-          background-color: rgba(39, 174, 96, 0.05);
-        }
-        
-        input.invalid,
-        select.invalid,
-        textarea.invalid {
-          border-color: var(--error);
-          background-color: rgba(231, 76, 60, 0.05);
-          animation: shake 0.5s ease-in-out;
-        }
-        
-        @keyframes shake {
-          0%, 100% { transform: translateX(0); }
-          25% { transform: translateX(-5px); }
-          75% { transform: translateX(5px); }
-        }
-        
-        /* File input enhancements */
-        .file-input.dragover {
-          border-color: var(--accent);
-          background-color: rgba(26, 188, 156, 0.1);
-          transform: scale(1.02);
-        }
-        
-        .file-input:hover {
-          transform: translateY(-2px);
-          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-        
-        /* Button hover enhancements */
-        .submit-btn:hover {
-          transform: translateY(-2px);
-          box-shadow: 0 4px 12px rgba(26, 188, 156, 0.3);
-        }
-        
-        .cancel-btn:hover {
-          transform: translateY(-1px);
-          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-        }
-        
-        /* Progress bar animation */
-        .progress-bar {
-          transition: width 0.5s ease-in-out;
-        }
-        
-        /* Form group animations */
-        .form-group {
-          animation: fadeInUp 0.6s ease-out both;
-        }
-        
-        .form-group:nth-child(1) { animation-delay: 0.1s; }
-        .form-group:nth-child(2) { animation-delay: 0.2s; }
-        .form-group:nth-child(3) { animation-delay: 0.3s; }
-        .form-group:nth-child(4) { animation-delay: 0.4s; }
-        .form-group:nth-child(5) { animation-delay: 0.5s; }
-        .form-group:nth-child(6) { animation-delay: 0.6s; }
-        .form-group:nth-child(7) { animation-delay: 0.7s; }
-        .form-group:nth-child(8) { animation-delay: 0.8s; }
-        
-        @keyframes fadeInUp {
-          from {
-            opacity: 0;
-            transform: translateY(20px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-        
-        /* Character counter styling */
-        .char-counter {
-          transition: color 0.3s ease;
-        }
-        
-        /* Remove file button styling */
-        .remove-file {
-          transition: all 0.2s ease;
-          border-radius: 50%;
-          width: 24px;
-          height: 24px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-        }
-        
-        .remove-file:hover {
-          background-color: rgba(231, 76, 60, 0.1);
-          transform: scale(1.1);
-        }
-        
-        /* Mobile optimizations */
-        @media (max-width: 480px) {
-          .file-input-content p {
-            font-size: 0.85rem;
-          }
-          
-          .file-input-content i {
-            font-size: 1.5rem !important;
-          }
-          
-          .form-group label {
-            font-size: 0.85rem;
-          }
-          
-          .file-help {
-            font-size: 0.75rem;
-          }
-        }
-        
-        /* High contrast mode support */
-        @media (prefers-contrast: high) {
-          input, select, textarea {
-            border-width: 2px;
-          }
-          
-          .file-input {
-            border-width: 3px;
-          }
-          
-          .submit-btn, .cancel-btn {
-            border: 2px solid currentColor;
-          }
-        }
-        
-        /* Reduced motion support */
-        @media (prefers-reduced-motion: reduce) {
-          * {
-            animation-duration: 0.01ms !important;
-            animation-iteration-count: 1 !important;
-            transition-duration: 0.01ms !important;
-          }
-        }
-        
-        /* Print styles */
-        @media print {
-          .toast-container,
-          footer,
-          .progress-bar,
-          .file-input,
-          .submit-btn,
-          .cancel-btn {
-            display: none !important;
-          }
-          
-          .section-container {
-            box-shadow: none;
-            border: 2px solid #000;
-          }
-          
-          .hero {
-            background: white !important;
-            color: black !important;
-          }
-          
-          input, select, textarea {
-            border: 1px solid #000 !important;
-            background: white !important;
-          }
-        }
-        
-        /* Enhanced label styling */
-        .form-group label i {
-          width: 16px;
-          text-align: center;
-        }
-        
-        /* Smooth transitions for all interactive elements */
-        input, select, textarea, .submit-btn, .cancel-btn, .file-input {
-          transition: all 0.3s ease;
-        }
-        
-        /* Loading state for form */
-        .form-loading {
-          opacity: 0.7;
-          pointer-events: none;
-        }
-        
-        /* Success state for form */
-        .form-success input,
-        .form-success select,
-        .form-success textarea {
-          border-color: var(--success);
-        }
-        
-        /* File upload progress */
-        .file-uploading {
-          position: relative;
-          overflow: hidden;
-        }
-        
-        .file-uploading::after {
-          content: '';
-          position: absolute;
-          top: 0;
-          left: -100%;
-          width: 100%;
-          height: 100%;
-          background: linear-gradient(90deg, transparent, rgba(26, 188, 156, 0.3), transparent);
-          animation: shimmer 1.5s infinite;
-        }
-        
-        @keyframes shimmer {
-          0% { left: -100%; }
-          100% { left: 100%; }
-        }
-      `;
-      document.head.appendChild(style);
-
-
-      // Track file uploads
-      document.querySelectorAll('input[type="file"]').forEach((input) => {
-        input.addEventListener("change", function () {
-          if (this.files.length > 0) {
-            trackEvent("file_upload", {
-              file_type: this.accept,
-              file_size: this.files[0].size,
-              timestamp: new Date().toISOString(),
-            });
-          }
-        });
-      });
-
-      // Track page view
-      trackEvent("add_section_page_view", {
-        timestamp: new Date().toISOString(),
-      });
+      }, 5000);
     </script>
   </body>
 </html>
