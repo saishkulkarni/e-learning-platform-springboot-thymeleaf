@@ -3,8 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Section Quiz - Jnana</title>
-
+    <title>Section Quiz - CodeVeda</title>
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%2364ffda'/%3E%3Cpath d='M8 12l4 4-4 4M16 20h8' stroke='%23ffffff' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"
+    />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
@@ -19,7 +23,6 @@
         padding: 0;
         box-sizing: border-box;
       }
-
       body {
         font-family: "Quicksand", sans-serif;
         background-color: #1a1a1a;
@@ -28,7 +31,6 @@
         display: flex;
         flex-direction: column;
       }
-
       header {
         background-color: #2d2d2d;
         color: #ffffff;
@@ -39,7 +41,6 @@
         border-radius: 0 0 15px 15px;
         box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
       }
-
       .logo {
         font-size: 20px;
         font-weight: 700;
@@ -47,11 +48,9 @@
         color: #64ffda;
         letter-spacing: 1px;
       }
-
       .logo:hover {
         color: #4fd3b8;
       }
-
       nav a {
         background-color: #3d3d3d;
         color: #ffffff;
@@ -64,13 +63,11 @@
         border: 2px solid #555555;
         transition: all 0.3s ease;
       }
-
       nav a:hover {
         background-color: #64ffda;
         color: #1a1a1a;
         border-color: #64ffda;
       }
-
       .hero {
         background: linear-gradient(135deg, #2d2d2d 0%, #3d3d3d 100%);
         color: #ffffff;
@@ -81,14 +78,12 @@
         box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
         border: 1px solid #444444;
       }
-
       .hero h1 {
         font-size: 20px;
         font-weight: 700;
         margin-bottom: 5px;
         color: #64ffda;
       }
-
       .hero p {
         font-size: 12px;
         font-weight: 400;
@@ -97,45 +92,40 @@
         line-height: 1.3;
         color: #b0b0b0;
       }
-
       .quiz-info {
         display: flex;
         justify-content: center;
         gap: 15px;
         margin-top: 10px;
+        flex-wrap: wrap;
       }
-
       .info-item {
         background: rgba(255, 255, 255, 0.1);
         padding: 8px 12px;
         border-radius: 10px;
         border: 1px solid rgba(255, 255, 255, 0.2);
         text-align: center;
+        min-width: 80px;
       }
-
       .info-number {
         font-size: 14px;
         font-weight: 700;
         color: white;
         display: block;
       }
-
       .info-label {
         font-size: 10px;
         color: rgba(255, 255, 255, 0.8);
       }
-
       .main-content {
         flex: 1;
         padding: 15px 20px;
         overflow-y: auto;
       }
-
       .quiz-container {
         max-width: 800px;
         margin: 0 auto;
       }
-
       .quiz-card {
         background: linear-gradient(135deg, #2d2d2d 0%, #3a3a3a 100%);
         border: 1px solid #444444;
@@ -144,46 +134,44 @@
         padding: 20px;
         margin-bottom: 20px;
       }
-
       .quiz-header {
         text-align: center;
         margin-bottom: 20px;
         padding-bottom: 15px;
         border-bottom: 1px solid #555555;
       }
-
       .quiz-title {
         font-size: 18px;
         font-weight: 600;
         color: #64ffda;
         margin-bottom: 8px;
       }
-
       .quiz-subtitle {
         color: #b0b0b0;
         font-size: 12px;
         font-weight: 400;
       }
-
       .questions-section {
         margin-bottom: 20px;
       }
-
       .question-card {
         background-color: #3d3d3d;
         border: 1px solid #555555;
         border-radius: 12px;
         padding: 18px;
         margin-bottom: 15px;
+        transition: all 0.3s ease;
       }
-
+      .question-card:hover {
+        border-color: #64ffda;
+        box-shadow: 0 2px 10px rgba(100, 255, 218, 0.1);
+      }
       .question-header {
         display: flex;
         justify-content: space-between;
         align-items: flex-start;
         margin-bottom: 12px;
       }
-
       .question-text {
         color: #e0e0e0;
         font-size: 14px;
@@ -192,7 +180,6 @@
         flex: 1;
         margin-right: 10px;
       }
-
       .question-number {
         background: #64ffda;
         color: #1a1a1a;
@@ -205,7 +192,6 @@
         gap: 4px;
         white-space: nowrap;
       }
-
       .answer-input {
         width: 100%;
         padding: 12px;
@@ -214,37 +200,32 @@
         font-size: 13px;
         resize: vertical;
         min-height: 80px;
-        transition: border-color 0.3s ease;
+        transition: all 0.3s ease;
         font-family: "Quicksand", sans-serif;
         background: #2d2d2d;
         color: #e0e0e0;
       }
-
       .answer-input:focus {
         outline: none;
         border-color: #64ffda;
         box-shadow: 0 0 0 2px rgba(100, 255, 218, 0.1);
       }
-
       .answer-input::placeholder {
         color: #888888;
         font-style: italic;
       }
-
       .character-count {
         text-align: right;
         margin-top: 5px;
         font-size: 10px;
         color: #888888;
       }
-
       .submit-section {
         text-align: center;
         padding-top: 20px;
         border-top: 1px solid #555555;
         margin-bottom: 20px;
       }
-
       .btn {
         padding: 12px 20px;
         border: none;
@@ -261,64 +242,54 @@
         font-family: "Quicksand", sans-serif;
         margin: 0 5px;
       }
-
       .btn-submit {
         background-color: #4caf50;
         color: white;
       }
-
       .btn-submit:hover {
         background-color: #45a049;
         transform: translateY(-1px);
         text-decoration: none;
         color: white;
       }
-
       .btn-submit:disabled {
         opacity: 0.6;
         cursor: not-allowed;
         transform: none !important;
       }
-
       .btn-back {
         background-color: #6c757d;
         color: white;
       }
-
       .btn-back:hover {
         background-color: #5a6268;
         transform: translateY(-1px);
         text-decoration: none;
         color: white;
       }
-
       .empty-state {
         text-align: center;
         padding: 40px 20px;
         color: #b0b0b0;
       }
-
       .empty-state i {
         font-size: 40px;
         margin-bottom: 15px;
         opacity: 0.5;
         color: #888888;
       }
-
       .empty-state h3 {
         font-size: 18px;
         margin-bottom: 8px;
         color: #64ffda;
         font-weight: 600;
       }
-
       .empty-state p {
         font-size: 13px;
         line-height: 1.4;
         font-weight: 400;
         margin-bottom: 20px;
       }
-
       .empty-action {
         background-color: #64ffda;
         color: #1a1a1a;
@@ -332,20 +303,53 @@
         gap: 6px;
         transition: all 0.3s ease;
       }
-
       .empty-action:hover {
         background-color: #4fd3b8;
         transform: translateY(-1px);
         text-decoration: none;
         color: #1a1a1a;
       }
-
       .back-section {
         text-align: center;
         padding-top: 20px;
         border-top: 1px solid #555555;
       }
-
+      .instructions-content {
+        padding: 0;
+      }
+      .instruction-item {
+        background-color: #3d3d3d;
+        border: 1px solid #555555;
+        border-radius: 10px;
+        padding: 15px;
+        margin-bottom: 12px;
+        transition: all 0.3s ease;
+      }
+      .instruction-item:hover {
+        border-color: #64ffda;
+        box-shadow: 0 2px 10px rgba(100, 255, 218, 0.1);
+      }
+      .instruction-item:last-child {
+        margin-bottom: 0;
+      }
+      .instruction-header {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 8px;
+        color: #64ffda;
+        font-weight: 600;
+        font-size: 13px;
+      }
+      .instruction-item p {
+        color: #b0b0b0;
+        font-size: 12px;
+        line-height: 1.4;
+        margin: 0;
+      }
+      .instruction-item i {
+        font-size: 14px;
+      }
       footer {
         background-color: #2d2d2d;
         color: #ffffff;
@@ -357,7 +361,6 @@
         font-size: 12px;
         margin-top: auto;
       }
-
       .alert {
         position: fixed;
         top: 15px;
@@ -372,17 +375,14 @@
         font-size: 12px;
         box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
       }
-
       .alert-success {
         background: linear-gradient(135deg, #4caf50 0%, #45a049 100%);
         border: 2px solid #4caf50;
       }
-
       .alert-error {
         background: linear-gradient(135deg, #f44336 0%, #d32f2f 100%);
         border: 2px solid #f44336;
       }
-
       .alert-close {
         float: right;
         background: rgba(255, 255, 255, 0.2);
@@ -400,18 +400,78 @@
         justify-content: center;
         font-weight: 600;
       }
-
       .alert-close:hover {
         background: rgba(255, 255, 255, 0.3);
         transform: scale(1.1);
       }
-
+      .quiz-timer {
+        position: fixed;
+        top: 80px;
+        right: 20px;
+        background: linear-gradient(135deg, #ff9800 0%, #f57c00 100%);
+        color: white;
+        padding: 10px 15px;
+        border-radius: 12px;
+        font-weight: 600;
+        font-size: 14px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        z-index: 999;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        border: 2px solid #ff9800;
+      }
+      .quiz-timer.warning {
+        background: linear-gradient(135deg, #f44336 0%, #d32f2f 100%);
+        border-color: #f44336;
+        animation: pulse 1s infinite;
+      }
+      @keyframes pulse {
+        0% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.05);
+        }
+        100% {
+          transform: scale(1);
+        }
+      }
+      /* Responsive Design */
+      @media (max-width: 768px) {
+        .quiz-info {
+          flex-direction: column;
+          align-items: center;
+          gap: 10px;
+        }
+        .info-item {
+          min-width: 120px;
+        }
+        .question-header {
+          flex-direction: column;
+          gap: 10px;
+        }
+        .question-number {
+          align-self: flex-end;
+        }
+        .quiz-timer {
+          position: relative;
+          top: auto;
+          right: auto;
+          margin: 10px auto;
+          width: fit-content;
+        }
+        .btn {
+          margin: 5px 0;
+          width: 100%;
+          max-width: 200px;
+        }
+      }
       /* Font Awesome Icons */
       .fas {
         font-family: "Font Awesome 6 Free";
         font-weight: 900;
       }
-
       .fa-question-circle:before {
         content: "\f059";
       }
@@ -436,9 +496,11 @@
       .fa-exclamation:before {
         content: "\f12a";
       }
+      .fa-stopwatch:before {
+        content: "\f2f2";
+      }
     </style>
   </head>
-
   <body>
     <!-- Toast Container -->
     <div th:if="${session.pass}" class="alert alert-success" id="successAlert">
@@ -447,19 +509,27 @@
         &times;
       </button>
     </div>
-
     <div th:if="${session.fail}" class="alert alert-error" id="errorAlert">
       <span th:text="${session.fail}">Error message</span>
       <button class="alert-close" onclick="closeAlert('errorAlert')">
         &times;
       </button>
     </div>
-
     <th:block th:text="${@generalService.removeMessage()}"></th:block>
+
+    <!-- Quiz Timer -->
+    <div
+      class="quiz-timer"
+      id="quizTimer"
+      th:if="${questions != null and !questions.empty}"
+    >
+      <i class="fas fa-stopwatch"></i>
+      <span id="timeDisplay">30:00</span>
+    </div>
 
     <!-- Header -->
     <header>
-      <a href="/learner/home" class="logo">Jnana</a>
+      <a href="/learner/home" class="logo">CodeVeda</a>
       <nav>
         <a th:href="@{'/learner/view-enrolled-sections/' + ${id}}"
           >Back to Sections</a
@@ -468,14 +538,12 @@
         <a href="/logout">Logout</a>
       </nav>
     </header>
-
     <!-- Hero Section -->
     <div class="hero">
       <h1>Section Quiz</h1>
       <p th:text="'Test your knowledge of: ' + ${section.section.title}">
         Test your knowledge of the section material
       </p>
-
       <div class="quiz-info">
         <div class="info-item">
           <span class="info-number" th:text="${questions.size()}">0</span>
@@ -491,7 +559,6 @@
         </div>
       </div>
     </div>
-
     <!-- Main Content -->
     <div class="main-content">
       <div class="quiz-container">
@@ -503,12 +570,12 @@
               Section Quiz
             </h2>
           </div>
-
           <!-- Quiz Form -->
           <form
             th:if="${questions != null and !questions.empty}"
             th:action="@{'/learner/section/quiz/' + ${section.id}}"
             method="post"
+            id="quizForm"
           >
             <!-- Questions Section -->
             <div class="questions-section">
@@ -526,38 +593,36 @@
                     <span th:text="${iterStat.index + 1}">1</span>
                   </div>
                 </div>
-
                 <!-- Answer Input -->
                 <textarea
                   class="answer-input"
                   th:name="${question.id}"
                   th:placeholder="'Type your answer for question ' + ${iterStat.index + 1} + ' here...'"
+                  maxlength="500"
                   required
+                  oninput="updateCharacterCount(this)"
                 ></textarea>
-
                 <div class="character-count">
-                  <span>Maximum 500 characters</span>
+                  <span class="char-counter">0/500 characters</span>
                 </div>
               </div>
             </div>
-
             <!-- Submit Section -->
             <div class="submit-section">
-              <button type="submit" class="btn btn-submit">
+              <button type="submit" class="btn btn-submit" id="submitBtn">
                 <i class="fas fa-paper-plane"></i>
                 <span>Submit Quiz</span>
               </button>
-
               <a
                 th:href="@{'/learner/view-enrolled-sections/' + ${id}}"
                 class="btn btn-back"
+                onclick="return confirmExit()"
               >
                 <i class="fas fa-arrow-left"></i>
                 <span>Cancel</span>
               </a>
             </div>
           </form>
-
           <!-- Empty State -->
           <div
             class="empty-state"
@@ -577,7 +642,6 @@
               <span>Back to Sections</span>
             </a>
           </div>
-
           <!-- Back Section -->
           <div
             class="back-section"
@@ -586,13 +650,13 @@
             <a
               th:href="@{'/learner/view-enrolled-sections/' + ${id}}"
               class="btn btn-back"
+              onclick="return confirmExit()"
             >
               <i class="fas fa-arrow-left"></i>
               <span>Back to Sections</span>
             </a>
           </div>
         </div>
-
         <!-- Quiz Instructions Card -->
         <div
           class="quiz-card"
@@ -601,7 +665,6 @@
           <div class="quiz-header">
             <h3 class="quiz-title">Quiz Instructions</h3>
           </div>
-
           <div class="instructions-content">
             <div class="instruction-item">
               <div class="instruction-header">
@@ -609,11 +672,10 @@
                 <span>Time Limit</span>
               </div>
               <p>
-                You have 30 minutes to complete this quiz. Make sure you have
-                enough time before starting.
+                You have 30 minutes to complete this quiz. The timer will start
+                automatically and the quiz will be submitted when time runs out.
               </p>
             </div>
-
             <div class="instruction-item">
               <div class="instruction-header">
                 <i class="fas fa-percentage"></i>
@@ -621,10 +683,9 @@
               </div>
               <p>
                 You need to score at least 70% to pass this quiz. Take your time
-                to think through each answer.
+                to think through each answer carefully.
               </p>
             </div>
-
             <div class="instruction-item">
               <div class="instruction-header">
                 <i class="fas fa-question-circle"></i>
@@ -632,18 +693,127 @@
               </div>
               <p>
                 Provide clear, concise answers. You can write up to 500
-                characters per question.
+                characters per question. All questions are required.
+              </p>
+            </div>
+            <div class="instruction-item">
+              <div class="instruction-header">
+                <i class="fas fa-exclamation-triangle"></i>
+                <span>Important Notes</span>
+              </div>
+              <p>
+                Make sure you have a stable internet connection. Your progress
+                will be automatically saved, but avoid refreshing the page
+                during the quiz.
               </p>
             </div>
           </div>
         </div>
       </div>
     </div>
-
     <!-- Footer -->
-    <footer>&copy; 2025 Jnana. All rights reserved.</footer>
-
+    <footer>&copy; 2025 CodeVeda. All rights reserved.</footer>
     <script>
+      // Timer functionality
+      let timeLeft = 30 * 60; // 30 minutes in seconds
+      let timerInterval;
+      let quizStarted = false;
+
+      function startTimer() {
+        if (quizStarted) return;
+        quizStarted = true;
+
+        timerInterval = setInterval(function () {
+          timeLeft--;
+          updateTimerDisplay();
+
+          // Warning when 5 minutes left
+          if (timeLeft <= 5 * 60) {
+            document.getElementById("quizTimer").classList.add("warning");
+          }
+
+          // Auto-submit when time runs out
+          if (timeLeft <= 0) {
+            clearInterval(timerInterval);
+            autoSubmitQuiz();
+          }
+        }, 1000);
+      }
+
+      function updateTimerDisplay() {
+        const minutes = Math.floor(timeLeft / 60);
+        const seconds = timeLeft % 60;
+        const display = `${minutes.toString().padStart(2, "0")}:${seconds
+          .toString()
+          .padStart(2, "0")}`;
+        document.getElementById("timeDisplay").textContent = display;
+      }
+
+      function autoSubmitQuiz() {
+        alert("Time is up! The quiz will be submitted automatically.");
+        document.getElementById("quizForm").submit();
+      }
+
+      function updateCharacterCount(textarea) {
+        const maxLength = 500;
+        const currentLength = textarea.value.length;
+        const counter = textarea.parentElement.querySelector(".char-counter");
+        counter.textContent = `${currentLength}/${maxLength} characters`;
+
+        if (currentLength > maxLength * 0.9) {
+          counter.style.color = "#f44336";
+        } else if (currentLength > maxLength * 0.7) {
+          counter.style.color = "#ff9800";
+        } else {
+          counter.style.color = "#888888";
+        }
+      }
+
+      function confirmExit() {
+        if (quizStarted) {
+          return confirm(
+            "Are you sure you want to leave? Your progress will be lost."
+          );
+        }
+        return true;
+      }
+
+      // Start timer when user interacts with any input
+      document.addEventListener("DOMContentLoaded", function () {
+        const inputs = document.querySelectorAll(".answer-input");
+        inputs.forEach((input) => {
+          input.addEventListener("focus", startTimer);
+          input.addEventListener("input", function () {
+            startTimer();
+            updateCharacterCount(this);
+          });
+        });
+
+        // Initialize character counters
+        inputs.forEach((input) => {
+          updateCharacterCount(input);
+        });
+
+        // Prevent accidental page refresh
+        window.addEventListener("beforeunload", function (e) {
+          if (quizStarted) {
+            e.preventDefault();
+            e.returnValue = "";
+          }
+        });
+
+        // Form submission handling
+        const form = document.getElementById("quizForm");
+        if (form) {
+          form.addEventListener("submit", function () {
+            clearInterval(timerInterval);
+            document.getElementById("submitBtn").disabled = true;
+            document.getElementById("submitBtn").innerHTML =
+              '<i class="fas fa-clock"></i><span>Submitting...</span>';
+          });
+        }
+      });
+
       function closeAlert(alertId) {
         document.getElementById(alertId).style.display = "none";
       }
@@ -651,7 +821,6 @@
       setTimeout(function () {
         var successAlert = document.getElementById("successAlert");
         var errorAlert = document.getElementById("errorAlert");
-
         if (successAlert) {
           successAlert.style.display = "none";
         }
@@ -660,44 +829,5 @@
         }
       }, 5000);
     </script>
-
-    <style>
-      .instructions-content {
-        padding: 0;
-      }
-
-      .instruction-item {
-        background-color: #3d3d3d;
-        border: 1px solid #555555;
-        border-radius: 10px;
-        padding: 15px;
-        margin-bottom: 12px;
-      }
-
-      .instruction-item:last-child {
-        margin-bottom: 0;
-      }
-
-      .instruction-header {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        margin-bottom: 8px;
-        color: #64ffda;
-        font-weight: 600;
-        font-size: 13px;
-      }
-
-      .instruction-item p {
-        color: #b0b0b0;
-        font-size: 12px;
-        line-height: 1.4;
-        margin: 0;
-      }
-
-      .instruction-item i {
-        font-size: 14px;
-      }
-    </style>
   </body>
 </html>

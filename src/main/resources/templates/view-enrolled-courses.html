@@ -3,8 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Enrolled Courses - Jnana</title>
-
+    <title>Enrolled Courses - CodeVeda</title>
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%2364ffda'/%3E%3Cpath d='M8 12l4 4-4 4M16 20h8' stroke='%23ffffff' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"
+    />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
@@ -19,7 +23,6 @@
         padding: 0;
         box-sizing: border-box;
       }
-
       body {
         font-family: "Quicksand", sans-serif;
         background-color: #1a1a1a;
@@ -28,7 +31,6 @@
         display: flex;
         flex-direction: column;
       }
-
       header {
         background-color: #2d2d2d;
         color: #ffffff;
@@ -39,7 +41,6 @@
         border-radius: 0 0 15px 15px;
         box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
       }
-
       .logo {
         font-size: 20px;
         font-weight: 700;
@@ -47,11 +48,9 @@
         color: #64ffda;
         letter-spacing: 1px;
       }
-
       .logo:hover {
         color: #4fd3b8;
       }
-
       nav a {
         background-color: #3d3d3d;
         color: #ffffff;
@@ -64,13 +63,11 @@
         border: 2px solid #555555;
         transition: all 0.3s ease;
       }
-
       nav a:hover {
         background-color: #64ffda;
         color: #1a1a1a;
         border-color: #64ffda;
       }
-
       .hero {
         background: linear-gradient(135deg, #2d2d2d 0%, #3d3d3d 100%);
         color: #ffffff;
@@ -81,14 +78,12 @@
         box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
         border: 1px solid #444444;
       }
-
       .hero h1 {
         font-size: 20px;
         font-weight: 700;
         margin-bottom: 5px;
         color: #64ffda;
       }
-
       .hero p {
         font-size: 12px;
         font-weight: 400;
@@ -97,18 +92,15 @@
         line-height: 1.3;
         color: #b0b0b0;
       }
-
       .main-content {
         flex: 1;
         padding: 15px 20px;
         overflow-y: auto;
       }
-
       .courses-container {
         max-width: 1000px;
         margin: 0 auto;
       }
-
       .courses-grid {
         display: flex;
         flex-wrap: wrap;
@@ -116,7 +108,6 @@
         justify-content: center;
         margin-bottom: 20px;
       }
-
       .course-card {
         background: linear-gradient(135deg, #2d2d2d 0%, #3a3a3a 100%);
         border: 1px solid #444444;
@@ -126,13 +117,11 @@
         width: 320px;
         transition: all 0.3s ease;
       }
-
       .course-card:hover {
         transform: translateY(-3px);
         box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
         border-color: #64ffda;
       }
-
       .course-header {
         display: flex;
         justify-content: space-between;
@@ -141,7 +130,6 @@
         padding-bottom: 10px;
         border-bottom: 1px solid #555555;
       }
-
       .course-title {
         font-size: 16px;
         font-weight: 600;
@@ -151,7 +139,6 @@
         flex: 1;
         margin-right: 10px;
       }
-
       .enrollment-badge {
         background-color: #4caf50;
         color: white;
@@ -164,11 +151,9 @@
         gap: 4px;
         white-space: nowrap;
       }
-
       .enrollment-badge.completed {
         background-color: #ff9800;
       }
-
       .course-description {
         color: #b0b0b0;
         font-size: 12px;
@@ -176,7 +161,6 @@
         font-weight: 400;
         margin-bottom: 15px;
       }
-
       .course-progress {
         background-color: #3d3d3d;
         border: 1px solid #555555;
@@ -184,20 +168,17 @@
         padding: 12px;
         margin-bottom: 15px;
       }
-
       .progress-header {
         display: flex;
         justify-content: space-between;
         align-items: center;
         margin-bottom: 8px;
       }
-
       .progress-label {
         color: #e0e0e0;
         font-weight: 500;
         font-size: 11px;
       }
-
       .progress-percentage {
         background: #64ffda;
         color: #1a1a1a;
@@ -206,7 +187,6 @@
         font-size: 10px;
         font-weight: 600;
       }
-
       .progress-bar {
         width: 100%;
         height: 6px;
@@ -215,26 +195,22 @@
         overflow: hidden;
         margin-bottom: 8px;
       }
-
       .progress-fill {
         height: 100%;
         background: #64ffda;
         border-radius: 3px;
         transition: width 0.3s ease;
       }
-
       .progress-stats {
         display: flex;
         justify-content: space-between;
         font-size: 10px;
         color: #888888;
       }
-
       .course-actions {
         display: flex;
         gap: 8px;
       }
-
       .btn {
         padding: 8px 12px;
         border: none;
@@ -251,76 +227,64 @@
         font-family: "Quicksand", sans-serif;
         flex: 1;
       }
-
       .btn-sections {
         background-color: #4caf50;
         color: white;
       }
-
       .btn-sections:hover {
         background-color: #45a049;
         transform: translateY(-1px);
         text-decoration: none;
         color: white;
       }
-
       .btn-quiz {
         background-color: #64ffda;
         color: #1a1a1a;
       }
-
       .btn-quiz:hover {
         background-color: #4fd3b8;
         transform: translateY(-1px);
         text-decoration: none;
         color: #1a1a1a;
       }
-
       .btn-certificate {
         background-color: #ff9800;
         color: white;
       }
-
       .btn-certificate:hover {
         background-color: #f57c00;
         transform: translateY(-1px);
         text-decoration: none;
         color: white;
       }
-
       .btn:disabled {
         opacity: 0.6;
         cursor: not-allowed;
         transform: none !important;
       }
-
       .empty-state {
         text-align: center;
         padding: 40px 20px;
         color: #b0b0b0;
       }
-
       .empty-state i {
         font-size: 40px;
         margin-bottom: 15px;
         opacity: 0.5;
         color: #888888;
       }
-
       .empty-state h3 {
         font-size: 18px;
         margin-bottom: 8px;
         color: #64ffda;
         font-weight: 600;
       }
-
       .empty-state p {
         font-size: 13px;
         line-height: 1.4;
         font-weight: 400;
         margin-bottom: 20px;
       }
-
       .empty-action {
         background-color: #64ffda;
         color: #1a1a1a;
@@ -334,21 +298,18 @@
         gap: 6px;
         transition: all 0.3s ease;
       }
-
       .empty-action:hover {
         background-color: #4fd3b8;
         transform: translateY(-1px);
         text-decoration: none;
         color: #1a1a1a;
       }
-
       .back-section {
         text-align: center;
         margin-top: 20px;
         padding-top: 20px;
         border-top: 1px solid #444444;
       }
-
       .back-btn {
         background-color: #6c757d;
         color: white;
@@ -365,14 +326,12 @@
         gap: 6px;
         font-family: "Quicksand", sans-serif;
       }
-
       .back-btn:hover {
         background-color: #5a6268;
         transform: translateY(-1px);
         text-decoration: none;
         color: white;
       }
-
       footer {
         background-color: #2d2d2d;
         color: #ffffff;
@@ -384,7 +343,6 @@
         font-size: 12px;
         margin-top: auto;
       }
-
       .alert {
         position: fixed;
         top: 15px;
@@ -399,17 +357,14 @@
         font-size: 12px;
         box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
       }
-
       .alert-success {
         background: linear-gradient(135deg, #4caf50 0%, #45a049 100%);
         border: 2px solid #4caf50;
       }
-
       .alert-error {
         background: linear-gradient(135deg, #f44336 0%, #d32f2f 100%);
         border: 2px solid #f44336;
       }
-
       .alert-close {
         float: right;
         background: rgba(255, 255, 255, 0.2);
@@ -427,17 +382,14 @@
         justify-content: center;
         font-weight: 600;
       }
-
       .alert-close:hover {
         background: rgba(255, 255, 255, 0.3);
         transform: scale(1.1);
       }
-
       .fas {
         font-family: "Font Awesome 6 Free";
         font-weight: 900;
       }
-
       .fa-graduation-cap:before {
         content: "\f19d";
       }
@@ -470,7 +422,6 @@
       }
     </style>
   </head>
-
   <body>
     <!-- Toast Container -->
     <div th:if="${session.pass}" class="alert alert-success" id="successAlert">
@@ -479,31 +430,26 @@
         &times;
       </button>
     </div>
-
     <div th:if="${session.fail}" class="alert alert-error" id="errorAlert">
       <span th:text="${session.fail}">Error message</span>
       <button class="alert-close" onclick="closeAlert('errorAlert')">
         &times;
       </button>
     </div>
-
     <th:block th:text="${@generalService.removeMessage()}"></th:block>
-
     <!-- Header -->
     <header>
-      <a href="/learner/home" class="logo">Jnana</a>
+      <a href="/learner/home" class="logo">CodeVeda</a>
       <nav>
         <a href="/learner/home">Dashboard</a>
         <a href="/logout">Logout</a>
       </nav>
     </header>
-
     <!-- Hero Section -->
     <div class="hero">
       <h1>My Enrolled Courses</h1>
       <p>Continue your learning journey and track your progress</p>
     </div>
-
     <!-- Main Content -->
     <div class="main-content">
       <div class="courses-container">
@@ -536,7 +482,6 @@
                 >
               </div>
             </div>
-
             <!-- Course Description -->
             <p
               class="course-description"
@@ -544,7 +489,6 @@
             >
               Course Description
             </p>
-
             <div class="course-actions">
               <a
                 th:href="@{'/learner/view-enrolled-sections/' + ${enrollment.course.id}}"
@@ -553,7 +497,6 @@
                 <i class="fas fa-book-reader"></i>
                 <span>View Sections</span>
               </a>
-
               <a
                 th:href="@{'/learner/course/quiz/' + ${enrollment.course.id}}"
                 class="btn btn-quiz"
@@ -562,7 +505,6 @@
                 <i class="fas fa-question-circle"></i>
                 <span>Take Quiz</span>
               </a>
-
               <button
                 class="btn btn-quiz"
                 disabled
@@ -571,7 +513,6 @@
                 <i class="fas fa-question-circle"></i>
                 <span>Quiz Unavailable</span>
               </button>
-
               <a
                 th:if="${enrollment.finalQuizCompleted}"
                 th:href="@{'/learner/certificate/' + ${enrollment.id}}"
@@ -580,7 +521,6 @@
                 <i class="fas fa-certificate"></i>
                 <span>Certificate</span>
               </a>
-
               <button
                 th:unless="${enrollment.finalQuizCompleted}"
                 class="btn btn-certificate"
@@ -592,7 +532,22 @@
             </div>
           </div>
         </div>
-
+        <!-- Empty State (when no courses are enrolled) -->
+        <div
+          class="empty-state"
+          th:if="${enrolledCourses == null or enrolledCourses.empty}"
+        >
+          <i class="fas fa-book-open"></i>
+          <h3>No Enrolled Courses</h3>
+          <p>
+            You haven't enrolled in any courses yet. Start your learning journey
+            by exploring our available courses.
+          </p>
+          <a href="/learner/view-courses" class="empty-action">
+            <i class="fas fa-plus"></i>
+            <span>Browse Courses</span>
+          </a>
+        </div>
         <!-- Back Section -->
         <div class="back-section">
           <a href="/learner/home" class="back-btn">
@@ -602,19 +557,15 @@
         </div>
       </div>
     </div>
-
     <!-- Footer -->
-    <footer>&copy; 2025 Jnana. All rights reserved.</footer>
-
+    <footer>&copy; 2025 CodeVeda. All rights reserved.</footer>
     <script>
       function closeAlert(alertId) {
         document.getElementById(alertId).style.display = "none";
       }
-
       setTimeout(function () {
         var successAlert = document.getElementById("successAlert");
         var errorAlert = document.getElementById("errorAlert");
-
         if (successAlert) {
           successAlert.style.display = "none";
         }

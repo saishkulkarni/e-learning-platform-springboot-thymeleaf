@@ -8,5 +8,4 @@ public class JnanaApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(JnanaApplication.class, args);
 	}
-
 }

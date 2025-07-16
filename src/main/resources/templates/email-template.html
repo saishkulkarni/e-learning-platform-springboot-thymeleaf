@@ -2,12 +2,17 @@
 <html xmlns:th="http://www.thymeleaf.org">
   <head>
     <meta charset="UTF-8" />
-    <title>Jnana - Email Verification</title>
+    <title>CodeVeda - Email Verification</title>
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%2364ffda'/%3E%3Cpath d='M8 12l4 4-4 4M16 20h8' stroke='%23ffffff' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"
+    />
     <style>
       :root {
         --primary: #2c3e50;
         --secondary: #34495e;
-        --accent: #1abc9c;
+        --accent: #64ffda;
         --text-light: #ecf0f1;
         --text-dark: #2c3e50;
         --bg-light: #f8f9fa;
@@ -15,21 +20,18 @@
         --error: #e74c3c;
         --border: #ddd;
       }
-
       * {
         margin: 0;
         padding: 0;
         box-sizing: border-box;
         font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
       }
-
       body {
         background-color: var(--bg-light);
         padding: 20px;
         color: var(--text-dark);
         line-height: 1.6;
       }
-
       .container {
         background: white;
         padding: 2.5rem;
@@ -41,43 +43,45 @@
         margin: 20px auto;
         text-align: center;
       }
-
       .logo {
         margin-bottom: 2rem;
       }
-
-      .logo img {
+      .logo-icon {
+        width: 60px;
         height: 60px;
-        width: auto;
-        border-radius: 8px;
+        background: var(--accent);
+        border-radius: 12px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 1rem;
       }
-
+      .logo-icon svg {
+        width: 32px;
+        height: 32px;
+      }
       h2 {
         color: var(--primary);
         font-size: 2rem;
         margin-bottom: 1.5rem;
         font-weight: 600;
       }
-
       h3 {
         color: var(--text-dark);
         font-size: 1.4rem;
         margin-bottom: 2rem;
         font-weight: 500;
       }
-
       h4 {
         color: var(--text-dark);
         font-size: 1.1rem;
         margin-bottom: 1rem;
         font-weight: 500;
       }
-
       .highlight {
         color: var(--accent);
         font-weight: 600;
       }
-
       .otp-container {
         margin: 2rem 0;
         padding: 1.5rem;
@@ -85,7 +89,6 @@
         border-radius: 0.5rem;
         border: 1px solid var(--border);
       }
-
       .otp {
         font-size: 2.5rem;
         color: var(--primary);
@@ -99,7 +102,6 @@
         box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
         border: 2px solid var(--accent);
       }
-
       .role-info {
         background: var(--accent);
         color: white;
@@ -110,7 +112,6 @@
         display: inline-block;
         margin: 0.5rem 0;
       }
-
       .footer {
         margin-top: 2rem;
         padding-top: 2rem;
@@ -118,25 +119,21 @@
         font-size: 0.9rem;
         color: #666;
       }
-
       .footer p {
         margin-bottom: 0.5rem;
       }
-
       .warning {
         color: var(--error);
         font-size: 0.85rem;
         margin-top: 1rem;
         font-weight: 500;
       }
-
       .social-links {
         margin-top: 1.5rem;
         display: flex;
         justify-content: center;
         gap: 1.5rem;
       }
-
       .social-link {
         color: var(--text-dark);
         text-decoration: none;
@@ -146,13 +143,11 @@
         transition: all 0.3s ease;
         border: 1px solid var(--border);
       }
-
       .social-link:hover {
         color: var(--accent);
         border-color: var(--accent);
-        background-color: rgba(26, 188, 156, 0.1);
+        background-color: rgba(100, 255, 218, 0.1);
       }
-
       .validity-info {
         background: #fff3cd;
         border: 1px solid #ffeaa7;
@@ -162,7 +157,6 @@
         margin: 1rem 0;
         font-size: 0.9rem;
       }
-
       .brand-header {
         display: flex;
         align-items: center;
@@ -170,13 +164,11 @@
         gap: 1rem;
         margin-bottom: 2rem;
       }
-
       .brand-name {
         font-size: 1.8rem;
         font-weight: bold;
         color: var(--primary);
       }
-
       /* Responsive Design */
       @media (max-width: 600px) {
         .container {
@@ -184,66 +176,53 @@
           margin: 10px;
           width: 95%;
         }
-
         h2 {
           font-size: 1.6rem;
         }
-
         h3 {
           font-size: 1.2rem;
         }
-
         .otp {
           font-size: 2rem;
           letter-spacing: 2px;
         }
-
         .social-links {
           flex-direction: column;
           gap: 0.5rem;
         }
-
         .brand-header {
           flex-direction: column;
           gap: 0.5rem;
         }
-
         .brand-name {
           font-size: 1.5rem;
         }
       }
-
       @media (max-width: 400px) {
         .container {
           padding: 1rem;
         }
-
         .otp {
           font-size: 1.8rem;
           padding: 0.8rem;
         }
-
         h2 {
           font-size: 1.4rem;
         }
       }
-
       /* Print styles */
       @media print {
         body {
           background: white;
         }
-
         .container {
           box-shadow: none;
           border: 2px solid #000;
         }
-
         .social-links {
           display: none;
         }
       }
-
       /* High contrast mode support */
       @media (prefers-contrast: high) {
         .container,
@@ -252,7 +231,6 @@
           border: 2px solid currentColor;
         }
       }
-
       /* Reduced motion support */
       @media (prefers-reduced-motion: reduce) {
         * {
@@ -265,17 +243,26 @@
     <div class="container">
       <div class="brand-header">
         <div class="logo">
-          <img
-            src="https://yogastudies.org/wp-content/uploads/jnana.jpg"
-            alt="Jnana Logo"
-          />
+          <div class="logo-icon">
+            <svg
+              viewBox="0 0 32 32"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M8 12l4 4-4 4M16 20h8"
+                stroke="#ffffff"
+                stroke-width="2"
+                fill="none"
+                stroke-linecap="round"
+              />
+            </svg>
+          </div>
         </div>
-        <div class="brand-name">Jnana</div>
+        <div class="brand-name">CodeVeda</div>
       </div>
-
       <h2>Email Verification</h2>
       <h3>Hello <span class="highlight" th:text="${name}">User</span>!</h3>
-
       <div class="otp-container">
         <h4>Registration Details</h4>
         <p>
@@ -287,22 +274,18 @@
         </p>
         <div class="otp" th:text="${otp}">123456</div>
       </div>
-
       <div class="validity-info">
         <strong>⏰ Important:</strong> This OTP is valid for 10 minutes only.
       </div>
-
       <div class="footer">
-        <p><strong>Welcome to Jnana Learning Platform!</strong></p>
+        <p><strong>Welcome to CodeVeda Learning Platform!</strong></p>
         <p>We're excited to have you join our learning community.</p>
-
         <p class="warning">
           <strong>🔒 Security Notice:</strong> For your security, please do not
           share this OTP with anyone.
         </p>
-
         <p style="margin-top: 2rem; font-size: 0.8rem; color: #999">
-          © 2025 Jnana. All rights reserved.
+          © 2025 CodeVeda. All rights reserved.
         </p>
       </div>
     </div>
